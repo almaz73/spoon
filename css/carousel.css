@@ -1,0 +1,7 @@
+.thumbnail{display:block;padding:0;margin-bottom:0;line-height:1.42857143;-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out;border-radius:0;border:none;}
+.carousel-control{position:absolute;top:0;left:0;bottom:0;width:15%;opacity:.5;font-size:20px;color:#fff;text-align:center;text-shadow:none;}
+.carousel-control.left{background-image:none;}
+.carousel-control.right{left:auto;right:0;background-image:none;margin-top:-20px;}
+.carousel-control{padding-top:10.25%;width:5%;}
+.carousel-caption{width:100%;right:0;left:0;padding:10px 0;background:rgba(0, 0, 0, 0.51);}
+.carousel-caption h2{margin:0px;}

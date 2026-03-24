@@ -1,0 +1,233 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 25.03.2017, 20:51:35
+    Author     : lih19
+*/
+.utp {
+    padding: 10px;
+    border: 2px solid #994868;
+    margin: 10px;
+}
+.maketbox{
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 300px;
+    margin: 10px auto;
+}
+@media screen and (max-width: 760px){
+    .mobile-hide{display: none;}
+    #socbar{display: none !important;}
+    .modal-dialog{
+    width: 90% !important;
+    }
+}
+#promo{
+    background-color: #f8f8f8;
+}
+#catalog{
+    background-color: #994868;
+}
+h1,h2,h3,h4 {
+    text-align: center;
+}
+.center{
+    text-align: center;
+}
+a {
+    color: #747474;
+}
+a:active {
+  color: #994868;
+}
+a:hover {
+  color: #994868;
+}
+.topmenu{
+    background-color: #f8f8f8;
+}
+/*
+.navbar{
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 0px;
+    border: none;
+    border-radius: 0;
+}
+*/
+.carusel img {
+    width: 100%;
+}
+.icon-bar{
+    background-color: #747474;
+}
+.icon-bar:active{
+    background-color: #994868;
+}
+.icon-bar:hover{
+    background-color: #994868;
+}
+.social{
+    position: fixed;
+    right: 0;
+    top: 30%;    
+    background-color: #255625;
+    border-radius: 25px 0px 0px 25px;
+    z-index: 10;
+}
+.social ul {
+    list-style: none;
+    padding: 5px;
+    margin: 0;
+}
+.social img {
+    width: 35px;
+    margin: 10px 3px 10px 7px;
+    border: 2px solid #fff;
+    border-radius: 25px;
+}
+.social img:hover {
+    border: 5px solid #fff;
+}
+.model-list{
+    display: inline-block;
+}
+.model-list img{
+    width: 100%;
+}
+.model-box{
+    margin: 15px 0px 15px 0px;
+    padding: 0px;
+    box-shadow: 0 0 7px rgba(0,0,0,0.5);
+    background-color: #f8f8f8;
+}
+.model-box a{
+    color: #e38d13;
+    text-align: center;
+    font-weight: 600;
+}
+.model-box h4{
+    min-height: 40px;
+    text-align: center;
+    font-weight: 600;
+}
+.tovar-desc{
+    text-align: center;
+    margin: 0 15px;
+    padding-bottom: 5px;
+}
+.tovar_info{
+    display: -webkit-box;
+}
+.price {
+    text-align: center;
+    width: 50%;
+    padding: 15px 0;
+    font-weight: 600;
+    color: #994868;
+}
+.readmore {
+    text-align: center;
+    width: 50%;
+    padding: 15px 0;
+    background: #5cb85c;
+}
+.readmore a {
+    color: white;
+}
+.my-btn {
+	display: block;
+	margin-top: 12px;
+	padding: 9px 0;
+	font-size: 20px;
+	font-weight: bold;
+	color: #fff;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+        border-radius: 0px 0px 15px 15px;
+}
+.my-btn:hover {
+	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255, .5), inset 0 -10px 5px rgba(255,255,255, .1), 0 0 7px rgba(15,182,115, .6);
+	-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255, .5), inset 0 -10px 5px rgba(255,255,255, .1), 0 0 7px rgba(15,182,115, .6);
+	box-shadow: inset 0 1px 0 rgba(255,255,255, .5), inset 0 -10px 5px rgba(255,255,255, .1), 0 0 7px rgba(15,182,115, .6);
+}
+.my-btn:active {
+	-moz-box-shadow: inset 0 1px 0 rgba(0,0,0, .4);
+	-webkit-box-shadow: inset 0 1px 0 rgba(0,0,0, .4);
+	box-shadow: inset 0 1px 0 rgba(0,0,0, .4);
+}
+.carusel {
+    padding: 0;
+}
+.non-padd{
+    padding: 0;
+}
+.arrows span {
+    background: white;
+    font-size: 2em;
+    padding: 5px;
+    border-radius: 31px;
+}
+.arrows span:hover {
+    color: white;
+    background: gray;
+}
+.gal-left, .gal-right {
+	cursor: pointer;
+	position: absolute;
+	top: 45%;
+}		
+.gal-left {
+	left: 10%;
+}
+.gal-right {
+	right: 10%;
+}
+
+.gal-cont {
+	width: 100%;
+	position: relative;
+}
+	
+.gal-image {
+	text-align: center;
+}
+
+.gal-image img {
+	width: 100%;
+}
+
+.gal-cont .gal-thumbs a.act  {
+	-moz-border-radius: 1px; 
+	-webkit-border-radius: 1px;
+	border-radius: 1px; 
+	-moz-box-shadow: 0 0 1px 2px #1C9CCC; 
+	-webkit-box-shadow: 0 0 1px 2px #1C9CCC;
+	box-shadow: 0 0 1px 2px #1C9CCC; 
+}
+
+.gal-thumbs-cont {
+	margin-top: 15px;
+}
+.gal-thumbs a {
+	display: inline-block;
+	margin: 0 11px 11px 0;
+	width: 78px;
+	/*height: 78px;*/
+	border: 1px solid #dadada;
+	background: #fff;
+}
+.gal-thumbs a img {
+	width: 78px;
+}
+.modal-title{
+    font-weight: bold;
+}
+.modal-dialog{
+    width: 70%;
+    margin: 0 auto;
+}
