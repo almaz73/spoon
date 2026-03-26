@@ -138,6 +138,11 @@ function sendToEmail() {
 function sendTelegram(message) {
     let botId = 'bot8235288635:AAF_soJaYR8OPHAQrpfcF4FDUr2JjRRDlVw';
     let chatId = '-5064627941';
+
+    // ложки
+    // let botId =  '352538299:AAGqOodOgBZmLjN4HUIJrnxr6avK50KE1N4';
+    // let chatId = -166511690;
+
     let linkTelega = `https://api.telegram.org/${botId}/sendMessage?chat_id=${chatId}&parse_mode=HTML&text=${message}`;
 
     try {

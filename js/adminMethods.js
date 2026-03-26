@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('body').style.background = '#3d3d3d'
     document.querySelector('body').style.opacity = 0
     document.querySelector('[href="#tovar"]').click()
     setTimeout(() => {
