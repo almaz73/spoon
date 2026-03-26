@@ -1,3 +1,4 @@
+html {scroll-behavior: smooth}
 .utp{padding:10px;border:2px solid #994868;margin:10px;}
 .call-text{font-size: 10px;text-transform: uppercase;margin: 0px;text-align: center;}
 @media screen and (max-width:760px){.mobile-hide{display:none;}

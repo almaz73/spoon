@@ -196,7 +196,7 @@ and open the template in the editor.
     </div>
 </section>
 
-<section id="promo">
+<section id="promo" style="padding-top: 120px">
     <div class="container">
         <div class="row center otst">
             <div class="col-sm-3 col-md-3">
@@ -219,7 +219,7 @@ and open the template in the editor.
     </div>
 </section>
 
-<section id="catalog">
+<section id="catalog" style="padding: 120px 0">
     <div class="container">
         <div class="row">
             <h3>Столовые приборы с гравировкой</h3>
@@ -245,7 +245,7 @@ and open the template in the editor.
 <!--    </div>-->
 </section>
 
-<section id="otziv">
+<section id="otziv" style="padding: 120px 0">
     <h2 class="text-center">Отзывы заказчиков</h2>
     <div class="container" style="text-align: -webkit-center;">
         <div class="row ot_row">
@@ -322,7 +322,7 @@ and open the template in the editor.
     </div>
 </section>
 
-<section id="setrificat">
+<section id="setrificat"  style="padding: 120px 0">
     <h2 class="text-center">Наши ложки сертифицированы</h2>
     <div class="container">
         <div class="row text-center">
@@ -466,7 +466,7 @@ and open the template in the editor.
                 <input type="hidden" id="utm_campaign" value="<?php echo $_GET['utm_campaign'];?>">
                 <input type="hidden" id="utm_term" value="<?php echo $_GET['utm_term'];?>">
                 <input type="hidden" id="utm_content" value="<?php echo $_GET['utm_content'];?>">
-                <button style="display: block; width: 100%;" onclick="sendpriceCB()" type="submit"
+                <button style="display: block; width: 100%;" onclick="sendToEmail()" type="submit"
                         class="btn btn-success">Перезвоните мне
                 </button>
             </div>
@@ -558,8 +558,9 @@ and open the template in the editor.
 
 <script src="js/jquery-latest.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
+<script src="js/listTovar.js" type="text/javascript"></script>
 <script src="js/catalogue.js" type="text/javascript"></script>
-<script src="js/script.js" type="text/javascript"></script>
+<!--<script src="js/script.js" type="text/javascript"></script>-->
 <script src="js/mail.js" type="text/javascript"></script>
 <script src="js/lightbox.js" type="text/javascript"></script>
 </body>

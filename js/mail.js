@@ -1,1 +1,153 @@
-eval(function(p,a,c,k,e,d){while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+c+'\\b','g'),k[c])}}return p}('28 50(){4 26="33/24.36";4 18=3.2("51").35;4 11=3.2("23").5;4 10=3.2("25").5;4 14=3.2("27").5;4 15=3.2("15").5;4 7=3.2("7").5;4 9=3.2("9").5;4 8=3.2("8").5;4 13=3.2("13").5;4 19="Заказ прайса на Ложки";4 20="Отправить прайс по Ложкам";4 6=0;12(11.17<1){6=1;3.2(\'23\').16="Введите ВАШЕ имя";3.2("23").22+=" 21"}12(10.17<1){6=1;3.2(\'25\').16="Введите ВАШ телефон";3.2("25").22+=" 21"}12(14.17<1){6=1;3.2(\'27\').16="Введите ВАШ 34-24";3.2("27").22+=" 21"}12(6==1){48 46}45{$("#49").47("43");37();4 31=$.39(26,{18:18,11:11,10:10,14:14,19:19,20:20,15:15,7:7,9:9,8:8,13:13});31.38(28(40){3.2("23").5="";3.2("25").5="";3.2("27").5="";41.42(\'44\')})}}28 52(){4 26="33/24.36";4 18=3.2("54").35;4 11=3.2("29").5;4 10=3.2("30").5;4 14=3.2("32").5;4 15=3.2("15").5;4 7=3.2("7").5;4 9=3.2("9").5;4 8=3.2("8").5;4 13=3.2("13").5;4 19="Заказ консультации по телефону";4 20="Созвониться с клиентом";4 6=0;12(11.17<1){6=1;3.2(\'29\').16="Введите ВАШЕ имя";3.2("29").22+=" 21"}12(10.17<1){6=1;3.2(\'30\').16="Введите ВАШ телефон";3.2("30").22+=" 21"}12(14.17<1){6=1;3.2(\'32\').16="Введите ВАШ 34-24";3.2("32").22+=" 21"}12(6==1){48 46}45{$("#53-55").47("43");37();4 31=$.39(26,{18:18,11:11,10:10,14:14,19:19,20:20,15:15,7:7,9:9,8:8,13:13});31.38(28(40){3.2("29").5="";3.2("30").5="";3.2("32").5="";41.42(\'44\')})}}',10,56,'||getElementById|document|var|value|err|utm_medium|utm_term|utm_campaign|phone|name|if|utm_content|email|utm_source|placeholder|length|model|title|task|formInvalid|className|NameF1|mail|PhoneF1|url|EmailF1|function|NameCB|PhoneCB|posting|EmailCB|js|E|innerText|php|thanksShow|done|post|data|yaCounter44781169|reachGoal|hide|lead|else|false|modal|return|tovar|sendpriceF1|modelF1|sendpriceCB|call|modelCB|back'.split('|')))
+function sendpriceF1() {
+    // var url = "js/mail.php";
+    var model = document.getElementById("modelF1").innerText;
+    var name = document.getElementById("NameF1").value;
+    var phone = document.getElementById("PhoneF1").value;
+    var email = document.getElementById("EmailF1").value;
+    var utm_source = document.getElementById("utm_source").value;
+    var utm_medium = document.getElementById("utm_medium").value;
+    var utm_campaign = document.getElementById("utm_campaign").value;
+    var utm_term = document.getElementById("utm_term").value;
+    var utm_content = document.getElementById("utm_content").value;
+    var title = "Заказ прайса на Ложки";
+    var task = "Отправить прайс по Ложкам";
+    var err = 0;
+    if (name.length < 1) {
+        err = 1;
+        document.getElementById('NameF1').placeholder = "Введите ВАШЕ имя";
+        document.getElementById("NameF1").className += " formInvalid"
+    }
+    if (phone.length < 1) {
+        err = 1;
+        document.getElementById('PhoneF1').placeholder = "Введите ВАШ телефон";
+        document.getElementById("PhoneF1").className += " formInvalid"
+    }
+    if (email.length < 1) {
+        err = 1;
+        document.getElementById('EmailF1').placeholder = "Введите ВАШ E-mail";
+        document.getElementById("EmailF1").className += " formInvalid"
+    }
+    if (err == 1) {
+        return false
+    } else {
+        $("#tovar").modal("hide");
+        thanksShow();
+        // var posting = $.post(url, {
+        //     model: model,
+        //     name: name,
+        //     phone: phone,
+        //     email: email,
+        //     title: title,
+        //     task: task,
+        //     utm_source: utm_source,
+        //     utm_medium: utm_medium,
+        //     utm_campaign: utm_campaign,
+        //     utm_term: utm_term,
+        //     utm_content: utm_content
+        // });
+        // posting.done(function (data) {
+        //     document.getElementById("NameF1").value = "";
+        //     document.getElementById("PhoneF1").value = "";
+        //     document.getElementById("EmailF1").value = "";
+        //     yaCounter44781169.reachGoal('lead')
+        // })
+
+        sendTelegram('::: Заказ консультации по телефону. \n Имя ' + name + '\n' +
+            ' Телефон ' + phone + '\n' +
+            ' Email ' + email + '\n' +
+            ' Модель ' + model + '\n' +
+            ' Задача ' + task + '\n'
+        )
+
+    }
+}
+
+function sendToEmail() {
+    //var url = "js/mail.php";
+    var model = document.getElementById("modelCB").innerText;
+    var name = document.getElementById("NameCB").value;
+    var phone = document.getElementById("PhoneCB").value;
+    var email = document.getElementById("EmailCB").value;
+    var utm_source = document.getElementById("utm_source").value;
+    var utm_medium = document.getElementById("utm_medium").value;
+    var utm_campaign = document.getElementById("utm_campaign").value;
+    var utm_term = document.getElementById("utm_term").value;
+    var utm_content = document.getElementById("utm_content").value;
+    var title = "Заказ консультации по телефону";
+    var task = "Созвониться с клиентом";
+    var err = 0;
+    if (name.length < 1) {
+        err = 1;
+        document.getElementById('NameCB').placeholder = "Введите ВАШЕ имя";
+        document.getElementById("NameCB").className += " formInvalid"
+    }
+    if (phone.length < 1) {
+        err = 1;
+        document.getElementById('PhoneCB').placeholder = "Введите ВАШ телефон";
+        document.getElementById("PhoneCB").className += " formInvalid"
+    }
+    if (email.length < 1) {
+        err = 1;
+        document.getElementById('EmailCB').placeholder = "Введите ВАШ E-mail";
+        document.getElementById("EmailCB").className += " formInvalid"
+    }
+    if (err == 1) {
+        return false
+    } else {
+        $("#call-back").modal("hide");
+        thanksShow();
+        // var posting = $.post(url, {
+        //     model: model,
+        //     name: name,
+        //     phone: phone,
+        //     email: email,
+        //     title: title,
+        //     task: task,
+        //     utm_source: utm_source,
+        //     utm_medium: utm_medium,
+        //     utm_campaign: utm_campaign,
+        //     utm_term: utm_term,
+        //     utm_content: utm_content
+        // });
+
+
+
+        sendTelegram('::: Заказ консультации по телефону. \n Имя ' + name + '\n' +
+            ' Задача: Созвониться с клиентом\n' +
+            ' Телефон ' + phone + '\n' +
+            ' Email ' + email + '\n')
+
+        // posting.done(function (data) {
+        //     document.getElementById("NameCB").value = "";
+        //     document.getElementById("PhoneCB").value = "";
+        //     document.getElementById("EmailCB").value = "";
+        //     yaCounter44781169.reachGoal('lead')
+        // })
+    }
+}
+
+// function sendToEmail() {
+//     let name = document.getElementById('NameCB').value
+//     let tel = document.getElementById('PhoneCB').value;
+//     let email = document.getElementById('EmailCB').value;
+//
+//
+//     sendTelegram('::: Заказ консультации по телефону. \n Имя ' + name + '\n' + ' Телефон ' + tel + '\n' + ' Email ' + email + '\n')
+// }
+
+function sendTelegram(message) {
+    let botId = 'bot8235288635:AAF_soJaYR8OPHAQrpfcF4FDUr2JjRRDlVw';
+    let chatId = '-5064627941';
+    let linkTelega = `https://api.telegram.org/${botId}/sendMessage?chat_id=${chatId}&parse_mode=HTML&text=${message}`;
+
+    try {
+        fetch(linkTelega)
+            .then(response => response.json())
+            .then(() => {
+                console.log('сообщение доставлено в телеграм группу ')
+            });
+    } catch (e) {
+        console.log('Ошибка. ТЕЛЕГРАММ НЕ ОТПРАВИЛСЯ')
+    }
+}
+

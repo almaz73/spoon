@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name='robots' content='noindex'>
+</head>
+<body>
+
+<section id="catalog">
+  <div class="container">
+    <div class="row">
+      <h3 style="background: pink; padding: 30px" >(Админка) Столовые приборы с гравировкой
+        <a class="create-file" onclick="createFile()"> ✍ Создать файл с изменениями </a>
+      </h3>
+    </div>
+    <div class="goods-list row" id="c6"></div>
+    <div class="row">
+      <h3>Другие сувениры</h3>
+    </div>
+    <div class="goods-list row" id="c1"></div>
+  </div>
+</section>
+
+<section id="event" class="container">
+  <div class="text-left" id="lead" title="Оставить заявку">
+    <img style="cursor: pointer;" src="images/lead.png" onclick="callBack()"/>
+    <div class="blead animated fadeInLeft" onclick="callBack()">Оставить заявку</div>
+  </div>
+</section>
+
+<!-- HTML-код модального окна ЗАКАЗА -->
+<div id="tovar" class="modal fade">
+  <div class="modal-dialog">
+
+    <div class="container-fluid modal-content" style="border: 3px solid #61a706;"><!-- Заголовок модального окна -->
+      <div class="row modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 id="modelF1" class="modal-title">Заголовок модального окна</h4>
+      </div>
+      <!-- Основное содержимое модального окна -->
+      <div class="row modal-body">
+        <div class="col-sm-12 col-md-6">
+          <div class="gal-cont">
+            <div class="arrows gal-left left-arrow"><span class="glyphicon glyphicon-chevron-left"
+                                                          aria-hidden="true"></span></div>
+            <div class="arrows gal-right right-arrow"><span
+                class="glyphicon glyphicon glyphicon-chevron-right" aria-hidden="true"></span></div>
+            <div class="gal-image">
+              <img src="#" alt="" title="">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <div class="row gal-thumbs-cont">
+            <div class="gal-thumbs">
+              <div class="gal-slider clr">
+                <a href="#">
+                  <img src="#" alt="" title="">
+                </a>
+              </div>
+            </div>
+          </div>
+          <section class="b-selection-model">
+            <p class="model-descr">
+            </p>
+            <!--<p class="model-price"><span class="price promo-txt"></span> <span class="ruble">&#8381;</span> </p>-->
+          </section>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom: 15px;">
+        <div class="col-md-6">
+          <h4 class="label-bg">
+            <strong>Скидочная система</strong>
+            <br>
+            при заказе
+          </h4>
+          <div class="skid">
+            <p>от <strong>5т.р.</strong> - скидка <strong>5%</strong></p>
+            <p>от <strong>30т.р.</strong> - скидка <strong>10%</strong></p>
+            <p>от <strong>70т.р.</strong> - скидка <strong>15%</strong></p>
+            <p>от <strong>100т.р.</strong> - <strong>договорная</strong></p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <section class="b-mod-form" id="mobile-hide">
+            <div class="order-form mod">
+              <fieldset>
+                <label class="label-bg text-center">Получить полный прайс лист <br>и форму заявки для
+                  заказа</label>
+                <div class="form-group-sm">
+                  <input type="text" class="form-control" id="NameF1" name="name"
+                         placeholder="Как Вас зовут?">
+                </div>
+                <div class="form-group-sm">
+                  <input type="tel" id="PhoneF1" name="phone" class="form-control"
+                         placeholder="Ваш номер телефона?">
+                </div>
+                <div class="form-group-sm">
+                  <input type="email" id="EmailF1" name="email" class="form-control"
+                         placeholder="Ваш e-mail?">
+                </div>
+                <input type="hidden" id="utm_source" value="<?php echo $_GET['utm_source'];?>">
+                <input type="hidden" id="utm_medium" value="<?php echo $_GET['utm_medium'];?>">
+                <input type="hidden" id="utm_campaign" value="<?php echo $_GET['utm_campaign'];?>">
+                <input type="hidden" id="utm_term" value="<?php echo $_GET['utm_term'];?>">
+                <input type="hidden" id="utm_content" value="<?php echo $_GET['utm_content'];?>">
+<!--                <button style="width: 100%" onclick="sendpriceF1()" type="submit"-->
+<!--                        class="btn btn-primary">Получить полный каталог продукции-->
+<!--                </button>-->
+              </fieldset>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- HTML-код модального окна ОБРАТНЫЙ ЗВОНОК -->
+<div id="call-back" class="modal fade">
+  <div class="modal-dialog">
+    <div class="container-fluid modal-content" style="border: 3px solid #61a706;max-width: 450px;">
+      <!-- Заголовок модального окна -->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 id="modelCB">Заказ консультации по телефону</h4>
+      </div>
+      <!-- Основное содержимое модального окна -->
+      <div class="modal-body">
+        <img style="width: 45%;margin: auto; margin-bottom: 15px; border: 3px solid #61a706"
+             class="img-circle img-responsive" src="images/manager.jpg"/>
+        <div class="form-group">
+          <input type="text" class="form-control" id="NameCB" name="name" placeholder="Как Вас зовут?">
+        </div>
+        <div class="form-group">
+          <input type="tel" id="PhoneCB" name="phone" class="form-control" placeholder="Ваш номер телефона?">
+        </div>
+        <div class="form-group">
+          <input type="email" id="EmailCB" name="email" class="form-control" placeholder="Ваш e-mail?">
+        </div>
+        <input type="hidden" id="utm_source" value="<?php echo $_GET['utm_source'];?>">
+        <input type="hidden" id="utm_medium" value="<?php echo $_GET['utm_medium'];?>">
+        <input type="hidden" id="utm_campaign" value="<?php echo $_GET['utm_campaign'];?>">
+        <input type="hidden" id="utm_term" value="<?php echo $_GET['utm_term'];?>">
+        <input type="hidden" id="utm_content" value="<?php echo $_GET['utm_content'];?>">
+        <button style="display: block; width: 100%;" onclick="sendToEmail()" type="submit"
+                class="btn btn-success">Перезвоните мне
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+<link href="css/style.css" rel="stylesheet" type="text/css"/>
+<link href="css/carousel.css" rel="stylesheet" type="text/css"/>
+<link href="css/lightbox.css" rel="stylesheet" type="text/css"/>
+<link href="css/animate.min.css" rel="stylesheet" type="text/css"/>
+<link href="css/admin.css" rel="stylesheet" type="text/css"/>
+
+<script src="js/jquery-latest.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.js" type="text/javascript"></script>
+<script src="js/adminMethods.js" type="text/javascript"></script>
+<script src="js/listTovar.js" type="text/javascript"></script>
+<script src="js/admin.js" type="text/javascript"></script>
+<script src="js/mail.js" type="text/javascript"></script>
+<script src="js/lightbox.js" type="text/javascript"></script>
+</body>
+</html>

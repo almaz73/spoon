@@ -2,21 +2,36 @@ if (window.location == 'http://xn----htbeijemffg.xn--p1ai/#goodsend') thanksShow
 if (window.location == 'http://xn----htbeijemffg.xn--p1ai/#badsend') errShow()
 
 function show() {
-    for (var g of goods.models) {
+    // $('.goods-boots-info');
+    let c1 = document.querySelector('#c1')
+    if (c1) c1.innerHTML = ''
+    let c6 = document.querySelector('#c6')
+    if (c6) c6.innerHTML = ''
+    let div1 = document.querySelector('.goods-boots-info')
+    if (div1) document.querySelector('.goods-boots-info').innerHTML = ''
 
+
+    for (var g of goods.models) {
         let elem = Object.entries(g)[0][0]
         let item = Object.entries(g)[0][1]
 
         var i = $('<div class="col-lg-4 col-md-4 col-xs-6">' +
             '<div class="goods-boots-info model-box" data-id="' + elem + '">' +
             '<div class="buttons">' +
-            '<a href="#tovar" data-toggle="modal" class="showtovar readmore"><p>' + item.cat_name + '</p>' + '<h4>' + item.name + '</h4></a>' + '<a href="#tovar" data-toggle="modal" class="showtovar readmore"><img src="' + item.img + '" width="100%" alt="' + item.name + '" title=""/></a>' + '<div class="tovar_info">' + '<div title="Указанная цена действует на крупные оптовые заказы" class="price price-txt">от <span>' + item.one_price + '</span> руб.*</div>' + '<div class="readmore"><a href="#tovar" class="showtovar readmore" data-toggle="modal">Подробнее</a></div>' + '</div>' + '</div>');
+            '<a onclick="editElement(event)" title="Редактирование">✎</a> ' +
+            '<a onclick="doubleElement(\'' + elem + '\')" title="Дублирование">❏</a> ' +
+            '<a onclick="deleteElement(\'' + elem + '\')" title="Удаление">✖</a></div>' +
+
+            '<a href="#tovar" class="showtovar readmore"><p>' + item.cat_name + '</p>' +
+            '<h4>' + item.name + '</h4></a>' +
+            '<a href="#tovar" data-toggle="modal" class="showtovar readmore"><img src="' + item.img + '" width="100%" alt="' + item.name + '" title=""/></a>' + '<div class="tovar_info">' + '<div title="Указанная цена действует на крупные оптовые заказы" class="price price-txt">от <span>' + item.one_price + '</span> руб.*</div>' + '<div class="readmore"><a href="#tovar" class="showtovar readmore" data-toggle="modal">Подробнее</a></div>' + '</div>' + '</div>');
         var cat = Object.keys(g)[0].split('_');
         $("#" + cat[0]).append(i)
     }
 }
 
 show()
+
 
 $('.showtovar').click(function (e) {
     e.preventDefault();
@@ -81,9 +96,11 @@ $('.modal-body').each(function (e) {
 
 
 goods.showTovar = function (id) {
-    let item = this.models.find(el=>{
-        return  el[id]
+    let item = this.models.find(el => {
+        return el[id]
     })
+
+
     var m = $('.modal-dialog');
     m.find('h4.modal-title').html(item[id].cat_name + item[id].name);
     m.find('.model-descr').html(item[id].description);
@@ -102,7 +119,6 @@ goods.showTovar = function (id) {
 function thanksShow() {
     $("#thanks").modal('show')
 };
-
 
 function errShow() {
     $("#errors").modal('show')
@@ -153,3 +169,4 @@ $(window).scroll(function () {
         $('.bcart').addClass('hidden')
     }
 });
+
