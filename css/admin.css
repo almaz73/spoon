@@ -1,3 +1,11 @@
+h3 button{
+    color: red;
+    font-size: 18px;
+    margin-top: 12px;
+    padding: 5px 30px;
+
+}
+
 #lead {
     cursor: pointer;
     width: 65px;
@@ -83,4 +91,8 @@
     color: red;
     font-size: smaller;
     cursor: pointer;
+}
+
+.is-edited{
+    box-shadow: 0 0 10px red;
 }

@@ -16,15 +16,17 @@ function show() {
         let item = Object.entries(g)[0][1]
 
         var i = $('<div class="col-lg-4 col-md-4 col-xs-6">' +
-            '<div class="goods-boots-info model-box" data-id="' + elem + '">' +
+            '<div class="goods-boots-info model-box '+(item.isEdited?'is-edited':'') +'" data-id="' + elem + '">' +
             '<div class="buttons">' +
-            '<a onclick="editElement(event)" title="Редактирование">✎</a> ' +
+            '<a onclick="editElement(\'' + elem + '\',event)" title="Редактирование">✎</a> ' +
             '<a onclick="doubleElement(\'' + elem + '\')" title="Дублирование">❏</a> ' +
             '<a onclick="deleteElement(\'' + elem + '\')" title="Удаление">✖</a></div>' +
 
-            '<a href="#tovar" class="showtovar readmore"><p>' + item.cat_name + '</p>' +
+            '<a ><p>' + item.cat_name + '</p>' +
             '<h4>' + item.name + '</h4></a>' +
-            '<a href="#tovar" data-toggle="modal" class="showtovar readmore"><img src="' + item.img + '" width="100%" alt="' + item.name + '" title=""/></a>' + '<div class="tovar_info">' + '<div title="Указанная цена действует на крупные оптовые заказы" class="price price-txt">от <span>' + item.one_price + '</span> руб.*</div>' + '<div class="readmore"><a href="#tovar" class="showtovar readmore" data-toggle="modal">Подробнее</a></div>' + '</div>' + '</div>');
+            '<a href="#tovar" data-toggle="modal" class="showtovar readmore"><img src="' + item.img + '" width="100%" alt="' + item.name + '" title=""/></a>' +
+            '<div class="tovar_info">' + '<div title="Указанная цена действует на крупные оптовые заказы" class="price price-txt">от <span>' + item.one_price + '</span> руб.*</div>' + '<div class="readmore">' +
+            '<a href="#tovar" onclick="editModal(\'' + elem + '\')" class="showtovar readmore" data-toggle="modal">Подробнее</a></div>' + '</div>' + '</div>');
         var cat = Object.keys(g)[0].split('_');
         $("#" + cat[0]).append(i)
     }
