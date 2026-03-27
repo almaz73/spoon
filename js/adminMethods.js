@@ -98,14 +98,18 @@ function editModal(id) {
 
 
 function createFile() {
-    console.log('goods.models = ', goods.models)
+
+
+    goods.models.map(el=>Object.entries(el)[0][1].isEdited = false)
+    // console.log('goods.models = ', goods.models)
+    // return false
 
     let text = `var goods = {};goods.colors = {darkBlue: 'Синий'};
     goods.models = ${JSON.stringify(goods.models)}`;
     downloadAsFile(text);
 
     function downloadAsFile(data) {
-        // let a = document.createElement("a");
+        // let a = document.createElement("a"); // для скачивания на компьютер
         // let file = new Blob([data], {type: 'application/json'});
         // a.href = URL.createObjectURL(file);
         // a.download = "listTovar.js";

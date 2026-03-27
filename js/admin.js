@@ -24,7 +24,10 @@ function show() {
 
             '<a ><p>' + item.cat_name + '</p>' +
             '<h4>' + item.name + '</h4></a>' +
-            '<a href="#tovar" data-toggle="modal" class="showtovar readmore"><img src="' + item.img + '" width="100%" alt="' + item.name + '" title=""/></a>' +
+            '<a href="#tovar" data-toggle="modal" class="showtovar readmore" style="position: relative">' +
+            '<img src="' + item.img + '" width="100%" alt="' + item.name + '" title=""/>' +
+            '<div class="buttons" style="top:73px"><a onclick="editElement(\'' + elem + '\',event)" title="Редактирование">✎</a></div>' +
+            '</a>' +
             '<div class="tovar_info">' + '<div title="Указанная цена действует на крупные оптовые заказы" class="price price-txt">от <span>' + item.one_price + '</span> руб.*</div>' + '<div class="readmore">' +
             '<a href="#tovar" onclick="editModal(\'' + elem + '\')" class="showtovar readmore" data-toggle="modal">Подробнее</a></div>' + '</div>' + '</div>');
         var cat = Object.keys(g)[0].split('_');
@@ -107,7 +110,7 @@ goods.showTovar = function (id) {
     m.find('h4.modal-title').html(item[id].cat_name + item[id].name);
     m.find('.model-descr').html(item[id].description);
     m.find('.price').html(item[id].price);
-    // m.find('.gal-slider').empty();
+    m.find('.gal-slider').empty();
     var img_i = 0;
     for (var gal_img in item[id].photos['all']) {
         if (img_i === 0)
@@ -120,7 +123,7 @@ goods.showTovar = function (id) {
     let idSkid = document.querySelector('#idSkid')
     if (item[id].noSkid === 'true' && skidFields) {
         skidFields.style.opacity = .1
-        idSkid.checked = true
+        idSkid.checked = trueYe;y
     } else {
         skidFields.style.opacity = 1
         idSkid.checked = false

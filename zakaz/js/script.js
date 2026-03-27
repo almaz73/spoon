@@ -1,1 +1,0 @@
-eval(function(p,a,c,k,e,d){while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+c+'\\b','g'),k[c])}}return p}('5 0=2.4("6");10(0.7){3(0.1)}$(2).8(9(){3(0.1)});',10,11,'objSel|value|document|alert|getElementById|var|serie|onselect|ready|function|if'.split('|')))

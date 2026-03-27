@@ -21,7 +21,7 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
     <div class="row">
       <h3 style="background: pink; padding: 30px" >(Админка) Столовые приборы с гравировкой
         <br>
-        <button onclick="createFile()">✍ Создать файл с изменениями </button>
+        <button onclick="createFile()">✍ Сохранить</button>
         <button onclick="location.reload()"> ❌ Отменить изменения</button>
       </h3>
     </div>
@@ -113,14 +113,14 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
                   <input type="email" id="EmailF1" name="email" class="form-control"
                          placeholder="Ваш e-mail?">
                 </div>
-                <input type="hidden" id="utm_source" value="<?php echo $_GET['utm_source'];?>">
-                <input type="hidden" id="utm_medium" value="<?php echo $_GET['utm_medium'];?>">
-                <input type="hidden" id="utm_campaign" value="<?php echo $_GET['utm_campaign'];?>">
-                <input type="hidden" id="utm_term" value="<?php echo $_GET['utm_term'];?>">
-                <input type="hidden" id="utm_content" value="<?php echo $_GET['utm_content'];?>">
-<!--                <button style="width: 100%" onclick="sendpriceF1()" type="submit"-->
-<!--                        class="btn btn-primary">Получить полный каталог продукции-->
-<!--                </button>-->
+<!--                <input type="hidden" id="utm_source" value="--><?php //echo $_GET['utm_source'];?><!--">-->
+<!--                <input type="hidden" id="utm_medium" value="--><?php //echo $_GET['utm_medium'];?><!--">-->
+<!--                <input type="hidden" id="utm_campaign" value="--><?php //echo $_GET['utm_campaign'];?><!--">-->
+<!--                <input type="hidden" id="utm_term" value="--><?php //echo $_GET['utm_term'];?><!--">-->
+<!--                <input type="hidden" id="utm_content" value="--><?php //echo $_GET['utm_content'];?><!--">-->
+                <button style="width: 100%" onclick="sendpriceF1()" type="submit"
+                        class="btn btn-primary">Получить полный каталог продукции
+                </button>
               </fieldset>
             </div>
           </section>
@@ -178,7 +178,7 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
 <script src="js/jquery-latest.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
 <script src="js/adminMethods.js" type="text/javascript"></script>
-<script src="datas/listTovar.js" type="text/javascript"></script>
+<script src="datas/listTovar.js?v=<?php echo filemtime('datas/listTovar.js'); ?>" type="text/javascript"></script>
 <script src="js/admin.js" type="text/javascript"></script>
 <script src="js/mail.js" type="text/javascript"></script>
 <script src="js/lightbox.js" type="text/javascript"></script>
@@ -207,12 +207,155 @@ if (isset($_GET['p']) && $_GET['p'] == "login") {
    }
 }
 ?>
-<div style="text-align: center">
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>?p=login" method="post">
-<br>
-<input type="text" name="user" id="user"/> Логин_ </label><br />
-<label  style="width: 300px;" ><input type="password" name="keypass" id="keypass"  /> Пароль</label><br />
-<br>
-<input type="submit" id="submit" value="Login" />
-</form>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #61a706 0%, #ffffff 100%);
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    /* Контейнер формы с эффектом стекла (glassmorphism) */
+    .login-container {
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.2), 0 5px 12px rgba(0, 0, 0, 0.1);
+        padding: 2rem 2rem 2.2rem;
+        width: 100%;
+        max-width: 420px;
+    }
+
+
+    /* Заголовок формы */
+    .form-header {
+        text-align: center;
+        margin-bottom: 1.8rem;
+    }
+
+    .form-header h2 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #333;
+        letter-spacing: -0.5px;
+    }
+
+    .form-header p {
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin-top: 8px;
+    }
+
+    /* Группа полей ввода */
+    .input-group {
+        margin-bottom: 1.5rem;
+        text-align: left;
+    }
+
+    .input-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #2c3e50;
+        font-size: 0.9rem;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 12px 16px;
+        font-size: 1rem;
+        border: 2px solid #e2e8f0;
+        border-radius: 14px;
+        background-color: #fff;
+        outline: none;
+        font-family: inherit;
+    }
+
+    /* Кнопка входа */
+    .login-btn {
+        width: 100%;
+        background: #61a706;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        font-size: 1.05rem;
+        font-weight: 600;
+        cursor: pointer;
+        margin-top: 8px;
+        letter-spacing: 0.5px;
+        box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+    }
+
+    /* Адаптивность для маленьких экранов */
+    @media (min-width: 480px) {
+        .form-header h2 {
+            font-size: 3rem;
+        }
+        .form-header p {
+            font-size: 3rem;
+
+        }
+
+        .input-group label {
+            font-size: 3rem;
+        }
+        .input-group input {
+            font-size: 2rem;
+        }
+        .login-btn {
+            font-size: 3rem;
+        }
+
+        .login-container {
+            max-width: inherit;
+        }
+
+    }
+
+    /* Убираем стандартные обводки у кнопки в IE/Edge */
+    button:focus, input:focus {
+        outline: none;
+    }
+
+    /* Небольшой эффект для автозаполнения (сохраняет стиль) */
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus {
+        -webkit-box-shadow: 0 0 0 1000px white inset;
+        transition: background-color 5000s ease-in-out 0s;
+    }
+</style>
+
+<div class="login-container">
+  <div class="form-header">
+    <h2>Добро пожаловать</h2>
+    <p>Войдите, используя свои данные</p>
+  </div>
+
+  <!-- Форма: action теперь более безопасно с htmlspecialchars -->
+  <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?p=login'); ?>" method="post">
+    <div class="input-group">
+      <label for="user">Логин</label>
+      <input type="text" name="user" id="user" placeholder="Введите ваш логин" autocomplete="username" required>
+    </div>
+
+    <div class="input-group">
+      <label for="keypass">Пароль</label>
+      <input type="password" name="keypass" id="keypass" placeholder="Введите пароль" autocomplete="current-password" required>
+    </div>
+
+    <button type="submit" id="submit" class="login-btn">Войти</button>
+
+  </form>
+</div>
+
+<!--<div style="text-align: center">-->
+<!--<form action="--><?php //echo $_SERVER['PHP_SELF']; ?><!--?p=login" method="post">-->
+<!--<br>-->
+<!--<input type="text" name="user" id="user"/> Логин_ </label><br />-->
+<!--<label  style="width: 300px;" ><input type="password" name="keypass" id="keypass"  /> Пароль</label><br />-->
+<!--<br>-->
+<!--<input type="submit" id="submit" value="Login" />-->
+<!--</form>-->
 </div>
