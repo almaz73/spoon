@@ -16,7 +16,7 @@ function show() {
         let item = Object.entries(g)[0][1]
 
         var i = $('<div class="col-lg-4 col-md-4 col-xs-6">' +
-            '<div class="goods-boots-info model-box '+(item.isEdited?'is-edited':'') +'" data-id="' + elem + '">' +
+            '<div class="goods-boots-info model-box ' + (item.isEdited ? 'is-edited' : '') + '" data-id="' + elem + '">' +
             '<div class="buttons">' +
             '<a onclick="editElement(\'' + elem + '\',event)" title="Редактирование">✎</a> ' +
             '<a onclick="doubleElement(\'' + elem + '\')" title="Дублирование">❏</a> ' +
@@ -107,7 +107,7 @@ goods.showTovar = function (id) {
     m.find('h4.modal-title').html(item[id].cat_name + item[id].name);
     m.find('.model-descr').html(item[id].description);
     m.find('.price').html(item[id].price);
-    m.find('.gal-slider').empty();
+    // m.find('.gal-slider').empty();
     var img_i = 0;
     for (var gal_img in item[id].photos['all']) {
         if (img_i === 0)
@@ -115,6 +115,18 @@ goods.showTovar = function (id) {
         m.find('.gal-slider').append('<a href="' + item[id].photos['all'][gal_img] + '" class="' + (img_i === 0 ? 'act' : '') + '"><img src="' + item[id].photos['all'][gal_img] + '" alt="" title=""></a>');
         img_i++
     }
+
+    let skidFields = document.querySelector('.skid-fields')
+    let idSkid = document.querySelector('#idSkid')
+    if (item[id].noSkid === 'true' && skidFields) {
+        skidFields.style.opacity = .1
+        idSkid.checked = true
+    } else {
+        skidFields.style.opacity = 1
+        idSkid.checked = false
+    }
+
+
 };
 
 

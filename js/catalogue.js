@@ -81,13 +81,11 @@ $('.modal-body').each(function (e) {
 
 
 goods.showTovar = function (id) {
-    let item = this.models.find(el=>{
-        return  el[id]
-    })
+    let item = this.models.find(el=>el[id])
     var m = $('.modal-dialog');
     m.find('h4.modal-title').html(item[id].cat_name + item[id].name);
     m.find('.model-descr').html(item[id].description);
-    m.find('.price').html(item[id].price);
+    if (item[id].noSkid === 'true') m.find('.skid-fields').html('');
     m.find('.gal-slider').empty();
     var img_i = 0;
     for (var gal_img in item[id].photos['all']) {

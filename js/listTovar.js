@@ -1,5 +1,4 @@
 var goods = {};
-goods.colors = {darkBlue: 'Синий'};
 goods.models = [
     {
         "c6_1": {

@@ -1,3 +1,5 @@
+let currentId
+
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('body').style.background = '#3d3d3d'
     document.querySelector('body').style.opacity = 0
@@ -7,6 +9,16 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             document.querySelector('body').style.opacity = 1
         }, 350)
+
+        let idSkid = document.querySelector('#idSkid')
+        let skidFields = document.querySelector('.skid-fields')
+        idSkid.addEventListener('click', () => {
+            goods.models = goods.models.map(el => {
+                if (Object.entries(el)[0][0] === currentId) el[currentId].noSkid = idSkid.checked
+                return el
+            })
+            skidFields.style.opacity = idSkid.checked ? '0.1' : '1'
+        })
     })
 })
 
@@ -68,6 +80,7 @@ function goodsChanged(id, type, value) {
 }
 
 function editModal(id) {
+    currentId = id
     let model_descr = document.querySelector('.model-descr')
     let div = document.querySelector(`[data-id="${id}"]`)
     if (div.classList.contains('is-edited')) {
@@ -90,8 +103,6 @@ function createFile() {
     let text = `var goods = {};goods.colors = {darkBlue: 'Синий'};
     goods.models = ${JSON.stringify(goods.models)}`;
     downloadAsFile(text);
-
-    console.log('text = ', text)
 
     function downloadAsFile(data) {
         let a = document.createElement("a");
