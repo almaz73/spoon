@@ -184,7 +184,7 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
 <script src="js/jquery-latest.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
 <script src="js/adminMethods.js" type="text/javascript"></script>
-<script src="js/listTovar.js" type="text/javascript"></script>
+<script src="datas/listTovar.js" type="text/javascript"></script>
 <script src="js/admin.js" type="text/javascript"></script>
 <script src="js/mail.js" type="text/javascript"></script>
 <script src="js/lightbox.js" type="text/javascript"></script>

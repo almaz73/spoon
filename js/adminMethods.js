@@ -105,11 +105,23 @@ function createFile() {
     downloadAsFile(text);
 
     function downloadAsFile(data) {
-        let a = document.createElement("a");
-        let file = new Blob([data], {type: 'application/json'});
-        a.href = URL.createObjectURL(file);
-        a.download = "listTovar.js";
-        a.click();
+        // let a = document.createElement("a");
+        // let file = new Blob([data], {type: 'application/json'});
+        // a.href = URL.createObjectURL(file);
+        // a.download = "listTovar.js";
+        // a.click();
+
+        // 2. Отправляем на сервер
+        fetch('save.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'filename=' + encodeURIComponent('listTovar.js') + '&content=' + encodeURIComponent(data)
+        })
+            .then(response => response.text())
+            .then(data => alert(data))
+            .catch(error => console.error('Ошибка:', error));
     }
 }
 
