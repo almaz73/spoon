@@ -23,7 +23,8 @@ $data['phone'] = str_replace('+7', '8', $data['phone']);
 
 header("Content-type:text/html;charset=utf-8");
 
-$to  = 'lih1989@yandex.ru, lojkin.dom@mail.ru'; 
+//$to  = 'lih1989@yandex.ru, lojkin.dom@mail.ru';
+$to  = 'almaz73@yandex.ru, almaz73@gmail.com';
 
 $Subject = $data['title'];
 
@@ -44,8 +45,12 @@ $headers .= "Content-type: text/html; charset=\"utf-8\"";
 
 mail($to, $Subject, $email, $headers);
 
-$token = '352538299:AAGqOodOgBZmLjN4HUIJrnxr6avK50KE1N4';
-$chatID = -166511690; 
+$token ='bot8235288635:AAF_soJaYR8OPHAQrpfcF4FDUr2JjRRDlVw';
+$chatID = '-5064627941';
+
+    // ложки
+//$token = '352538299:AAGqOodOgBZmLjN4HUIJrnxr6avK50KE1N4';
+//$chatID = -166511690;
 
 $messaggio  = '<b>Заявка с сайта</b>'. '%0A';
 if ($data['model']){

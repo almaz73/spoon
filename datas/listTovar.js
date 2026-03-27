@@ -1,2 +1,141 @@
-var goods = {};goods.colors = {darkBlue: 'Синий'};
-    goods.models = [{"c6_1":{"cat_name":"Серия","name":"\"Тройка\"","price":"35","one_price":"35","coll":"1","coll_type":"чак","gramm":"400","img":"images/tovar/lojki/troika.jpg","description":"Столовые приборы серии Тройка изготовлены из нержавеющей стали, толщиной 2,5 мм. Цвет всей ложки однородный металик(серебристый глянцевый).</p> <p>Изготавливаются данные столовые приборы в России на Павловском заводе художественных металлоизделий. Изделия имеют высокое качество и имеют сертификат соответствия.</p> <p>Мы наносим на данные изделия любые гравировки, будь то надписи, логотипы, узоры и даже фотографии.","photos":{"all":["images/tovar/lojki/troika/0.jpg","images/tovar/lojki/troika/1.jpg","images/tovar/lojki/troika/2.jpg","images/tovar/lojki/troika/3.jpg"]},"isEdited":true}},{"c6_2":{"cat_name":"Сeрия","name":"\"Тройка с позолотой ручки\"","price":"65","one_price":"65","coll":"1","coll_type":"чак","gramm":"300","img":"images/tovar/lojki/troika_s_poz.jpg","present":"images/panoram.jpg","description":"Тройка с позолотой ручки или коротко Тройка с ЛНТП(локальным нитрид титановым покрытием) - наиболее известная в линейке столовых приборов Павловского завода.</p> <p>Имеет такие же характеристики что и простая Тройка. Но к тому же декоративные ручки столовых приборов выполнены методом штампованной чеканки, что говорит об уникальности производства. </p><p>Рабочие части имеют классические размеры и формы.","photos":{"all":["images/tovar/lojki/troika_s_pozolot/0.jpg","images/tovar/lojki/troika_s_pozolot/1.jpg","images/tovar/lojki/troika_s_pozolot/2.jpg","images/tovar/lojki/troika_s_pozolot/3.jpg"]},"isEdited":true}},{"c6_3":{"cat_name":"Серия","name":"\"Торжество с позолотой\"","price":"63","one_price":"63","coll":"1","coll_type":"чак","gramm":"500","img":"images/tovar/lojki/torjestvo.jpg","description":"Торжество с позолотой(нитрид титановым покрытием) это столовые приборы с простым и элегантным дизайном. <p/><p>Зеркальный блеск изделиям придан с помощью самой современной электроимпульсной полировки столовых приборов (ЭИП).</p><p> На рабочие части предметов нанесено нитрид титановое покрытие под золото.","photos":{"all":["images/tovar/lojki/torjestvo_s_pozolotoi/0.jpg","images/tovar/lojki/torjestvo_s_pozolotoi/1.jpg","images/tovar/lojki/torjestvo_s_pozolotoi/2.jpg","images/tovar/lojki/torjestvo_s_pozolotoi/3.jpg"]}}},{"c6_4":{"cat_name":"Серия","name":"\"Славянка\"","price":"40","one_price":"40","coll":"1","coll_type":"чак","gramm":"200","img":"images/tovar/lojki/slavianka.jpg","description":"Ручки столовых приборов данной серии имеют орнамент на ручке. <p/><p>Рабочие части столовых приборов обладают классическими формами и размерами. <p/><p>Изготовлены из нержавеющей стали и имеют ПНТП(Полное Нитрид Титановое Покрытие).","photos":{"all":["images/tovar/lojki/slavianka/0.jpg","images/tovar/lojki/slavianka/1.jpg","images/tovar/lojki/slavianka/2.jpg","images/tovar/lojki/slavianka/3.jpg"]}}},{"c6_5":{"cat_name":"Серия","name":"\"Трока Плюс\"","price":"75","one_price":"75","coll":"1","coll_type":"чак","gramm":"200","img":"images/tovar/lojki/troika_plus.jpg","description":"Также как и предыдущие приборы серии Тройка. Сделана из нержавейки. Имеет сертификат.</p><p> Но выглядит еще более эффектно, из за полного покрытия позолотой. </p><p>На данных столовых приборах гравировка смотрится очень красиво и раскупается на сувениры очень быстро.","photos":{"all":["images/tovar/lojki/troika_plus/0.jpg","images/tovar/lojki/troika_plus/1.jpg","images/tovar/lojki/troika_plus/2.jpg","images/tovar/lojki/troika_plus/3.jpg"]}}},{"c6_6":{"cat_name":"Серия","name":"\"Уралочка ЛНТП\"","price":"65","one_price":"65","coll":"1","coll_type":"чак","gramm":"200","img":"images/tovar/lojki/uralocka_lntp.jpg","description":"Ручки столовых приборов декорированы классическим растительным орнаментом, выполненным методом штампованной чеканки. <p/><p>Рабочие части столовых приборов обладают классическими формами и размерами.<p/><p> «Уралочка» с НТПп - выполнена из нержавеющей стали и полностью покрыта нитридом титана (НТП).","photos":{"all":["images/tovar/lojki/uralocka_lntp/0.jpg","images/tovar/lojki/uralocka_lntp/1.jpg","images/tovar/lojki/uralocka_lntp/2.jpg","images/tovar/lojki/uralocka_lntp/3.jpg"]}}},{"c1_1":{"cat_name":"Power Bank ","name":"с гравировкой","price":"250","one_price":"250","coll":"1","coll_type":"чак","gramm":"400","img":"images/tovar/other/akb.jpg","description":"Power Bank – от англ. Накопитель энергии.</p> <p>Основная функция – хранение определенного объема, предварительно полученного от сети, электрического заряда для дальнейшей передачи его частично или полностью разрядившегося электронного устройства, по средствам стандартного USB кабеля.</p><p>Мы можем нанести любую гравировку на корпус АКБ.","photos":{"all":["images/tovar/other/akb/0.jpg","images/tovar/other/akb/1.jpg","images/tovar/other/akb/2.jpg"]}}},{"c1_2":{"cat_name":"Визитницы ","name":"с гравировкой","price":"74","one_price":"74","coll":"1","coll_type":"чак","gramm":"400","img":"images/tovar/other/vizit.jpg","description":"","photos":{"all":["images/tovar/other/vizitica/0.jpg","images/tovar/other/vizitica/1.jpg","images/tovar/other/vizitica/2.jpg"]}}},{"c1_3":{"cat_name":"Свадебные замки ","name":"с гравировкой","price":"240","one_price":"240","coll":"1","coll_type":"чак","gramm":"400","img":"images/tovar/other/zamok.jpg","description":"Замочек для влюбленных в форме сердечка с возможностью нанесения гравировки с именами и пожеланиями. Памятная надпись не сотрется со временем.","photos":{"all":["images/tovar/other/zamki/0.jpg","images/tovar/other/zamki/1.jpg","images/tovar/other/zamki/2.jpg"]}}},{"c1_4":{"cat_name":"Зеркала и брелки ","name":"с гравировкой","price":"60","one_price":"60","coll":"1","coll_type":"чак","gramm":"400","img":"images/tovar/other/brelok.jpg","description":"На каждом изделии наносится гравировка по вашему заказу(рисунок или надпись). </p><p>Брелок, это универсальный подарок а, гравированное зеркальце с именной гравировкой станет любимым аксессуаром любой женщины.</p><p>Данные сувениры отлично подойдут для расширения ассортимета вашей торговой точки ","photos":{"all":["images/tovar/other/breloki_zerkala/0.jpg","images/tovar/other/breloki_zerkala/1.jpg","images/tovar/other/breloki_zerkala/2.jpg"]}}},{"c1_5":{"cat_name":"Фляжки и зажигалки ","name":"с гравировкой","price":"115","one_price":"115","coll":"1","coll_type":"чак","gramm":"400","img":"images/tovar/other/fliaga.jpg","description":"Фляжки, зажигалки и стопки отличный сувенир для мужчин. </p><p>Такой подарок подойдет и для друга, начальника или же корпоративного клиента или партнера.</p> <p>Сделать этот подарок особенным поможет лазерная гравировка. Возможно насесение любого изображения.","photos":{"all":["images/tovar/other/fliaga_zazig/0.jpg","images/tovar/other/fliaga_zazig/1.jpg","images/tovar/other/fliaga_zazig/2.jpg","images/tovar/other/fliaga_zazig/3.jpg"]}}}]
+var goods = {};
+goods.colors = {darkBlue: 'Синий'};
+goods.models = [{
+    "c6_1": {
+        "cat_name": "Серия",
+        "name": "\"Тройка\"",
+        "price": "35",
+        "one_price": "35",
+        "coll": "1",
+        "img": "images/tovar/lojki/troika.jpg",
+        "description": "\n",
+        "photos": {"all": ["images/tovar/lojki/troika/0.jpg", "images/tovar/lojki/troika/1.jpg", "images/tovar/lojki/troika/2.jpg", "images/tovar/lojki/troika/3.jpg"]},
+        "isEdited": true
+    }
+}, {
+    "c6_2": {
+        "cat_name": "Сeрия",
+        "name": "\"Тройка с позолотой ручки\"",
+        "price": "65",
+        "one_price": "65",
+        "coll": "1",
+        "img": "images/tovar/lojki/troika_s_poz.jpg",
+        "present": "images/panoram.jpg",
+        "description": "\n",
+        "photos": {"all": ["images/tovar/lojki/troika_s_pozolot/0.jpg", "images/tovar/lojki/troika_s_pozolot/1.jpg", "images/tovar/lojki/troika_s_pozolot/2.jpg", "images/tovar/lojki/troika_s_pozolot/3.jpg"]},
+        "isEdited": true
+    }
+}, {
+    "c6_3": {
+        "cat_name": "Серия",
+        "name": "\"Торжество с позолотой\"",
+        "price": "63",
+        "one_price": "63",
+        "coll": "1",
+        "img": "images/tovar/lojki/torjestvo.jpg",
+        "description": "55555Столовые приборы серии Тройка изготовлены из нержавеющей стали, толщиной 2,5 мм. Цвет всей ложки однородный металик(серебристый глянцевый).\n\nИзготавливаются данные столовые приборы в России на Павловском заводе художественных металлоизделий. Изделия имеют высокое качество и имеют сертификат соответствия.\n\nМы наносим на данные изделия любые гравировки, будь то надписи, логотипы, узоры и даже фотографии.",
+        "photos": {"all": ["images/tovar/lojki/torjestvo_s_pozolotoi/0.jpg", "images/tovar/lojki/torjestvo_s_pozolotoi/1.jpg", "images/tovar/lojki/torjestvo_s_pozolotoi/2.jpg", "images/tovar/lojki/torjestvo_s_pozolotoi/3.jpg"]},
+        "isEdited": true
+    }
+}, {
+    "c6_4": {
+        "cat_name": "Серия",
+        "name": "\"Славянка\"",
+        "price": "40",
+        "one_price": "40",
+        "coll": "1",
+        "img": "images/tovar/lojki/slavianka.jpg",
+        "description": "Ручки столовых приборов данной серии имеют орнамент на ручке. <p/><p>Рабочие части столовых приборов обладают классическими формами и размерами. <p/><p>Изготовлены из нержавеющей стали и имеют ПНТП(Полное Нитрид Титановое Покрытие).",
+        "photos": {"all": ["images/tovar/lojki/slavianka/0.jpg", "images/tovar/lojki/slavianka/1.jpg", "images/tovar/lojki/slavianka/2.jpg", "images/tovar/lojki/slavianka/3.jpg"]}
+    }
+}, {
+    "c6_wd54ei9gxnd": {
+        "cat_name": "\n",
+        "name": "\n",
+        "price": "40",
+        "one_price": "",
+        "coll": "1",
+        "img": "images/tovar/lojki/slavianka.jpg",
+        "description": "Ручки столовых приборов данной серии имеют орнамент на ручке. <p/><p>Рабочие части столовых приборов обладают классическими формами и размерами. <p/><p>Изготовлены из нержавеющей стали и имеют ПНТП(Полное Нитрид Титановое Покрытие).",
+        "photos": {"all": ["images/tovar/lojki/slavianka/0.jpg", "images/tovar/lojki/slavianka/1.jpg", "images/tovar/lojki/slavianka/2.jpg", "images/tovar/lojki/slavianka/3.jpg"]},
+        "isEdited": true
+    }
+}, {
+    "c6_5": {
+        "cat_name": "Серия",
+        "name": "\"Трока Плюс\"",
+        "price": "75",
+        "one_price": "75",
+        "coll": "1",
+        "img": "images/tovar/lojki/troika_plus.jpg",
+        "description": "Также как и предыдущие приборы серии Тройка. Сделана из нержавейки. Имеет сертификат.</p><p> Но выглядит еще более эффектно, из за полного покрытия позолотой. </p><p>На данных столовых приборах гравировка смотрится очень красиво и раскупается на сувениры очень быстро.",
+        "photos": {"all": ["images/tovar/lojki/troika_plus/0.jpg", "images/tovar/lojki/troika_plus/1.jpg", "images/tovar/lojki/troika_plus/2.jpg", "images/tovar/lojki/troika_plus/3.jpg"]}
+    }
+}, {
+    "c6_6": {
+        "cat_name": "Серия",
+        "name": "\"Уралочка ЛНТП\"",
+        "price": "65",
+        "one_price": "65",
+        "coll": "1",
+        "img": "images/tovar/lojki/uralocka_lntp.jpg",
+        "description": "Ручки столовых приборов декорированы классическим растительным орнаментом, выполненным методом штампованной чеканки. <p/><p>Рабочие части столовых приборов обладают классическими формами и размерами.<p/><p> «Уралочка» с НТПп - выполнена из нержавеющей стали и полностью покрыта нитридом титана (НТП).",
+        "photos": {"all": ["images/tovar/lojki/uralocka_lntp/0.jpg", "images/tovar/lojki/uralocka_lntp/1.jpg", "images/tovar/lojki/uralocka_lntp/2.jpg", "images/tovar/lojki/uralocka_lntp/3.jpg"]},
+        "isEdited": true
+    }
+}, {
+    "c1_1": {
+        "cat_name": "Power Bank ",
+        "name": "с гравировкой",
+        "price": "250",
+        "one_price": "250",
+        "coll": "1",
+        "img": "images/tovar/other/akb.jpg",
+        "description": "Power Bank – от англ. Накопитель энергии.</p> <p>Основная функция – хранение определенного объема, предварительно полученного от сети, электрического заряда для дальнейшей передачи его частично или полностью разрядившегося электронного устройства, по средствам стандартного USB кабеля.</p><p>Мы можем нанести любую гравировку на корпус АКБ.",
+        "photos": {"all": ["images/tovar/other/akb/0.jpg", "images/tovar/other/akb/1.jpg", "images/tovar/other/akb/2.jpg"]}
+    }
+}, {
+    "c1_2": {
+        "cat_name": "Визитницы ",
+        "name": "с гравировкой",
+        "price": "74",
+        "one_price": "74",
+        "coll": "1",
+        "img": "images/tovar/other/vizit.jpg",
+        "description": "",
+        "photos": {"all": ["images/tovar/other/vizitica/0.jpg", "images/tovar/other/vizitica/1.jpg", "images/tovar/other/vizitica/2.jpg"]}
+    }
+}, {
+    "c1_3": {
+        "cat_name": "Свадебные замки ",
+        "name": "с гравировкой",
+        "price": "240",
+        "one_price": "240",
+        "coll": "1",
+        "img": "images/tovar/other/zamok.jpg",
+        "description": "Замочек для влюбленных в форме сердечка с возможностью нанесения гравировки с именами и пожеланиями. Памятная надпись не сотрется со временем.",
+        "photos": {"all": ["images/tovar/other/zamki/0.jpg", "images/tovar/other/zamki/1.jpg", "images/tovar/other/zamki/2.jpg"]}
+    }
+}, {
+    "c1_4": {
+        "cat_name": "Зеркала и брелки ",
+        "name": "с гравировкой",
+        "price": "60",
+        "one_price": "60",
+        "coll": "1",
+        "img": "images/tovar/other/brelok.jpg",
+        "description": "На каждом изделии наносится гравировка по вашему заказу(рисунок или надпись). </p><p>Брелок, это универсальный подарок а, гравированное зеркальце с именной гравировкой станет любимым аксессуаром любой женщины.</p><p>Данные сувениры отлично подойдут для расширения ассортимета вашей торговой точки ",
+        "photos": {"all": ["images/tovar/other/breloki_zerkala/0.jpg", "images/tovar/other/breloki_zerkala/1.jpg", "images/tovar/other/breloki_zerkala/2.jpg"]}
+    }
+}, {
+    "c1_5": {
+        "cat_name": "Фляжки и зажигалки ",
+        "name": "с гравировкой",
+        "price": "115",
+        "one_price": "115",
+        "coll": "1",
+        "img": "images/tovar/other/fliaga.jpg",
+        "description": "Фляжки, зажигалки и стопки отличный сувенир для мужчин. </p><p>Такой подарок подойдет и для друга, начальника или же корпоративного клиента или партнера.</p> <p>Сделать этот подарок особенным поможет лазерная гравировка. Возможно насесение любого изображения.",
+        "photos": {"all": ["images/tovar/other/fliaga_zazig/0.jpg", "images/tovar/other/fliaga_zazig/1.jpg", "images/tovar/other/fliaga_zazig/2.jpg", "images/tovar/other/fliaga_zazig/3.jpg"]}
+    }
+}]

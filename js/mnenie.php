@@ -36,7 +36,8 @@ if($_POST['antibot'] != "40") {
 	$msg .= 'City: <b>'.$city.'</b> <br>';
 	$msg .= 'Mnenie: <b>'.$mnenie.'</b> <br>';
 
-	$mail_to = 'lojkin.dom@mail.ru, lih1989@yandex.ru';
+//	$mail_to = 'lojkin.dom@mail.ru, lih1989@yandex.ru';
+	$mail_to = 'almaz73@yandex.ru, almaz73@gmail.com';
 
 	// Отправляем почтовое сообщение   
 	if(empty($picture)){
@@ -115,8 +116,12 @@ function send_mail($to, $thm, $html, $path){
 
 // Отправка в телеграмм
 function tegegramm($name, $phone, $city, $mnenie){
-	$token = '352538299:AAGqOodOgBZmLjN4HUIJrnxr6avK50KE1N4';
-	$chatID = -166511690; 
+    $token ='bot8235288635:AAF_soJaYR8OPHAQrpfcF4FDUr2JjRRDlVw';
+    $chatID = '-5064627941';
+
+    //ложки
+//	$token = '352538299:AAGqOodOgBZmLjN4HUIJrnxr6avK50KE1N4';
+//	$chatID = -166511690;
 
 	$messaggio  = '<b>Отзыв с сайта!</b>'. '%0A';
 	$messaggio .= 'Имя отправителя: <b>'.$name.'</b>'. '%0A';

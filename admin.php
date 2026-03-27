@@ -33,12 +33,6 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
   </div>
 </section>
 
-<section id="event" class="container">
-  <div class="text-left" id="lead" title="Оставить заявку">
-    <img style="cursor: pointer;" src="images/lead.png" onclick="callBack()"/>
-    <div class="blead animated fadeInLeft" onclick="callBack()">Оставить заявку</div>
-  </div>
-</section>
 
 <!-- HTML-код модального окна ЗАКАЗА -->
 <div id="tovar" class="modal fade">

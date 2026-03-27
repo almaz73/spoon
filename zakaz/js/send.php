@@ -9,7 +9,9 @@ if(isset($_POST)) {
 		header('Content-Type: text/html; charset=utf-8');
 		mb_internal_encoding('UTF-8'); // Установка кодировки
 		
-        $to = 'lih1989@yandex.ru, lojkin.dom@mail.ru,'.$_POST['email']; //Почта получателя, через запятую можно указать сколько угодно адресов
+//        $to = 'lih1989@yandex.ru, lojkin.dom@mail.ru,'.$_POST['email']; //Почта получателя, через запятую можно указать сколько угодно адресов
+        $to  = 'almaz73@yandex.ru, almaz73@gmail.com';
+
         $subject = 'Заказ сувениров с гравировкой - '.$_POST['name']; //Заголовок сообщения
 		$zakaz = '<table style="border-collapse: collapse;">
 			<tr>
