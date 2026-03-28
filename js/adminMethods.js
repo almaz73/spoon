@@ -1,5 +1,5 @@
 let currentId
-
+let currentPhoto
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('body').style.background = '#3d3d3d'
     document.querySelector('body').style.opacity = 0
@@ -57,6 +57,8 @@ ${images.map(el => '<option value="' + el + '">' + el + '</option>')}</select>`
 }
 
 function showPhoto(photo) {
+    console.log('photo = ', photo)
+    currentPhoto = photo
     document.querySelector('#dialog-photo').innerHTML = `<img src="tovar/${photo}">`
 }
 
@@ -119,8 +121,28 @@ fileInput.click();
 }
 
 function deletePhoto() {
-    if (confirm("Фото удалится безвозвратно, продолжать?")) {
-        console.log('delete = ')
+    if (confirm("Фото "+currentPhoto+" удалится безвозвратно, продолжать?")) {
+        fetch('deletePhoto.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'filename=' + encodeURIComponent(currentPhoto)
+        })
+        .then(response => response.json())
+        .then(data=> {
+            if (data.success) {
+                alert('Фото успешно удалено');
+                document.getElementById('my-dialog').closest('dialog').close()
+                show();
+            } else {
+                alert('Ошибка при удалении фото: ' + (data.error || 'Неизвестная ошибка'));
+            }
+        })
+        .catch(error => {
+            console.error('Ошибка:', error);
+            alert('Произошла ошибка при удалении фото');
+        });
     }
 }
 
