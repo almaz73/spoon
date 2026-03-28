@@ -45,7 +45,7 @@
                     <div id="topCarousel" class="carousel slide">
                         <div class="carousel-inner">
                             <div class="item active">
-                                <img src="images/04.jpg">
+                                <img src="images/02.jpg">
                                 <div class="carousel-caption">
                                     <h2>Ложки с зеркальной гравировкой</h2>
                                 </div>

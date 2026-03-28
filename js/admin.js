@@ -28,7 +28,7 @@ function show() {
             '<img src="' + item.img + '" width="100%" alt="' + item.name + '" title=""/>' +
             '<div class="photobuttons">' +
             '<a onclick="showBig(event)" title="На весь экран">☐</a>' +
-            '<a onclick="changePhoto(\'' + elem + '\',event)" title="Сменить фото">🌀</a>' +
+            '<a onclick="changePhoto(\'' + elem + '\',event)" title="Сменить фото">🧺</a>' +
             '</div>' +
             '</a>' +
             '<div class="tovar_info">' + '<div title="Указанная цена действует на крупные оптовые заказы" class="price price-txt">от <span>' + item.price + '</span> руб.*</div>' + '<div class="readmore">' +
