@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function showBig(obj) {
     if (window.innerWidth < 600) return false
-    let mainPhoto = obj.target.parentNode.parentNode
+    let mainPhoto = obj.target.parentNode.parentNode.querySelector('img')
 
     if (mainPhoto.requestFullscreen) {
         mainPhoto.requestFullscreen(); // Запрашиваем полноэкранный режим
@@ -37,30 +37,52 @@ function showBig(obj) {
     }
 }
 
-function changePhoto(val, event) {
-    console.log('val = ', val, event)
+function changePhoto(id) {
+    currentId = id
+    let elem = goods.models.find(el => Object.entries(el)[0][0] === id)[id]
+    let photo =elem.img.slice(6)
 
     // Запрос к PHP скрипту
     fetch('get_images.php')
         .then(response => response.json()) // Парсим ответ как JSON [3]
         .then(images => {
-            const container = document.getElementById('photo-container');
-            images.forEach(src => {
-                const img = document.createElement('img');
-                img.src = src;
-                img.style.width = '200px'; // Пример стилей
-                img.style.margin = '10px';
-                // container.appendChild(img);
-                console.log('img = ', img)
-            });
-            console.log('images = ', images)
+            document.getElementById('my-dialog').showModal()
+            let html = `<select id="photo" onchange="showPhoto(this.value)">
+${images.map(el => '<option value="' + el + '">' + el + '</option>')}</select>`
+            document.querySelector('#dialog-content').innerHTML = html
+               showPhoto(photo)
+               document.querySelector("select").value = photo
         })
         .catch(error => console.error('Ошибка:', error));
 }
 
-function deleteElement(id) {
-    goods.models = goods.models.filter(el => Object.entries(el)[0][0] !== id)
+function showPhoto(photo) {
+    document.querySelector('#dialog-photo').innerHTML = `<img src="tovar/${photo}">`
+}
+
+function setPhoto() {
+    let photo = document.querySelector("select").value
+    document.getElementById('my-dialog').closest('dialog').close()
+    let elem = goods.models.find(el => Object.entries(el)[0][0] === currentId)[currentId]
+    if(elem) elem.img = 'tovar/'+photo
     show()
+}
+
+function uploadPhoto() {
+    console.log('upload = ')
+}
+
+function deletePhoto() {
+    if (confirm("Фото удалится безвозвратно, продолжать?")) {
+        console.log('delete = ')
+    }
+}
+
+function deleteElement(id) {
+    if (confirm("Табличка удалится безвозвратно, продолжать?")) {
+        goods.models = goods.models.filter(el => Object.entries(el)[0][0] !== id)
+        show()
+    }
 }
 
 function doubleElement(id) {
@@ -136,7 +158,7 @@ function editModal(id) {
 function createFile() {
 
 
-    goods.models.map(el=>Object.entries(el)[0][1].isEdited = false)
+    goods.models.map(el => Object.entries(el)[0][1].isEdited = false)
     // console.log('goods.models = ', goods.models)
     // return false
 

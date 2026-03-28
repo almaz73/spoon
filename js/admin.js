@@ -19,16 +19,16 @@ function show() {
             '<div class="goods-boots-info model-box ' + (item.isEdited ? 'is-edited' : '') + '" data-id="' + elem + '">' +
             '<div class="buttons">' +
             '<a onclick="editElement(\'' + elem + '\',event)" title="Редактирование">✎</a> ' +
-            '<a onclick="doubleElement(\'' + elem + '\')" title="Дублирование">❏</a> ' +
+            '<a onclick="doubleElement(\'' + elem + '\')" title="Дублирование">➜</a> ' +
             '<a onclick="deleteElement(\'' + elem + '\')" title="Удаление">✖</a></div>' +
 
             '<a ><p>' + item.cat_name + '</p>' +
             '<h4>' + item.name + '</h4></a>' +
             '<a href="#tovar" data-toggle="modal" class="showtovar readmore" style="position: relative">' +
-            '<img src="' + item.img + '" width="100%" alt="' + item.name + '" title=""/>' +
+            '<img style="aspect-ratio: 292/190"  src="' + item.img + '" width="100%" alt="' + item.name + '" title=""/>' +
             '<div class="photobuttons">' +
             '<a onclick="showBig(event)" title="На весь экран">☐</a>' +
-            '<a onclick="changePhoto(\'' + elem + '\',event)" title="Сменить фото">🧺</a>' +
+            '&nbsp;<a onclick="changePhoto(\'' + elem + '\')" title="Сменить фото">✂</a>' +
             '</div>' +
             '</a>' +
             '<div class="tovar_info">' + '<div title="Указанная цена действует на крупные оптовые заказы" class="price price-txt">от <span>' + item.price + '</span> руб.*</div>' + '<div class="readmore">' +

@@ -215,11 +215,17 @@ a:hover{color:#994868;}
 
 .photobuttons{
     height: 30px;
-    right: 18px;
+    right: 21px;
     position: absolute;
-    top: 80px
+    top: 85px
 }
 
 .photobuttons a{
     cursor: pointer;
+    padding: 4px;
+    background: #00000000;
+}
+
+.photobuttons a:hover{
+    background: #ffeeee22;
 }

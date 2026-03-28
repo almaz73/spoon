@@ -77,7 +77,7 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
             <div class="row" style="margin-bottom: 15px; position:relative">
               <div style="position: absolute; z-index: 1; left: 20px">
                 <input type="checkbox" id="idSkid">
-                <label for="idSkid" style="cursor: pointer; color:red">
+                <label for="idSkid" style="cursor: pointer; color:#337ab7">
                   Скрыто
                 </label>
               </div>
@@ -186,6 +186,17 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
       <script src="js/admin.js" type="text/javascript"></script>
       <script src="js/mail.js" type="text/javascript"></script>
       <script src="js/lightbox.js" type="text/javascript"></script>
+
+      <dialog id="my-dialog">
+        <p>Выберите фото:</p>
+        <div class="dialog-closer" onclick="this.closest('dialog').close()">✖</div>
+        <p id="dialog-photo"></p>
+        <p id="dialog-content"></p>
+        <button onclick="setPhoto()"> Разместить</button>
+        <button onclick="uploadPhoto()">Загрузить</button>
+        <button onclick="deletePhoto()">Удалить</button>
+      </dialog>
+
       </body>
       </html>
 
