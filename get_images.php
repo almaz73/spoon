@@ -1,6 +1,6 @@
 <?php
 // Папка с фотографиями
-$imagesDir = 'uploads/';
+$imagesDir = 'images/';
 // Сканируем папку, исключая . и ..
 $images = array_diff(scandir($imagesDir), array('..', '.'));
 

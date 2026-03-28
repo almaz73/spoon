@@ -321,11 +321,11 @@
                                     <input type="email" id="EmailF1" name="email" class="form-control"
                                            placeholder="Ваш e-mail?">
                                 </div>
-                                <input type="hidden" id="utm_source" value="<?php echo $_GET['utm_source'];?>">
-                                <input type="hidden" id="utm_medium" value="<?php echo $_GET['utm_medium'];?>">
-                                <input type="hidden" id="utm_campaign" value="<?php echo $_GET['utm_campaign'];?>">
-                                <input type="hidden" id="utm_term" value="<?php echo $_GET['utm_term'];?>">
-                                <input type="hidden" id="utm_content" value="<?php echo $_GET['utm_content'];?>">
+<!--                                <input type="hidden" id="utm_source" value="--><?php //echo $_GET['utm_source'];?><!--">-->
+<!--                                <input type="hidden" id="utm_medium" value="--><?php //echo $_GET['utm_medium'];?><!--">-->
+<!--                                <input type="hidden" id="utm_campaign" value="--><?php //echo $_GET['utm_campaign'];?><!--">-->
+<!--                                <input type="hidden" id="utm_term" value="--><?php //echo $_GET['utm_term'];?><!--">-->
+<!--                                <input type="hidden" id="utm_content" value="--><?php //echo $_GET['utm_content'];?><!--">-->
                                 <button style="width: 100%" onclick="sendpriceF1()" type="submit"
                                         class="btn btn-primary">Получить полный каталог продукции
                                 </button>

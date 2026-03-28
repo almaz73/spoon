@@ -10,13 +10,31 @@ function show() {
         var i = $('<div class="col-lg-4 col-md-4 col-xs-6">' +
             '<div class="goods-boots-info model-box" data-id="' + elem + '">' +
             '<div class="buttons">' +
-            '<a href="#tovar" data-toggle="modal" class="showtovar readmore"><p>' + item.cat_name + '</p>' + '<h4>' + item.name + '</h4></a>' + '<a href="#tovar" data-toggle="modal" class="showtovar readmore"><img src="' + item.img + '" width="100%" alt="' + item.name + '" title=""/></a>' + '<div class="tovar_info">' + '<div title="Указанная цена действует на крупные оптовые заказы" class="price price-txt">от <span>' + item.one_price + '</span> руб.*</div>' + '<div class="readmore"><a href="#tovar" class="showtovar readmore" data-toggle="modal">Подробнее</a></div>' + '</div>' + '</div>');
+            '<a href="#tovar" data-toggle="modal" class="showtovar readmore"><p>' + item.cat_name + '</p>' + '<h4>' + item.name + '</h4></a>' +
+            '<a href="#tovar" data-toggle="modal" class="showtovar readmore">' +
+            '<div class="photobuttons"><a onclick="showBig(event)" title="На весь экран">☐</a></div>' +
+            '<img src="' + item.img + '" width="100%" alt="' + item.name + '" title=""/></a>' + '<div class="tovar_info">' + '<div title="Указанная цена действует на крупные оптовые заказы" class="price price-txt">от <span>' + item.price + '</span> руб.*</div>' + '<div class="readmore"><a href="#tovar" class="showtovar readmore" data-toggle="modal">Подробнее</a></div>' + '</div>' + '</div>');
         var cat = Object.keys(g)[0].split('_');
         $("#" + cat[0]).append(i)
     }
 }
 
 show()
+
+function showBig(obj) {
+    if (window.innerWidth < 600) return false
+    let mainPhoto = obj.target.parentNode.parentNode
+
+    if (mainPhoto.requestFullscreen) {
+        mainPhoto.requestFullscreen(); // Запрашиваем полноэкранный режим
+    } else if (mainPhoto.mozRequestFullScreen) { // Firefox
+        mainPhoto.mozRequestFullScreen();
+    } else if (mainPhoto.webkitRequestFullscreen) { // Chrome, Safari, Opera
+        mainPhoto.webkitRequestFullscreen();
+    } else if (mainPhoto.msRequestFullscreen) { // IE/Edge
+        mainPhoto.msRequestFullscreen();
+    }
+}
 
 $('.showtovar').click(function (e) {
     e.preventDefault();
@@ -81,11 +99,14 @@ $('.modal-body').each(function (e) {
 
 
 goods.showTovar = function (id) {
-    let item = this.models.find(el=>el[id])
+    let item = this.models.find(el => el[id])
     var m = $('.modal-dialog');
     m.find('h4.modal-title').html(item[id].cat_name + item[id].name);
     m.find('.model-descr').html(item[id].description);
-    if (item[id].noSkid === 'true') m.find('.skid-fields').html('');
+
+    if (item[id].noSkid === true) document.querySelector('.skid-fields').classList.add('noSkid')
+    else document.querySelector('.skid-fields').classList.remove('noSkid')
+
     m.find('.gal-slider').empty();
     var img_i = 0;
     for (var gal_img in item[id].photos['all']) {

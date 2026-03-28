@@ -208,3 +208,18 @@ a:hover{color:#994868;}
         font-size: medium;
     }
 }
+
+.noSkid{
+    opacity: 0;
+}
+
+.photobuttons{
+    height: 30px;
+    right: 18px;
+    position: absolute;
+    top: 80px
+}
+
+.photobuttons a{
+    cursor: pointer;
+}

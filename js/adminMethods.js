@@ -22,6 +22,42 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 })
 
+function showBig(obj) {
+    if (window.innerWidth < 600) return false
+    let mainPhoto = obj.target.parentNode.parentNode
+
+    if (mainPhoto.requestFullscreen) {
+        mainPhoto.requestFullscreen(); // Запрашиваем полноэкранный режим
+    } else if (mainPhoto.mozRequestFullScreen) { // Firefox
+        mainPhoto.mozRequestFullScreen();
+    } else if (mainPhoto.webkitRequestFullscreen) { // Chrome, Safari, Opera
+        mainPhoto.webkitRequestFullscreen();
+    } else if (mainPhoto.msRequestFullscreen) { // IE/Edge
+        mainPhoto.msRequestFullscreen();
+    }
+}
+
+function changePhoto(val, event) {
+    console.log('val = ', val, event)
+
+    // Запрос к PHP скрипту
+    fetch('get_images.php')
+        .then(response => response.json()) // Парсим ответ как JSON [3]
+        .then(images => {
+            const container = document.getElementById('photo-container');
+            images.forEach(src => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.style.width = '200px'; // Пример стилей
+                img.style.margin = '10px';
+                // container.appendChild(img);
+                console.log('img = ', img)
+            });
+            console.log('images = ', images)
+        })
+        .catch(error => console.error('Ошибка:', error));
+}
+
 function deleteElement(id) {
     goods.models = goods.models.filter(el => Object.entries(el)[0][0] !== id)
     show()
@@ -70,7 +106,7 @@ function editFields(id) {
     priceDiv.style.textShadow = '0 0 4px black'
     priceDiv.contentEditable = true
     priceDiv.addEventListener('keyup', () => {
-        goodsChanged(id, 'one_price', priceDiv.innerText)
+        goodsChanged(id, 'price', priceDiv.innerText)
     })
 }
 
@@ -124,7 +160,11 @@ function createFile() {
             body: 'filename=' + encodeURIComponent('listTovar.js') + '&content=' + encodeURIComponent(data)
         })
             .then(response => response.text())
-            .then(data => alert(data))
+            .then(data => {
+                if (confirm("Прежняя версия будет переписана, продолжать?")) {
+                    location.reload()
+                }
+            })
             .catch(error => console.error('Ошибка:', error));
     }
 }

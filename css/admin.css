@@ -1,159 +1,98 @@
-/*// ////////////*/
-/* Сброс базовых отступов и настройка шрифта */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
+    background: linear-gradient(135deg, #61a706 0%, #ffffff 100%);
+    min-height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
 }
 
-/*!* Контейнер формы с эффектом стекла (glassmorphism) *!*/
-/*.login-container {*/
-/*    background: rgba(255, 255, 255, 0.95);*/
-/*    border-radius: 24px;*/
-/*    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.2), 0 5px 12px rgba(0, 0, 0, 0.1);*/
-/*    padding: 2rem 2rem 2.2rem;*/
-/*    width: 100%;*/
-/*    max-width: 420px;*/
-/*    transition: transform 0.2s ease, box-shadow 0.2s ease;*/
-/*}*/
+/* Контейнер формы с эффектом стекла (glassmorphism) */
+.login-container {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.2), 0 5px 12px rgba(0, 0, 0, 0.1);
+    padding: 2rem 2rem 2.2rem;
+    width: 100%;
+    max-width: 420px;
+}
 
-/*.login-container:hover {*/
-/*    transform: translateY(-3px);*/
-/*    box-shadow: 0 25px 40px rgba(0, 0, 0, 0.25);*/
-/*}*/
 
-/*!* Заголовок формы *!*/
-/*.form-header {*/
-/*    text-align: center;*/
-/*    margin-bottom: 1.8rem;*/
-/*}*/
+/* Заголовок формы */
+.form-header {
+    text-align: center;
+    margin-bottom: 1.8rem;
+}
 
-/*.form-header h2 {*/
-/*    font-size: 1.8rem;*/
-/*    font-weight: 600;*/
-/*    color: #333;*/
-/*    letter-spacing: -0.5px;*/
-/*}*/
+.form-header h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #333;
+    letter-spacing: -0.5px;
+}
 
-/*.form-header p {*/
-/*    color: #6c757d;*/
-/*    font-size: 0.9rem;*/
-/*    margin-top: 8px;*/
-/*}*/
+.form-header p {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin-top: 8px;
+}
 
-/*!* Группа полей ввода *!*/
-/*.input-group {*/
-/*    margin-bottom: 1.5rem;*/
-/*    text-align: left;*/
-/*}*/
+/* Группа полей ввода */
+.input-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
 
-/*.input-group label {*/
-/*    display: block;*/
-/*    margin-bottom: 8px;*/
-/*    font-weight: 500;*/
-/*    color: #2c3e50;*/
-/*    font-size: 0.9rem;*/
-/*}*/
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #2c3e50;
+    font-size: 0.9rem;
+}
 
-/*.input-group input {*/
-/*    width: 100%;*/
-/*    padding: 12px 16px;*/
-/*    font-size: 1rem;*/
-/*    border: 2px solid #e2e8f0;*/
-/*    border-radius: 14px;*/
-/*    background-color: #fff;*/
-/*    transition: all 0.2s ease;*/
-/*    outline: none;*/
-/*    font-family: inherit;*/
-/*}*/
+.input-group input {
+    width: calc(100% - 36px);
+    padding: 12px 16px;
+    font-size: 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 14px;
+    background-color: #fff;
+    outline: none;
+    font-family: inherit;
+}
 
-/*.input-group input:focus {*/
-/*    border-color: #667eea;*/
-/*    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);*/
-/*}*/
+/* Кнопка входа */
+.login-btn {
+    width: 100%;
+    background: #61a706;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+}
 
-/*!* Кнопка входа *!*/
-/*.login-btn {*/
-/*    width: 100%;*/
-/*    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);*/
-/*    color: white;*/
-/*    border: none;*/
-/*    padding: 12px 20px;*/
-/*    font-size: 1.05rem;*/
-/*    font-weight: 600;*/
-/*    border-radius: 40px;*/
-/*    cursor: pointer;*/
-/*    transition: all 0.25s ease;*/
-/*    margin-top: 8px;*/
-/*    letter-spacing: 0.5px;*/
-/*    box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);*/
-/*}*/
+/* Убираем стандартные обводки у кнопки в IE/Edge */
+button:focus, input:focus {
+    outline: none;
+}
 
-/*.login-btn:hover {*/
-/*    transform: translateY(-2px);*/
-/*    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);*/
-/*    background: linear-gradient(135deg, #5a67d8 0%, #6b46a0 100%);*/
-/*}*/
+/* Небольшой эффект для автозаполнения (сохраняет стиль) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
 
-/*.login-btn:active {*/
-/*    transform: translateY(1px);*/
-/*}*/
 
-/*!* Дополнительные опции (забыли пароль и т.д.) — для юзабилити *!*/
-/*.form-footer {*/
-/*    text-align: center;*/
-/*    margin-top: 1.5rem;*/
-/*    font-size: 0.85rem;*/
-/*}*/
 
-/*.form-footer a {*/
-/*    color: #667eea;*/
-/*    text-decoration: none;*/
-/*    font-weight: 500;*/
-/*    transition: color 0.2s;*/
-/*}*/
-
-/*.form-footer a:hover {*/
-/*    color: #5a67d8;*/
-/*    text-decoration: underline;*/
-/*}*/
-
-/*!* Адаптивность для маленьких экранов *!*/
-/*@media (max-width: 480px) {*/
-/*    .login-container {*/
-/*        padding: 1.5rem;*/
-/*    }*/
-/*    .form-header h2 {*/
-/*        font-size: 1.5rem;*/
-/*    }*/
-/*    .input-group input {*/
-/*        padding: 10px 14px;*/
-/*    }*/
-/*}*/
-
-/*!* Убираем стандартные обводки у кнопки в IE/Edge *!*/
-/*button:focus, input:focus {*/
-/*    outline: none;*/
-/*}*/
-
-/*!* Небольшой эффект для автозаполнения (сохраняет стиль) *!*/
-/*input:-webkit-autofill,*/
-/*input:-webkit-autofill:hover,*/
-/*input:-webkit-autofill:focus {*/
-/*    -webkit-box-shadow: 0 0 0px 1000px white inset;*/
-/*    transition: background-color 5000s ease-in-out 0s;*/
-/*}*/
-/*// ////////////*/
+/*/////////////////////// */
 
 h3 button{
     color: red;
@@ -239,12 +178,6 @@ h3 button{
     cursor: pointer;
     color: white;
 }
-/*.buttons a.readmore {*/
-/*    padding: 4px 8px;*/
-/*    background: pink;*/
-/*    cursor: pointer;*/
-/*    color: red;*/
-/*}*/
 
 .buttons a:hover {
     background: pink;

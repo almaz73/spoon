@@ -26,9 +26,12 @@ function show() {
             '<h4>' + item.name + '</h4></a>' +
             '<a href="#tovar" data-toggle="modal" class="showtovar readmore" style="position: relative">' +
             '<img src="' + item.img + '" width="100%" alt="' + item.name + '" title=""/>' +
-            '<div class="buttons" style="top:73px"><a onclick="editElement(\'' + elem + '\',event)" title="Редактирование">✎</a></div>' +
+            '<div class="photobuttons">' +
+            '<a onclick="showBig(event)" title="На весь экран">☐</a>' +
+            '<a onclick="changePhoto(\'' + elem + '\',event)" title="Сменить фото">🌀</a>' +
+            '</div>' +
             '</a>' +
-            '<div class="tovar_info">' + '<div title="Указанная цена действует на крупные оптовые заказы" class="price price-txt">от <span>' + item.one_price + '</span> руб.*</div>' + '<div class="readmore">' +
+            '<div class="tovar_info">' + '<div title="Указанная цена действует на крупные оптовые заказы" class="price price-txt">от <span>' + item.price + '</span> руб.*</div>' + '<div class="readmore">' +
             '<a href="#tovar" onclick="editModal(\'' + elem + '\')" class="showtovar readmore" data-toggle="modal">Подробнее</a></div>' + '</div>' + '</div>');
         var cat = Object.keys(g)[0].split('_');
         $("#" + cat[0]).append(i)
@@ -121,9 +124,9 @@ goods.showTovar = function (id) {
 
     let skidFields = document.querySelector('.skid-fields')
     let idSkid = document.querySelector('#idSkid')
-    if (item[id].noSkid === 'true' && skidFields) {
+    if (item[id].noSkid === true && skidFields) {
         skidFields.style.opacity = .1
-        idSkid.checked = trueYe;y
+        idSkid.checked = true
     } else {
         skidFields.style.opacity = 1
         idSkid.checked = false
