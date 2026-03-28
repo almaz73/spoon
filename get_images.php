@@ -1,13 +1,14 @@
 <?php
 // Папка с фотографиями
-$imagesDir = 'images/';
+$imagesDir = 'tovar/';
 // Сканируем папку, исключая . и ..
 $images = array_diff(scandir($imagesDir), array('..', '.'));
 
-// Формируем полный путь к файлам
+
 $result = [];
 foreach ($images as $image) {
-    $result[] = $imagesDir . $image;
+//    $result[] = $imagesDir . $image; // Формируем полный путь к файлам
+    $result[] = $image;
 }
 
 // Отправляем заголовки для JSON
