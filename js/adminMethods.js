@@ -69,7 +69,53 @@ function setPhoto() {
 }
 
 function uploadPhoto() {
-    console.log('upload = ')
+    // Createa hidden file input element
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*'; // Accept only images
+    
+    // When a file is selected, upload it
+    fileInput.addEventListener('change', () => {
+        const file = fileInput.files[0];
+        if (!file) return;
+        
+        // Create a FormData object to send the file
+        const formData = new FormData();
+        formData.append('photo', file);
+        
+        // Send the file to the server
+        fetch('savePhoto.php', {// Changed from save.php to savePhoto.php
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if(data.success) {
+                if (currentId) {
+                    let elem = goods.models.find(el => Object.entries(el)[0][0] === currentId)[currentId];
+                    if (elem) {
+                        elem.img = 'tovar/' + data.filename;
+                        show();
+                        document.getElementById('my-dialog').closest('dialog').close()
+                    }
+                }
+            } else {
+                alert('Ошибка при загрузке фото:' + (data.error || 'Неизвестная ошибка'));
+            }
+        })
+        .catch(error => {
+            console.error('Ошибка:', error);
+            alert('Произошла ошибка при загрузке фото: ' + error.message);
+        });
+    });
+    
+    // Trigger the file selection dialog
+fileInput.click();
 }
 
 function deletePhoto() {
