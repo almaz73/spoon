@@ -36,71 +36,74 @@ function show() {
         var cat = Object.keys(g)[0].split('_');
         $("#" + cat[0]).append(i)
     }
+
+
+    $('.showtovar').click(function (e) {
+        e.preventDefault();
+        var i = $(this).closest('.goods-boots-info');
+        goods.showTovar(i.data('id'))
+    });
+    $('.modal-body').each(function (e) {
+        var t = $(this),
+            s = t.find('.gal-slider'),
+            sel_index;
+        s.find('a').eq(0).addClass('act');
+        var update_gal_image = function () {
+            t.find('.gal-image img').fadeOut(100, function () {
+                $(this).remove();
+                t.find('.gal-image').append('<img style="opacity:0;" src="' + s.find('a').eq(s.find('a').index(s.find('a.act'))).attr('href') + '" />');
+                t.find('.gal-image img').animate({
+                    opacity: 1
+                }, 100)
+            })
+        };
+        $(document).on('click', '.gal-slider a', function (e) {
+            e.preventDefault();
+            s.find('a').removeClass('act');
+            $(this).addClass('act');
+            update_gal_image()
+        });
+        t.find('.left-arrow').click(function (e) {
+            e.preventDefault();
+            sel_index = s.find('a').index(s.find('a.act'));
+            if (sel_index > 0) {
+                if (sel_index - 1 + s.position().left / s.find('a').outerWidth(true) < 0) {
+                    s.animate({
+                        left: (s.position().left + s.find('a').outerWidth(true)) + 'px'
+                    }, 100)
+                }
+                s.find('a').removeClass('act').eq(sel_index - 1).addClass('act');
+                update_gal_image()
+            } else {
+                sel_index = 0;
+                s.find('a').removeClass('act').eq(sel_index).addClass('act');
+                update_gal_image()
+            }
+        });
+        t.find('.right-arrow').click(function (e) {
+            e.preventDefault();
+            sel_index = s.find('a').index(s.find('a.act'));
+            if (sel_index + 1 < s.find('a').length) {
+                if (sel_index + 1 + s.position().left / s.find('a').outerWidth(true) >= 4) {
+                    s.animate({
+                        left: (s.position().left - s.find('a').outerWidth(true)) + 'px'
+                    }, 100)
+                }
+                s.find('a').removeClass('act').eq(sel_index + 1).addClass('act');
+                update_gal_image()
+            } else {
+                sel_index = 0;
+                s.find('a').removeClass('act').eq(sel_index).addClass('act');
+                update_gal_image()
+            }
+        })
+    })
 }
 
 show()
 
 
-$('.showtovar').click(function (e) {
-    e.preventDefault();
-    var i = $(this).closest('.goods-boots-info');
-    goods.showTovar(i.data('id'))
-});
-$('.modal-body').each(function (e) {
-    var t = $(this),
-        s = t.find('.gal-slider'),
-        sel_index;
-    s.find('a').eq(0).addClass('act');
-    var update_gal_image = function () {
-        t.find('.gal-image img').fadeOut(100, function () {
-            $(this).remove();
-            t.find('.gal-image').append('<img style="opacity:0;" src="' + s.find('a').eq(s.find('a').index(s.find('a.act'))).attr('href') + '" />');
-            t.find('.gal-image img').animate({
-                opacity: 1
-            }, 100)
-        })
-    };
-    $(document).on('click', '.gal-slider a', function (e) {
-        e.preventDefault();
-        s.find('a').removeClass('act');
-        $(this).addClass('act');
-        update_gal_image()
-    });
-    t.find('.left-arrow').click(function (e) {
-        e.preventDefault();
-        sel_index = s.find('a').index(s.find('a.act'));
-        if (sel_index > 0) {
-            if (sel_index - 1 + s.position().left / s.find('a').outerWidth(true) < 0) {
-                s.animate({
-                    left: (s.position().left + s.find('a').outerWidth(true)) + 'px'
-                }, 100)
-            }
-            s.find('a').removeClass('act').eq(sel_index - 1).addClass('act');
-            update_gal_image()
-        } else {
-            sel_index = 0;
-            s.find('a').removeClass('act').eq(sel_index).addClass('act');
-            update_gal_image()
-        }
-    });
-    t.find('.right-arrow').click(function (e) {
-        e.preventDefault();
-        sel_index = s.find('a').index(s.find('a.act'));
-        if (sel_index + 1 < s.find('a').length) {
-            if (sel_index + 1 + s.position().left / s.find('a').outerWidth(true) >= 4) {
-                s.animate({
-                    left: (s.position().left - s.find('a').outerWidth(true)) + 'px'
-                }, 100)
-            }
-            s.find('a').removeClass('act').eq(sel_index + 1).addClass('act');
-            update_gal_image()
-        } else {
-            sel_index = 0;
-            s.find('a').removeClass('act').eq(sel_index).addClass('act');
-            update_gal_image()
-        }
-    })
-})
+
 
 
 goods.showTovar = function (id) {
@@ -116,9 +119,13 @@ goods.showTovar = function (id) {
     m.find('.gal-slider').empty();
     var img_i = 0;
     for (var gal_img in item[id].photos['all']) {
-        if (img_i === 0)
-            m.find('.gal-image img').prop('src', item[id].photos['all'][gal_img]);
-        m.find('.gal-slider').append('<a href="' + item[id].photos['all'][gal_img] + '" class="' + (img_i === 0 ? 'act' : '') + '"><img src="' + item[id].photos['all'][gal_img] + '" alt="" title=""></a>');
+        let photo = item[id].photos['all'][gal_img]
+        if (img_i === 0) m.find('.gal-image img').prop('src', photo);
+
+        m.find('.gal-slider').append(
+            '<span style="position: relative;"><span class="mod_photo" onclick="changePhoto(\'' + id + '\', event, \`'+photo+'\`, '+gal_img+')" title="Смена фото">✂</span>' +
+            '<a href="' + photo + '" class="' + (img_i === 0 ? 'act' : '') + '">' +
+            '<img src="' + photo + '" alt="" title=""></a></span>');
         img_i++
     }
 

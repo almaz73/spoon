@@ -61,7 +61,7 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
               <div class="col-sm-12 col-md-6">
                 <div class="row gal-thumbs-cont">
                   <div class="gal-thumbs">
-                    <div class="gal-slider clr">
+                    <div class="gal-slider">
                       <a href="#">
                         <img src="#" alt="" title="">
                       </a>

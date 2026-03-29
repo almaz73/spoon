@@ -221,3 +221,13 @@ dialog .dialog-closer{
     padding: 10px;
     cursor: pointer;
 }
+
+.gal-thumbs  span.mod_photo{
+    position: absolute;
+    padding: 4px;
+    cursor: pointer;
+    background: #00000000;
+}
+.gal-thumbs  span.mod_photo:hover{
+    background: pink;
+}

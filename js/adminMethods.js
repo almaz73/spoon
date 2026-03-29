@@ -1,6 +1,6 @@
 let currentId
 let currentPhoto // фото которое меняют
-let currentPath // место фото в узлах массива
+let currentPath // место фото в узлах массива, если нет, корень узла, если есть модалочные фотки
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('body').style.background = '#3d3d3d'
     document.querySelector('body').style.opacity = 0
@@ -38,16 +38,21 @@ function showBig(obj) {
     }
 }
 
-function changePhoto(id) {
-    console.log('22 = ', 22)
+function changePhoto(id, event, photo, gal_img) {
     currentId = id
-    let elem = goods.models.find(el => Object.entries(el)[0][0] === id)[id]
-    let photo = elem.img.slice(6)
-    showDialod(photo)
-    if (elem) currentPath = elem
+    if (event) { // фотки из модалки
+        event.stopImmediatePropagation()
+        currentPath = gal_img // elem.photos.all//[gal_img]
+        showPhotoDialod(photo.slice(6))
+    } else {
+        let elem = goods.models.find(el => Object.entries(el)[0][0] === id)[id]
+        let photo = elem.img.slice(6)
+        showPhotoDialod(photo)
+        currentPath = undefined
+    }
 }
 
-function showDialod(photo) {
+function showPhotoDialod(photo) {
     // Запрос к PHP скрипту, который возвращает массив с названиями фоток
     fetch('get_images.php')
         .then(response => response.json()) // Парсим ответ как JSON [3]
@@ -69,8 +74,17 @@ function showPhoto(photo) {
 
 function setPhoto() {
     let photo = document.querySelector("select").value
+    let elem = goods.models.find(el => Object.entries(el)[0][0] === currentId)[currentId]
+
     document.getElementById('my-dialog').closest('dialog').close()
-    if (currentPath) currentPath.img = 'tovar/' + photo
+    if (currentPath != undefined) {
+        elem.photos.all[currentPath] = 'tovar/' + photo
+    } else {
+        elem.img = 'tovar/' + photo
+    }
+    document.querySelector('[data-dismiss="modal"]').click()
+    document.getElementById('my-dialog').closest('dialog').close()
+    showDirtyBlock(currentId)
     show()
 }
 
@@ -106,8 +120,8 @@ function uploadPhoto() {
                         let elem = goods.models.find(el => Object.entries(el)[0][0] === currentId)[currentId];
                         if (elem) {
                             elem.img = 'tovar/' + data.filename;
-                            show();
                             document.getElementById('my-dialog').closest('dialog').close()
+                            show();
                         }
                     }
                 } else {
@@ -166,16 +180,20 @@ function doubleElement(id) {
     node[key] = JSON.parse(JSON.stringify(body))
     node[key].isEdited = true
     goods.models.splice(index + 1, 0, node)
+    setTimeout(() => editFields(key))
     show()
 }
 
 function editElement(id) {
+    showDirtyBlock(id)
+    show()
+}
+
+function showDirtyBlock(id) {
     goods.models = goods.models.map(el => {
         if (Object.entries(el)[0][0] === id) el[id].isEdited = true
         return el
     })
-
-    show()
     setTimeout(() => editFields(id))
 }
 
