@@ -39,11 +39,42 @@ $email = "
 
 
 ";
-$headers = 'From: Сайт - Ложкин Дом <php@ложкин-дом.рф>' . "\r\n";
-$headers .= "Content-type: text/html; charset=\"utf-8\"";
+//Usean email address that matches your hosting domain
+$fromEmail = "php@a1249196.xsph.ru";  // Changed from php@ложкин-дом.рф
+$headers = 'From: Сайт - Ложкин Дом <' . $fromEmail. '>' . "\r\n";
+$headers .= "Content-type: text/html; charset=\"utf-8\"\r\n";
+$headers .= "X-Mailer: PHP/" . phpversion();
 
+// Check if the server can send emails
+if (!function_exists('mail')) {
+    die('PHP mail() function is not availableon this server');
+}
 
-mail($to, $Subject, $email, $headers);
+// Try sending the email
+$mail_sent = @mail($to, $Subject, $email, $headers);
+
+if (!$mail_sent) {
+    // Log the error
+    error_log("Failed to send email. To: $to, Subject: $Subject");
+
+    // You can tryan alternative method here, like using SMTP via your hosting's mail server
+    // For example, using fsockopen to connect to localhost:25
+    $smtp_conn = fsockopen("localhost", 25, $errno, $errstr, 30);
+    if ($smtp_conn) {
+fwrite($smtp_conn, "HELO sprinthost.ru\r\n");
+        fwrite($smtp_conn, "MAIL FROM: <$fromEmail>\r\n");
+        fwrite($smtp_conn, "RCPT TO: <$to>\r\n");
+        fwrite($smtp_conn, "DATA\r\n");
+        fwrite($smtp_conn, "Subject: $Subject\r\n");
+        fwrite($smtp_conn, $headers . "\r\n");
+        fwrite($smtp_conn, "\r\n" . $email . "\r\n");
+        fwrite($smtp_conn, ".\r\n");
+        fwrite($smtp_conn, "QUIT\r\n");
+        fclose($smtp_conn);
+    } else {
+        error_log("Failed to connect to SMTP server");
+    }
+}
 
 $token ='bot8235288635:AAF_soJaYR8OPHAQrpfcF4FDUr2JjRRDlVw';
 $chatID = '-5064627941';
