@@ -51,8 +51,8 @@ if (!function_exists('mail')) {
 }
 
 // Try sending the email
-// $mail_sent = @mail($to, $Subject, $email, $headers);
-/*
+$mail_sent = @mail($to, $Subject, $email, $headers);
+
 if (!$mail_sent) {
     // Log the error
     error_log("Failed to send email. To: $to, Subject: $Subject");
@@ -75,8 +75,8 @@ if (!$mail_sent) {
         error_log("Failed to connect to SMTP server");
     }
 }
-*/
-mail("almaz73@yandex.ru", "Проверка", "Текст для проверки");
+
+mail("almaz73@yandex.ru", "Проверка222", "222Текст для проверки");
 
 $token = 'bot8235288635:AAF_soJaYR8OPHAQrpfcF4FDUr2JjRRDlVw';
 $chatID = '-5064627941';

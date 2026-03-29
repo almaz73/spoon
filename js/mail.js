@@ -1,5 +1,5 @@
 function sendpriceF1() {
-    // var url = "js/mail.php";
+    var url = "js/mail.php";
     var model = document.getElementById("modelF1").innerText;
     var name = document.getElementById("NameF1").value;
     var phone = document.getElementById("PhoneF1").value;
@@ -32,38 +32,38 @@ function sendpriceF1() {
     } else {
         $("#tovar").modal("hide");
         thanksShow();
-        // var posting = $.post(url, {
-        //     model: model,
-        //     name: name,
-        //     phone: phone,
-        //     email: email,
-        //     title: title,
-        //     task: task,
-        //     utm_source: utm_source,
-        //     utm_medium: utm_medium,
-        //     utm_campaign: utm_campaign,
-        //     utm_term: utm_term,
-        //     utm_content: utm_content
-        // });
-        // posting.done(function (data) {
-        //     document.getElementById("NameF1").value = "";
-        //     document.getElementById("PhoneF1").value = "";
-        //     document.getElementById("EmailF1").value = "";
-        //     yaCounter44781169.reachGoal('lead')
-        // })
+        var posting = $.post(url, {
+            model: model,
+            name: name,
+            phone: phone,
+            email: email,
+            title: title,
+            task: task,
+            utm_source: utm_source,
+            utm_medium: utm_medium,
+            utm_campaign: utm_campaign,
+            utm_term: utm_term,
+            utm_content: utm_content
+        });
+        posting.done(function (data) {
+            document.getElementById("NameF1").value = "";
+            document.getElementById("PhoneF1").value = "";
+            document.getElementById("EmailF1").value = "";
+            yaCounter44781169.reachGoal('lead')
+        })
 
-        sendTelegram('::: Заказ консультации по телефону. \n Имя ' + name + '\n' +
-            ' Телефон ' + phone + '\n' +
-            ' Email ' + email + '\n' +
-            ' Модель ' + model + '\n' +
-            ' Задача ' + task + '\n'
-        )
+        // sendTelegram('::: Заказ консультации по телефону. \n Имя ' + name + '\n' +
+        //     ' Телефон ' + phone + '\n' +
+        //     ' Email ' + email + '\n' +
+        //     ' Модель ' + model + '\n' +
+        //     ' Задача ' + task + '\n'
+        // )
 
     }
 }
 
 function sendToEmail() {
-    //var url = "js/mail.php";
+    var url = "js/mail.php";
     var model = document.getElementById("modelCB").innerText;
     var name = document.getElementById("NameCB").value;
     var phone = document.getElementById("PhoneCB").value;
@@ -96,33 +96,33 @@ function sendToEmail() {
     } else {
         $("#call-back").modal("hide");
         thanksShow();
-        // var posting = $.post(url, {
-        //     model: model,
-        //     name: name,
-        //     phone: phone,
-        //     email: email,
-        //     title: title,
-        //     task: task,
-        //     utm_source: utm_source,
-        //     utm_medium: utm_medium,
-        //     utm_campaign: utm_campaign,
-        //     utm_term: utm_term,
-        //     utm_content: utm_content
-        // });
+        var posting = $.post(url, {
+            model: model,
+            name: name,
+            phone: phone,
+            email: email,
+            title: title,
+            task: task,
+            utm_source: utm_source,
+            utm_medium: utm_medium,
+            utm_campaign: utm_campaign,
+            utm_term: utm_term,
+            utm_content: utm_content
+        });
 
 
 
-        sendTelegram('::: Заказ консультации по телефону. \n Имя ' + name + '\n' +
-            ' Задача: Созвониться с клиентом\n' +
-            ' Телефон ' + phone + '\n' +
-            ' Email ' + email + '\n')
+        // sendTelegram(':: Заказ консультации по телефону. \n Имя ' + name + '\n' +
+        //     ' Задача: Созвониться с клиентом\n' +
+        //     ' Телефон ' + phone + '\n' +
+        //     ' Email ' + email + '\n')
 
-        // posting.done(function (data) {
-        //     document.getElementById("NameCB").value = "";
-        //     document.getElementById("PhoneCB").value = "";
-        //     document.getElementById("EmailCB").value = "";
-        //     yaCounter44781169.reachGoal('lead')
-        // })
+        posting.done(function (data) {
+            document.getElementById("NameCB").value = "";
+            document.getElementById("PhoneCB").value = "";
+            document.getElementById("EmailCB").value = "";
+            yaCounter44781169.reachGoal('lead')
+        })
     }
 }
 
@@ -135,24 +135,24 @@ function sendToEmail() {
 //     sendTelegram('::: Заказ консультации по телефону. \n Имя ' + name + '\n' + ' Телефон ' + tel + '\n' + ' Email ' + email + '\n')
 // }
 
-function sendTelegram(message) {
-    let botId = 'bot8235288635:AAF_soJaYR8OPHAQrpfcF4FDUr2JjRRDlVw';
-    let chatId = '-5064627941';
-
-    // ложки
-    // let botId =  '352538299:AAGqOodOgBZmLjN4HUIJrnxr6avK50KE1N4';
-    // let chatId = -166511690;
-
-    let linkTelega = `https://api.telegram.org/${botId}/sendMessage?chat_id=${chatId}&parse_mode=HTML&text=${message}`;
-
-    try {
-        fetch(linkTelega)
-            .then(response => response.json())
-            .then(() => {
-                console.log('сообщение доставлено в телеграм группу ')
-            });
-    } catch (e) {
-        console.log('Ошибка. ТЕЛЕГРАММ НЕ ОТПРАВИЛСЯ')
-    }
-}
+// function sendTelegram(message) {
+//     let botId = 'bot8235288635:AAF_soJaYR8OPHAQrpfcF4FDUr2JjRRDlVw';
+//     let chatId = '-5064627941';
+//
+//     // ложки
+//     // let botId =  '352538299:AAGqOodOgBZmLjN4HUIJrnxr6avK50KE1N4';
+//     // let chatId = -166511690;
+//
+//     let linkTelega = `https://api.telegram.org/${botId}/sendMessage?chat_id=${chatId}&parse_mode=HTML&text=${message}`;
+//
+//     try {
+//         fetch(linkTelega)
+//             .then(response => response.json())
+//             .then(() => {
+//                 console.log('сообщение доставлено в телеграм группу ')
+//             });
+//     } catch (e) {
+//         console.log('Ошибка. ТЕЛЕГРАММ НЕ ОТПРАВИЛСЯ')
+//     }
+// }
 
