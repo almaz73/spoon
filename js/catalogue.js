@@ -2,6 +2,7 @@ if (window.location == 'http://xn----htbeijemffg.xn--p1ai/#goodsend') thanksShow
 if (window.location == 'http://xn----htbeijemffg.xn--p1ai/#badsend') errShow()
 
 function show() {
+    document.querySelector('#banner').src='banners/'+goods.banner.url
     for (var g of goods.models) {
 
         let elem = Object.entries(g)[0][0]

@@ -20,10 +20,8 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
         <div class="banner">
 <!--            --><?php //include 'template.php' ?>
           <img id="banner-preview">
-          <div class="check">
-<!--            <label><input  type="radio" name="language"  value="red" >66</label><br>-->
-          </div>
-          <button onclick="addBanner()" title="Добавить новый баннер">▣</button>
+          <br><br>
+          <div class="check"></div>
         </div>
         <div class="container">
           <div class="row">

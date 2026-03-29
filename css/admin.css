@@ -233,8 +233,7 @@ dialog .dialog-closer {
 }
 
 .banner {
-    width: 450px;
-    display: flex;
+    width: 400px;
     margin: 0 auto;
     position: relative;
 }
@@ -249,11 +248,12 @@ dialog .dialog-closer {
 }
 
 .banner .check{
-    min-width: 200px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
 }
+
 .banner .check label{
-    margin: 0 30px;
+    margin: 0 10px;
 }
 

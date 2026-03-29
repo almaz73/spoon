@@ -280,10 +280,9 @@ function takePrevFile() {
 function createFile() { // переписываем
     if (confirm("Прежняя версия товаров будет переписана, продолжать?")) {
         goods.models.map(el => Object.entries(el)[0][1].isEdited = false)
-        // console.log('goods.models = ', goods.models)
-        // return false
 
-        let data = `var goods = {};goods.colors = {darkBlue: 'Синий'}; goods.models = ${JSON.stringify(goods.models)}`;
+        if (!goods.banner) goods.banner.url = '01.jpg'
+        let data = `var goods = {}; goods.banner = {url: "${goods.banner.url}"};goods.colors = {darkBlue: 'Синий'}; goods.models = ${JSON.stringify(goods.models)}`;
 
         // 1 вариант. Скачиваем на комп пользователя
         // let a = document.createElement("a"); // для скачивания на компьютер
@@ -314,15 +313,17 @@ function getBanner() {
         .then(images => {
             let html = ''
             images.forEach(image => {
-                html += `<label><input type="radio" name="pic" value="${image}" ${image === currentPhoto ? 'checked' : ''}> ${image} </label><br>`
+                html += `<label><input type="radio" ${goods.banner && goods.banner.url === image ? 'checked' : ''} name="pic" value="${image}" ${image === currentPhoto ? 'checked' : ''}> ${image} </label><br>`
             })
             document.querySelector('.banner .check').innerHTML = html
             // Add event listener for radio button changes
             document.querySelectorAll('.banner .check input[name="pic"]').forEach(radio => {
                 radio.addEventListener('change', function () {
-                    document.querySelector('#banner-preview').src = 'banners/'+this.value;
+                    document.querySelector('#banner-preview').src = 'banners/' + this.value;
+                    goods.banner = {url : this.value}
                 });
             });
+            if (goods.banner) document.querySelector('#banner-preview').src = 'banners/' + goods.banner.url
         })
         .catch(error => console.error('Ошибка при загрузке изображений:', error));
 }

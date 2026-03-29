@@ -45,7 +45,7 @@
                     <div id="topCarousel" class="carousel slide">
                         <div class="carousel-inner">
                             <div class="item active">
-                                <?php include 'template.php' ?>
+                                <img id="banner">
                                 <div class="carousel-caption">
                                     <h2>Ложки с зеркальной гравировкой</h2>
                                 </div>
