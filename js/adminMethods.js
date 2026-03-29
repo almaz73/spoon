@@ -308,22 +308,26 @@ function createFile() { // переписываем
 }
 
 /* баннер */
-fetch('get_banners.php')  // Changed from get_banners.php to get_images.php to use existing functionality
-    .then(response => response.json())
-    .then(images => {
-        let html = ''
-        images.forEach(image => {
-            html += `<label><input type="radio" name="pic" value="${image}" ${image === currentPhoto ? 'checked' : ''}> ${image} </label><br>`
-        })
-        document.querySelector('.banner .check').innerHTML = html
-        // Add event listener for radio button changes
-        document.querySelectorAll('.banner .check input[name="pic"]').forEach(radio => {
-            radio.addEventListener('change', function () {
-                document.querySelector('#banner-preview').src = 'banners/' + this.value;
+function getBanner() {
+    fetch('get_banners.php')  // Changed from get_banners.php to get_images.php to use existing functionality
+        .then(response => response.json())
+        .then(images => {
+            let html = ''
+            images.forEach(image => {
+                html += `<label><input type="radio" name="pic" value="${image}" ${image === currentPhoto ? 'checked' : ''}> ${image} </label><br>`
+            })
+            document.querySelector('.banner .check').innerHTML = html
+            // Add event listener for radio button changes
+            document.querySelectorAll('.banner .check input[name="pic"]').forEach(radio => {
+                radio.addEventListener('change', function () {
+                    document.querySelector('#banner-preview').src = 'banners/'+this.value;
+                });
             });
-        });
-    })
-    .catch(error => console.error('Ошибка при загрузке изображений:', error));
+        })
+        .catch(error => console.error('Ошибка при загрузке изображений:', error));
+}
+
+getBanner()
 
 function addBanner() {
 
