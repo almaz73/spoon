@@ -45,25 +45,25 @@
                     <div id="topCarousel" class="carousel slide">
                         <div class="carousel-inner">
                             <div class="item active">
-                                <img src="images/02.jpg">
+                                <?php include 'template.php' ?>
                                 <div class="carousel-caption">
                                     <h2>Ложки с зеркальной гравировкой</h2>
                                 </div>
                             </div>
                             <div class="item">
-                                <img src="images/02.jpg">
+                                <img src="banners/02.jpg">
                                 <div class="carousel-caption">
                                     <h2>Гравировка любых изображений и текста</h2>
                                 </div>
                             </div>
                             <div class="item">
-                                <img src="images/01.jpg">
+                                <img src="banners/01.jpg">
                                 <div class="carousel-caption">
                                     <h2>Ложки с гравировкой имени</h2>
                                 </div>
                             </div>
                             <div class="item">
-                                <img src="images/03.jpg">
+                                <img src="banners/03.jpg">
                                 <div class="carousel-caption">
                                     <h2>Ложки с гравировкой "Знаки зодиака"</h2>
                                 </div>

@@ -17,6 +17,14 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
       <body>
 
       <section id="catalog">
+        <div class="banner">
+<!--            --><?php //include 'template.php' ?>
+          <img id="banner-preview">
+          <div class="check">
+<!--            <label><input  type="radio" name="language"  value="red" >66</label><br>-->
+          </div>
+          <button onclick="addBanner()" title="Добавить новый баннер">▣</button>
+        </div>
         <div class="container">
           <div class="row">
             <h3 style="background: pink; padding: 30px">(Админка) Столовые приборы с гравировкой
