@@ -21,8 +21,9 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
           <div class="row">
             <h3 style="background: pink; padding: 30px">(Админка) Столовые приборы с гравировкой
               <br>
-              <button onclick="createFile()">✍ Сохранить</button>
-              <button onclick="location.reload()"> ❌ Отменить изменения</button>
+              <button onclick="createFile()" title="Сохраняем эту, а старый вариант в резервную копию">✍ Сохранить</button>
+              <button onclick="takePrevFile()" title="Вернуться к прежнему варианту.">☘</button>
+              <button onclick="location.reload()" title="Если есть изменения - почистим"> ❌ Отменить изменения</button>
             </h3>
           </div>
           <div class="goods-list row" id="c6"></div>

@@ -28,7 +28,7 @@ function show() {
             '<img style="aspect-ratio: 292/190"  src="' + item.img + '" width="100%" alt="' + item.name + '" title=""/>' +
             '<div class="photobuttons">' +
             '<a onclick="showBig(event)" title="На весь экран">☐</a>' +
-            '&nbsp;<a onclick="changePhoto(\'' + elem + '\')" title="Сменить фото">✂</a>' +
+            '&nbsp;<a onclick="changePhoto(\'' + elem + '\')" title="Смена фото">✂</a>' +
             '</div>' +
             '</a>' +
             '<div class="tovar_info">' + '<div title="Указанная цена действует на крупные оптовые заказы" class="price price-txt">от <span>' + item.price + '</span> руб.*</div>' + '<div class="readmore">' +

@@ -1,5 +1,6 @@
 let currentId
-let currentPhoto
+let currentPhoto // фото которое меняют
+let currentPath // место фото в узлах массива
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('body').style.background = '#3d3d3d'
     document.querySelector('body').style.opacity = 0
@@ -38,26 +39,30 @@ function showBig(obj) {
 }
 
 function changePhoto(id) {
+    console.log('22 = ', 22)
     currentId = id
     let elem = goods.models.find(el => Object.entries(el)[0][0] === id)[id]
-    let photo =elem.img.slice(6)
+    let photo = elem.img.slice(6)
+    showDialod(photo)
+    if (elem) currentPath = elem
+}
 
-    // Запрос к PHP скрипту
+function showDialod(photo) {
+    // Запрос к PHP скрипту, который возвращает массив с названиями фоток
     fetch('get_images.php')
         .then(response => response.json()) // Парсим ответ как JSON [3]
         .then(images => {
-            document.getElementById('my-dialog').showModal()
+            document.getElementById('my-dialog').showModal() // открываем диалоговое окно
             let html = `<select id="photo" onchange="showPhoto(this.value)">
 ${images.map(el => '<option value="' + el + '">' + el + '</option>')}</select>`
             document.querySelector('#dialog-content').innerHTML = html
-               showPhoto(photo)
-               document.querySelector("select").value = photo
+            showPhoto(photo)
+            document.querySelector("select").value = photo
         })
         .catch(error => console.error('Ошибка:', error));
 }
 
 function showPhoto(photo) {
-    console.log('photo = ', photo)
     currentPhoto = photo
     document.querySelector('#dialog-photo').innerHTML = `<img src="tovar/${photo}">`
 }
@@ -65,8 +70,7 @@ function showPhoto(photo) {
 function setPhoto() {
     let photo = document.querySelector("select").value
     document.getElementById('my-dialog').closest('dialog').close()
-    let elem = goods.models.find(el => Object.entries(el)[0][0] === currentId)[currentId]
-    if(elem) elem.img = 'tovar/'+photo
+    if (currentPath) currentPath.img = 'tovar/' + photo
     show()
 }
 
@@ -75,53 +79,53 @@ function uploadPhoto() {
     const fileInput = document.createElement('input');
     fileInput.type = 'file';
     fileInput.accept = 'image/*'; // Accept only images
-    
+
     // When a file is selected, upload it
     fileInput.addEventListener('change', () => {
         const file = fileInput.files[0];
         if (!file) return;
-        
+
         // Create a FormData object to send the file
         const formData = new FormData();
         formData.append('photo', file);
-        
+
         // Send the file to the server
         fetch('savePhoto.php', {// Changed from save.php to savePhoto.php
             method: 'POST',
             body: formData
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            if(data.success) {
-                if (currentId) {
-                    let elem = goods.models.find(el => Object.entries(el)[0][0] === currentId)[currentId];
-                    if (elem) {
-                        elem.img = 'tovar/' + data.filename;
-                        show();
-                        document.getElementById('my-dialog').closest('dialog').close()
-                    }
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
                 }
-            } else {
-                alert('Ошибка при загрузке фото:' + (data.error || 'Неизвестная ошибка'));
-            }
-        })
-        .catch(error => {
-            console.error('Ошибка:', error);
-            alert('Произошла ошибка при загрузке фото: ' + error.message);
-        });
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    if (currentId) {
+                        let elem = goods.models.find(el => Object.entries(el)[0][0] === currentId)[currentId];
+                        if (elem) {
+                            elem.img = 'tovar/' + data.filename;
+                            show();
+                            document.getElementById('my-dialog').closest('dialog').close()
+                        }
+                    }
+                } else {
+                    alert('Ошибка при загрузке фото:' + (data.error || 'Неизвестная ошибка'));
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+                alert('Произошла ошибка при загрузке фото: ' + error.message);
+            });
     });
-    
+
     // Trigger the file selection dialog
-fileInput.click();
+    fileInput.click();
 }
 
 function deletePhoto() {
-    if (confirm("Фото "+currentPhoto+" удалится безвозвратно, продолжать?")) {
+    if (confirm("Фото " + currentPhoto + " удалится безвозвратно, продолжать?")) {
         fetch('deletePhoto.php', {
             method: 'POST',
             headers: {
@@ -129,20 +133,20 @@ function deletePhoto() {
             },
             body: 'filename=' + encodeURIComponent(currentPhoto)
         })
-        .then(response => response.json())
-        .then(data=> {
-            if (data.success) {
-                alert('Фото успешно удалено');
-                document.getElementById('my-dialog').closest('dialog').close()
-                show();
-            } else {
-                alert('Ошибка при удалении фото: ' + (data.error || 'Неизвестная ошибка'));
-            }
-        })
-        .catch(error => {
-            console.error('Ошибка:', error);
-            alert('Произошла ошибка при удалении фото');
-        });
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Фото успешно удалено');
+                    document.getElementById('my-dialog').closest('dialog').close()
+                    show();
+                } else {
+                    alert('Ошибка при удалении фото: ' + (data.error || 'Неизвестная ошибка'));
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+                alert('Произошла ошибка при удалении фото');
+            });
     }
 }
 
@@ -222,26 +226,55 @@ function editModal(id) {
     }
 }
 
+function takePrevFile() {
+    if (confirm("Восстановить предыдущую версию товаров?")) {
+        // Fetch the content of the backup file
+        fetch('datas/listTovar_copy.js')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Не удалось загрузить резервный файл');
+                }
+                return response.text();
+            })
+            .then(data => {
+                // Send the backup content to save.php to overwrite the current file
+                return fetch('save.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'filename=' + encodeURIComponent('listTovar.js') + '&content=' + encodeURIComponent(data)
+                });
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert('Файл успешно восстановлен из резервной копии');
+                location.reload(); // Reload the page to refresh all data
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+                alert('Произошла ошибка при восстановлении файла: ' + error.message);
+            });
+    }
 
-function createFile() {
+}
 
+function createFile() { // переписываем
+    if (confirm("Прежняя версия товаров будет переписана, продолжать?")) {
+        goods.models.map(el => Object.entries(el)[0][1].isEdited = false)
+        // console.log('goods.models = ', goods.models)
+        // return false
 
-    goods.models.map(el => Object.entries(el)[0][1].isEdited = false)
-    // console.log('goods.models = ', goods.models)
-    // return false
+        let data = `var goods = {};goods.colors = {darkBlue: 'Синий'}; goods.models = ${JSON.stringify(goods.models)}`;
 
-    let text = `var goods = {};goods.colors = {darkBlue: 'Синий'};
-    goods.models = ${JSON.stringify(goods.models)}`;
-    downloadAsFile(text);
-
-    function downloadAsFile(data) {
+        // 1 вариант. Скачиваем на комп пользователя
         // let a = document.createElement("a"); // для скачивания на компьютер
         // let file = new Blob([data], {type: 'application/json'});
         // a.href = URL.createObjectURL(file);
         // a.download = "listTovar.js";
         // a.click();
 
-        // 2. Отправляем на сервер
+        // 2 вариант. Отправляем на сервер
         fetch('save.php', {
             method: 'POST',
             headers: {
@@ -250,13 +283,10 @@ function createFile() {
             body: 'filename=' + encodeURIComponent('listTovar.js') + '&content=' + encodeURIComponent(data)
         })
             .then(response => response.text())
-            .then(data => {
-                if (confirm("Прежняя версия будет переписана, продолжать?")) {
-                    location.reload()
-                }
-            })
+            .then(data => location.reload())
             .catch(error => console.error('Ошибка:', error));
     }
+
 }
 
 
