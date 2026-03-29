@@ -44,12 +44,12 @@
                 <div id="fgalery">
                     <div id="topCarousel" class="carousel slide">
                         <div class="carousel-inner">
-                            <div class="item active">
-                                <img id="banner">
-                                <div class="carousel-caption">
-                                    <h2>Ложки с зеркальной гравировкой</h2>
-                                </div>
+                          <div class="item">
+                            <img src="banners/01.jpg">
+                            <div class="carousel-caption">
+                              <h2>Ложки с гравировкой имени</h2>
                             </div>
+                          </div>
                             <div class="item">
                                 <img src="banners/02.jpg">
                                 <div class="carousel-caption">
@@ -57,16 +57,16 @@
                                 </div>
                             </div>
                             <div class="item">
-                                <img src="banners/01.jpg">
-                                <div class="carousel-caption">
-                                    <h2>Ложки с гравировкой имени</h2>
-                                </div>
-                            </div>
-                            <div class="item">
                                 <img src="banners/03.jpg">
                                 <div class="carousel-caption">
                                     <h2>Ложки с гравировкой "Знаки зодиака"</h2>
                                 </div>
+                            </div>
+                            <div class="item active">
+                              <img src="banners/04.jpg">
+                              <div class="carousel-caption">
+                                <h2>Ложки с зеркальной гравировкой</h2>
+                              </div>
                             </div>
                         </div>
 
@@ -457,9 +457,10 @@
 <script src="js/jquery-latest.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
 <script src="datas/listTovar.js?v=<?php echo filemtime('datas/listTovar.js'); ?>" type="text/javascript"></script>
-<script src="js/catalogue.js" type="text/javascript"></script>
+<script src="js/lightbox.js" type="text/javascript"></script>
+
 <!--<script src="js/script.js" type="text/javascript"></script>-->
 <script src="js/mail.js" type="text/javascript"></script>
-<script src="js/lightbox.js" type="text/javascript"></script>
+<script src="js/catalogue.js" type="text/javascript"></script>
 </body>
 </html>

@@ -1,10 +1,27 @@
 if (window.location == 'http://xn----htbeijemffg.xn--p1ai/#goodsend') thanksShow()
 if (window.location == 'http://xn----htbeijemffg.xn--p1ai/#badsend') errShow()
 
-function show() {
-    document.querySelector('#banner').src='banners/'+goods.banner.url
-    for (var g of goods.models) {
+let countCaurusel = 0
+function goCaurusel(number, starter) {
+    countCaurusel++
+    if(number>countCaurusel) setTimeout(() => {
+        starter.click()
+        goCaurusel(number, starter)
+    }, 5000)
+}
 
+function showCaurusel() {
+    let carusel = document.querySelector('.carousel-inner')
+    let items = carusel.querySelectorAll('.item')
+    items.forEach(item => item.classList.remove('active'))
+    let placeNumbr  = parseInt(goods.banner.url)
+    items[placeNumbr-1].classList.add('active')
+    let starter = document.querySelector('.glyphicon-chevron-right')
+    goCaurusel(5, starter)
+}
+function show() {
+    showCaurusel()
+    for (var g of goods.models) {
         let elem = Object.entries(g)[0][0]
         let item = Object.entries(g)[0][1]
 
