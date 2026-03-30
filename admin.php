@@ -18,7 +18,7 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
 
       <section id="catalog">
         <div class="banner">
-<!--            --><?php //include 'template.php' ?>
+          <!--            --><?php //include 'template.php' ?>
           <img id="banner-preview">
           <br><br>
           <div class="check"></div>
@@ -27,7 +27,8 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
           <div class="row">
             <h3 style="background: pink; padding: 30px">(Админка) Столовые приборы с гравировкой
               <br>
-              <button onclick="createFile()" title="Сохраняем эту, а старый вариант в резервную копию">✍ Сохранить</button>
+              <button onclick="createFile()" title="Сохраняем эту, а старый вариант в резервную копию">✍ Сохранить
+              </button>
               <button onclick="takePrevFile()" title="Вернуться к прежнему варианту.">☘</button>
               <button onclick="location.reload()" title="Если есть изменения - почистим"> ❌ Отменить изменения</button>
             </h3>
@@ -37,6 +38,17 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
             <h3>Другие сувениры</h3>
           </div>
           <div class="goods-list row" id="c1"></div>
+        </div>
+
+        <br><br>
+        <div style="color: white">
+          <h4>Внимание</h4>
+          <p> Удаленные рисунки не восстановить </p>
+          <p> Вернуться к прежнему варианту можно только один раз</p>
+          <p> Загружаемые фотки должны иметь осмысленные имена</p>
+          <p> Загружаемые фотки должны быть правильных размеров</p>
+          <p> Новый баннер можно добавить в папку banners через хостинг </p>
+          <p> Четыре тестовых поля доступны для редактирования, серия, имя, цена, описание</p>
         </div>
       </section>
 

@@ -26,7 +26,7 @@ header("Content-type:text/html;charset=utf-8");
 //$to  = 'lih1989@yandex.ru, lojkin.dom@mail.ru';
 $to = 'almaz73@yandex.ru, almaz73@gmail.com';
 
-$Subject = $data['title'];
+$Subject = $data['title'] || 'Заявка с сайта';
 
 $email = "
 <b><i>" . $data['title'] . "</i></b><br /><br />
@@ -51,32 +51,11 @@ if (!function_exists('mail')) {
 }
 
 // Try sending the email
-$mail_sent = @mail($to, $Subject, $email, $headers);
+mail($to, 'Заявка с сайта Ложкин-Дом', $email, $headers);
 
-if (!$mail_sent) {
-    // Log the error
-    error_log("Failed to send email. To: $to, Subject: $Subject");
 
-    // You can tryan alternative method here, like using SMTP via your hosting's mail server
-    // For example, using fsockopen to connect to localhost:25
-    $smtp_conn = fsockopen("localhost", 25, $errno, $errstr, 30);
-    if ($smtp_conn) {
-        fwrite($smtp_conn, "HELO sprinthost.ru\r\n");
-        fwrite($smtp_conn, "MAIL FROM: <$fromEmail>\r\n");
-        fwrite($smtp_conn, "RCPT TO: <$to>\r\n");
-        fwrite($smtp_conn, "DATA\r\n");
-        fwrite($smtp_conn, "Subject: $Subject\r\n");
-        fwrite($smtp_conn, $headers . "\r\n");
-        fwrite($smtp_conn, "\r\n" . $email . "\r\n");
-        fwrite($smtp_conn, ".\r\n");
-        fwrite($smtp_conn, "QUIT\r\n");
-        fclose($smtp_conn);
-    } else {
-        error_log("Failed to connect to SMTP server");
-    }
-}
 
-mail("almaz73@yandex.ru", "Проверка222", "222Текст для проверки");
+// повторяем в телеграм
 
 $token = 'bot8235288635:AAF_soJaYR8OPHAQrpfcF4FDUr2JjRRDlVw';
 $chatID = '-5064627941';
@@ -85,23 +64,20 @@ $chatID = '-5064627941';
 //$token = '352538299:AAGqOodOgBZmLjN4HUIJrnxr6avK50KE1N4';
 //$chatID = -166511690;
 
-$messaggio = '<b>Заявка с сайта</b>' . '%0A';
-if ($data['model']) {
-    $messaggio .= 'Заказ: <b>' . $data['model'] . '</b>' . '%0A';
-}
+$messaggio = ':::::::  <b>Заявка с сайта</b>' . '%0A';
+//if ($data['model']) {
+//    $messaggio .= 'Заказ: <b>' . $data['model'] . '</b>' . '%0A';
+//}
 $messaggio .= 'Имя отправителя: <b>' . $data['name'] . '</b>' . '%0A';
 $messaggio .= 'Контактный телефон: <b>' . $data['phone'] . '</b>' . '%0A';
 $messaggio .= 'E-mail: <b>' . $data['email'] . '</b>' . '%0A';
-$messaggio .= 'Город: <b>' . $data['city'] . '</b>' . '%0A';
+//$messaggio .= 'Город: <b>' . $data['city'] . '</b>' . '%0A';
 $messaggio .= 'Заказ: <b>' . $data['model'] . '</b>' . '%0A';
 
-if ($oldContact) {
-    $messaggio .= '%0A' . '<i>Повторное обращение</i>';
-}
-$messaggio .= '%0A' . '**********************************';
 
-$url = "https://api.telegram.org/bot" . $token . "/sendMessage?chat_id=" . $chatID . "&parse_mode=HTML&text=";
-$url = $url . $messaggio;
+$url = "https://api.telegram.org/" . $token . "/sendMessage?chat_id=" . $chatID . "&parse_mode=HTML&text=" . $messaggio;
+//$url = "https://api.telegram.org/bot" . $token . "/sendMessage?chat_id=" . $chatID . "&parse_mode=HTML&text=";
+//$url = $url . $messaggio;
 $ch = curl_init();
 $optArray = array(
     CURLOPT_URL => $url,

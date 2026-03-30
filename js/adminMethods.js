@@ -229,19 +229,14 @@ function goodsChanged(id, type, value) {
 
 function editModal(id) {
     currentId = id
-    let model_descr = document.querySelector('.model-descr')
-    let div = document.querySelector(`[data-id="${id}"]`)
-    if (div.classList.contains('is-edited')) {
-        model_descr.style.textShadow = '0 0 7px red'
-        model_descr.contentEditable = true
-        model_descr.addEventListener('keyup', () => {
-            goodsChanged(id, 'description', model_descr.innerText)
-        })
+    showDirtyBlock(id)
 
-    } else {
-        model_descr.style.textShadow = ''
-        model_descr.contentEditable = false
-    }
+    let model_descr = document.querySelector('.model-descr')
+    model_descr.style.textShadow = '0 0 7px red'
+    model_descr.contentEditable = true
+    model_descr.addEventListener('keyup', () => {
+        goodsChanged(id, 'description', model_descr.innerText)
+    })
 }
 
 function takePrevFile() {
@@ -320,7 +315,7 @@ function getBanner() {
             document.querySelectorAll('.banner .check input[name="pic"]').forEach(radio => {
                 radio.addEventListener('change', function () {
                     document.querySelector('#banner-preview').src = 'banners/' + this.value;
-                    goods.banner = {url : this.value}
+                    goods.banner = {url: this.value}
                 });
             });
             if (goods.banner) document.querySelector('#banner-preview').src = 'banners/' + goods.banner.url
