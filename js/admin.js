@@ -15,24 +15,25 @@ function show() {
         let elem = Object.entries(g)[0][0]
         let item = Object.entries(g)[0][1]
 
-        var i = $('<div class="col-lg-4 col-md-4 col-xs-6">' +
-            '<div class="goods-boots-info model-box ' + (item.isEdited ? 'is-edited' : '') + '" data-id="' + elem + '">' +
+        var i = $('<div class="col-lg-4 col-md-4 col-xs-6 box" >' +
+            '<div class=" goods-boots-info model-box ' + (item.isEdited ? 'is-edited' : '') + '" data-id="' + elem + '">' +
             '<div class="buttons">' +
-            '<a onclick="editElement(\'' + elem + '\',event)" title="Редактирование">✎</a> ' +
-            '<a onclick="doubleElement(\'' + elem + '\')" title="Дублирование">➜</a> ' +
+            '<a onmousedown="editElement(\'' + elem + '\',event); "  title="Редактирование">✎</a> ' +
+        // onclick="editElement(\'' + elem + '\',event)"
+            '<a onclick="doubleElement(\'' + elem + '\')" title="Дублировать">➜</a> ' +
             '<a onclick="deleteElement(\'' + elem + '\')" title="Удаление">✖</a></div>' +
 
             '<a ><p>' + item.cat_name + '</p>' +
             '<h4>' + item.name + '</h4></a>' +
             '<a href="#tovar" data-toggle="modal" class="showtovar readmore" style="position: relative">' +
-            '<img style="aspect-ratio: 292/190"  src="' + item.img + '" width="100%" alt="' + item.name + '" title=""/>' +
+            '<img onclick="editModal(\'' + elem + '\', event)" style="aspect-ratio: 292/190"  src="' + item.img + '" width="100%" alt="' + item.name + '" title=""/>' +
             '<div class="photobuttons">' +
             '<a onclick="showBig(event)" title="На весь экран">☐</a>' +
-            '&nbsp;<a onclick="changePhoto(\'' + elem + '\')" title="Смена фото">✎</a>' +
+            '&nbsp;<a onclick="makeActive(event);changePhoto(\'' + elem + '\')" title="Смена фото">✎</a>' +
             '</div>' +
             '</a>' +
             '<div class="tovar_info">' + '<div title="Указанная цена действует на крупные оптовые заказы" class="price price-txt">от <span>' + item.price + '</span> руб.*</div>' + '<div class="readmore">' +
-            '<a href="#tovar" onclick="editModal(\'' + elem + '\')" class="showtovar readmore" data-toggle="modal">Подробнее</a></div>' + '</div>' + '</div>');
+            '<a href="#tovar" onclick="editModal(\'' + elem + '\', event)" class="showtovar readmore" data-toggle="modal">Подробнее</a></div>' + '</div>' + '</div>');
         var cat = Object.keys(g)[0].split('_');
         $("#" + cat[0]).append(i)
     }

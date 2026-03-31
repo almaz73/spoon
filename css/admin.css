@@ -258,3 +258,21 @@ dialog .dialog-closer {
     color: white;
 }
 
+.box { transition: 0.3s; }
+.box.blured { filter: blur(2px); pointer-events: none; } /* Размытие и отключение кликов */
+.fixed-div{
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    display: none;
+}
+.fixed-div.dirty{
+    display: block;
+}
+
+.fixed-div button{
+    background: orange;
+    padding: 12px 30px;
+
+}

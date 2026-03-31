@@ -73,7 +73,7 @@ function showPhoto(photo) {
 }
 
 function setPhoto() {
-    let photo = document.querySelector("select").value
+    let photo = document.querySelector("select#photo").value
     let elem = goods.models.find(el => Object.entries(el)[0][0] === currentId)[currentId]
 
     document.getElementById('my-dialog').closest('dialog').close()
@@ -84,7 +84,7 @@ function setPhoto() {
     }
     document.querySelector('[data-dismiss="modal"]').click()
     document.getElementById('my-dialog').closest('dialog').close()
-    showDirtyBlock(currentId)
+    // showDirtyBlock(currentId)
     show()
 }
 
@@ -106,7 +106,7 @@ function uploadPhoto(type) {
 
         let path = 'savePhoto.php'
         if (type === 'banner') {
-            if(!['01.jpg','02.jpg','03.jpg','04.jpg'].includes(file.name)) return alert('Карусель поддерживает только 4 варианта файла: 01.jpg, 02.jpg, 03.jpg, 04.jpg, Переименуйте если хотите поменять один из них  ')
+            if (!['01.jpg', '02.jpg', '03.jpg', '04.jpg'].includes(file.name)) return alert('Карусель поддерживает только 4 варианта файла: 01.jpg, 02.jpg, 03.jpg, 04.jpg, Переименуйте если хотите поменять один из них  ')
             console.log('file = ', file)
             path = 'saveBanner.php'
         }
@@ -176,7 +176,7 @@ function deletePhoto() {
 function deleteElement(id) {
     if (confirm("Табличка удалится безвозвратно, продолжать?")) {
         goods.models = goods.models.filter(el => Object.entries(el)[0][0] !== id)
-        show()
+        saveGoods()
     }
 }
 
@@ -193,9 +193,19 @@ function doubleElement(id) {
     show()
 }
 
-function editElement(id) {
+function makeActive(event) {
+    const target = event.target.closest('.goods-boots-info').parentNode;
+    if (target) {
+        const others = document.querySelectorAll('.box');
+        others.forEach(div => div.classList.add('blured')); // Блюрим остальны
+        target.classList.remove('blured')
+    }
+    makeDirty()
+}
+
+function editElement(id, event) {
     showDirtyBlock(id)
-    show()
+    makeActive(event);
 }
 
 function showDirtyBlock(id) {
@@ -236,7 +246,7 @@ function goodsChanged(id, type, value) {
     elem[id][type] = value
 }
 
-function editModal(id) {
+function editModal(id, event) {
     currentId = id
     showDirtyBlock(id)
 
@@ -246,6 +256,8 @@ function editModal(id) {
     model_descr.addEventListener('keyup', () => {
         goodsChanged(id, 'description', model_descr.innerText)
     })
+
+    makeActive(event);
 }
 
 // function takePrevFile() {
@@ -314,15 +326,13 @@ function saveGoods() { // переписываем
 showAllPhoto()
 
 function showAllPhoto() {
-    console.log('showAllPhoto = ..... ')
     // Запрос к PHP скрипту, который возвращает массив с названиями фоток
     fetch('get_images.php')
         .then(response => response.json()) // Парсим ответ как JSON [3]
         .then(images => {
-            let html = `<select id="photo" onchange="showPhoto(this.value)">
+            let html = `<select id="del_photo" onchange="showPhoto(this.value)">
 ${images.map(el => '<option value="' + el + '">' + el + '</option>')}</select>`
             document.querySelector('#dialog-content-main').innerHTML = html
-            document.querySelector("select").value = photo
         })
         .catch(error => console.error('Ошибка:', error));
 }
@@ -345,6 +355,7 @@ name="pic" value="${image}" ${image === currentPhoto ? 'checked' : ''}> ${image}
                 radio.addEventListener('change', function () {
                     document.querySelector('#banner-preview').src = 'banners/' + this.value;
                     goods.banner = {url: this.value}
+                    makeDirty()
                 });
             });
             if (goods.banner) document.querySelector('#banner-preview').src = 'banners/' + goods.banner.url
@@ -353,6 +364,11 @@ name="pic" value="${image}" ${image === currentPhoto ? 'checked' : ''}> ${image}
 }
 
 getBanner()
+
+function makeDirty(){
+    // console.log('document.querySelector(\'.fixed-div\') = ', document.querySelector('.fixed-div'))
+    document.querySelector('.fixed-div').classList.add('dirty')
+}
 
 function deleteBanner(currentPhoto) {
     console.log('image = ', currentPhoto)

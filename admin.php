@@ -16,6 +16,11 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
       </head>
       <body>
 
+      <div class="fixed-div">
+        <button onclick="saveGoods()">Сохранить</button>
+        <button onclick="location.reload()">Отменить</button>
+      </div>
+
       <section id="catalog">
         <div class="banner">
           <!--            --><?php //include 'template.php' ?>
@@ -23,23 +28,15 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
           <br><br>
           <div class="check"></div>
           <div style="margin: 10px auto;width: 100%;text-align: center;" >
-            <button onclick="uploadPhoto('banner')"title="Размеры 1200 х 485 px">
-              Добавить новый баннер
-            </button>
-            <button onclick="saveGoods()">
-              Сохранить
+            <button onclick="uploadPhoto('banner')" title="Размеры 1200 х 485 px">
+              Обновить баннер
             </button>
           </div>
 
         </div>
         <div class="container">
           <div class="row">
-            <h3 style="background: pink; padding: 30px">(Админка) Столовые приборы с гравировкой
-              <br>
-              <button onclick="saveGoods()" title="Сохраняем эту, а старый вариант в резервную копию">✍ Сохранить
-              </button>
-              <!--              <button onclick="takePrevFile()" title="Вернуться к прежнему варианту.">☘</button>-->
-              <button onclick="location.reload()" title="Если есть изменения - почистим"> ❌ Отменить изменения</button>
+            <h3 style="background: pink; padding: 10px">(Админка) Столовые приборы с гравировкой
             </h3>
           </div>
           <div class="goods-list row" id="c6"></div>
@@ -62,7 +59,7 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
         <div style="color: white">
           <h4>Внимание</h4>
           <p><b>Осторожно!</b> Удаленные рисунки не восстановить </p>
-
+          <p> Баннеров можно менять, нельзя добавлять новых</p>
           <p> Загружаемые фотки должны иметь осмысленные имена</p>
           <p> Загружаемые фотки должны быть правильных размеров</p>
           <p> Новый баннер можно добавить в папку banners через хостинг </p>
