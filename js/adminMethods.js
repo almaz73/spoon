@@ -88,7 +88,8 @@ function setPhoto() {
     show()
 }
 
-function uploadPhoto() {
+function uploadPhoto(type) {
+    // type banner || model
     // Createa hidden file input element
     const fileInput = document.createElement('input');
     fileInput.type = 'file';
@@ -103,8 +104,14 @@ function uploadPhoto() {
         const formData = new FormData();
         formData.append('photo', file);
 
+        let path = 'savePhoto.php'
+        if (type === 'banner') {
+            if(!['01.jpg','02.jpg','03.jpg','04.jpg'].includes(file.name)) return alert('Карусель поддерживает только 4 варианта файла: 01.jpg, 02.jpg, 03.jpg, 04.jpg, Переименуйте если хотите поменять один из них  ')
+            console.log('file = ', file)
+            path = 'saveBanner.php'
+        }
         // Send the file to the server
-        fetch('savePhoto.php', {// Changed from save.php to savePhoto.php
+        fetch(path, {// Changed from save.php to savePhoto.php
             method: 'POST',
             body: formData
         })
@@ -124,6 +131,8 @@ function uploadPhoto() {
                             show();
                         }
                     }
+                    if (type === 'banner') location.reload()
+
                 } else {
                     alert('Ошибка при загрузке фото:' + (data.error || 'Неизвестная ошибка'));
                 }
@@ -239,40 +248,40 @@ function editModal(id) {
     })
 }
 
-function takePrevFile() {
-    if (confirm("Восстановить предыдущую версию товаров?")) {
-        // Fetch the content of the backup file
-        fetch('datas/listTovar_copy.js')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Не удалось загрузить резервный файл');
-                }
-                return response.text();
-            })
-            .then(data => {
-                // Send the backup content to save.php to overwrite the current file
-                return fetch('save.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: 'filename=' + encodeURIComponent('listTovar.js') + '&content=' + encodeURIComponent(data)
-                });
-            })
-            .then(response => response.text())
-            .then(data => {
-                alert('Файл успешно восстановлен из резервной копии');
-                location.reload(); // Reload the page to refresh all data
-            })
-            .catch(error => {
-                console.error('Ошибка:', error);
-                alert('Произошла ошибка при восстановлении файла: ' + error.message);
-            });
-    }
+// function takePrevFile() {
+//     if (confirm("Восстановить предыдущую версию товаров?")) {
+//         // Fetch the content of the backup file
+//         fetch('datas/listTovar_copy.js')
+//             .then(response => {
+//                 if (!response.ok) {
+//                     throw new Error('Не удалось загрузить резервный файл');
+//                 }
+//                 return response.text();
+//             })
+//             .then(data => {
+//                 // Send the backup content to save.php to overwrite the current file
+//                 return fetch('save.php', {
+//                     method: 'POST',
+//                     headers: {
+//                         'Content-Type': 'application/x-www-form-urlencoded',
+//                     },
+//                     body: 'filename=' + encodeURIComponent('listTovar.js') + '&content=' + encodeURIComponent(data)
+//                 });
+//             })
+//             .then(response => response.text())
+//             .then(data => {
+//                 alert('Файл успешно восстановлен из резервной копии');
+//                 location.reload(); // Reload the page to refresh all data
+//             })
+//             .catch(error => {
+//                 console.error('Ошибка:', error);
+//                 alert('Произошла ошибка при восстановлении файла: ' + error.message);
+//             });
+//     }
+//
+// }
 
-}
-
-function createFile() { // переписываем
+function saveGoods() { // переписываем
     if (confirm("Прежняя версия товаров будет переписана, продолжать?")) {
         goods.models.map(el => Object.entries(el)[0][1].isEdited = false)
 
@@ -299,6 +308,23 @@ function createFile() { // переписываем
             .catch(error => console.error('Ошибка:', error));
     }
 
+    showAllPhoto()
+}
+
+showAllPhoto()
+
+function showAllPhoto() {
+    console.log('showAllPhoto = ..... ')
+    // Запрос к PHP скрипту, который возвращает массив с названиями фоток
+    fetch('get_images.php')
+        .then(response => response.json()) // Парсим ответ как JSON [3]
+        .then(images => {
+            let html = `<select id="photo" onchange="showPhoto(this.value)">
+${images.map(el => '<option value="' + el + '">' + el + '</option>')}</select>`
+            document.querySelector('#dialog-content-main').innerHTML = html
+            document.querySelector("select").value = photo
+        })
+        .catch(error => console.error('Ошибка:', error));
 }
 
 /* баннер */
@@ -308,7 +334,10 @@ function getBanner() {
         .then(images => {
             let html = ''
             images.forEach(image => {
-                html += `<label><input type="radio" ${goods.banner && goods.banner.url === image ? 'checked' : ''} name="pic" value="${image}" ${image === currentPhoto ? 'checked' : ''}> ${image} </label><br>`
+                html += `<label title="Установить основным" style="cursor: pointer"><input type="radio" ${goods.banner && goods.banner.url === image ? 'checked' : ''} 
+name="pic" value="${image}" ${image === currentPhoto ? 'checked' : ''}> ${image} 
+<span style="color: white" title="Осторожно! Удаляется безвозратно." onclick="deleteBanner('${image}')">❌</span></label> 
+  <br>`
             })
             document.querySelector('.banner .check').innerHTML = html
             // Add event listener for radio button changes
@@ -325,6 +354,21 @@ function getBanner() {
 
 getBanner()
 
-function addBanner() {
+function deleteBanner(currentPhoto) {
+    console.log('image = ', currentPhoto)
+    if (confirm("Фото " + currentPhoto + " удалится безвозвратно, продолжать?")) {
+        fetch('deleteBanner.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'filename=' + encodeURIComponent(currentPhoto)
+        })
+            .then(response => response.text())
+            .then(data => {
+                location.reload()
+            })
+            .catch(error => console.error('Ошибка:', error));
+    }
 
 }

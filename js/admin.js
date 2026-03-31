@@ -28,7 +28,7 @@ function show() {
             '<img style="aspect-ratio: 292/190"  src="' + item.img + '" width="100%" alt="' + item.name + '" title=""/>' +
             '<div class="photobuttons">' +
             '<a onclick="showBig(event)" title="На весь экран">☐</a>' +
-            '&nbsp;<a onclick="changePhoto(\'' + elem + '\')" title="Смена фото">✂</a>' +
+            '&nbsp;<a onclick="changePhoto(\'' + elem + '\')" title="Смена фото">✎</a>' +
             '</div>' +
             '</a>' +
             '<div class="tovar_info">' + '<div title="Указанная цена действует на крупные оптовые заказы" class="price price-txt">от <span>' + item.price + '</span> руб.*</div>' + '<div class="readmore">' +
@@ -123,7 +123,7 @@ goods.showTovar = function (id) {
         if (img_i === 0) m.find('.gal-image img').prop('src', photo);
 
         m.find('.gal-slider').append(
-            '<span style="position: relative;"><span class="mod_photo" onclick="changePhoto(\'' + id + '\', event, \`'+photo+'\`, '+gal_img+')" title="Смена фото">✂</span>' +
+            '<span style="position: relative;"><span class="mod_photo" onclick="changePhoto(\'' + id + '\', event, \`'+photo+'\`, '+gal_img+')" title="Смена фото">✎</span>' +
             '<a href="' + photo + '" class="' + (img_i === 0 ? 'act' : '') + '">' +
             '<img src="' + photo + '" alt="" title=""></a></span>');
         img_i++

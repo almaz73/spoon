@@ -7,7 +7,7 @@ ini_set('display_errors', 1);
 if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
     // Get the original file name and create a safe path
     $originalName = basename($_FILES['photo']['name']);
-    $filename = 'tovar/' . preg_replace('/[^a-zA-Z0-9._-]/', '', $originalName); // Sanitize filename
+    $filename = 'banners/' . preg_replace('/[^a-zA-Z0-9._-]/', '', $originalName); // Sanitize filename
     
     // Check if the file is an image
     $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];

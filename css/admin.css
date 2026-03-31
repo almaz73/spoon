@@ -250,11 +250,11 @@ dialog .dialog-closer {
 .banner .check{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .banner .check label{
-    margin: 0 10px;
+    margin: 0 5px;
     color: white;
 }
 

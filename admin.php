@@ -22,14 +22,23 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
           <img id="banner-preview">
           <br><br>
           <div class="check"></div>
+          <div style="margin: 10px auto;width: 100%;text-align: center;" >
+            <button onclick="uploadPhoto('banner')"title="Размеры 1200 х 485 px">
+              Добавить новый баннер
+            </button>
+            <button onclick="saveGoods()">
+              Сохранить
+            </button>
+          </div>
+
         </div>
         <div class="container">
           <div class="row">
             <h3 style="background: pink; padding: 30px">(Админка) Столовые приборы с гравировкой
               <br>
-              <button onclick="createFile()" title="Сохраняем эту, а старый вариант в резервную копию">✍ Сохранить
+              <button onclick="saveGoods()" title="Сохраняем эту, а старый вариант в резервную копию">✍ Сохранить
               </button>
-              <button onclick="takePrevFile()" title="Вернуться к прежнему варианту.">☘</button>
+              <!--              <button onclick="takePrevFile()" title="Вернуться к прежнему варианту.">☘</button>-->
               <button onclick="location.reload()" title="Если есть изменения - почистим"> ❌ Отменить изменения</button>
             </h3>
           </div>
@@ -41,14 +50,25 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
         </div>
 
         <br><br>
+        <br><br>
+        <div style="display: flex; justify-content: center;; color: white; gap: 20px">
+          <p> Выберите фото для удаления </p>
+          <div style="color: black" id="dialog-content-main"></div>
+          <a onclick="deletePhoto()" style="color: white; cursor:pointer;">Удалить. Фото больше не используется в
+            системе</a>
+        </div>
+
+
         <div style="color: white">
           <h4>Внимание</h4>
-          <p> Удаленные рисунки не восстановить </p>
-          <p> Вернуться к прежнему варианту можно только один раз</p>
+          <p><b>Осторожно!</b> Удаленные рисунки не восстановить </p>
+
           <p> Загружаемые фотки должны иметь осмысленные имена</p>
           <p> Загружаемые фотки должны быть правильных размеров</p>
           <p> Новый баннер можно добавить в папку banners через хостинг </p>
           <p> Четыре тестовых поля доступны для редактирования, серия, имя, цена, описание</p>
+
+          <!--          <p> Вернуться к предыдущему варианту кроме восстановления фоток можно, если не успели сохранить сверху еще что-то, нужно вписать в консоле takePrevFile()</p>-->
         </div>
       </section>
 
@@ -207,13 +227,13 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
       <script src="js/lightbox.js" type="text/javascript"></script>
 
       <dialog id="my-dialog">
-        <p>Выберите фото:</p>
+        <p>Выбрано фото:</p>
         <div class="dialog-closer" onclick="this.closest('dialog').close()">✖</div>
         <p id="dialog-photo"></p>
         <p id="dialog-content"></p>
-        <button onclick="setPhoto()"> Разместить</button>
-        <button onclick="uploadPhoto()">Загрузить</button>
-        <button onclick="deletePhoto()">Удалить</button>
+        <button onclick="setPhoto()"> Прикрепить </button>
+        <button onclick="uploadPhoto()" title="Основные 1000 х 666 px ,малые 500 х 329 px ">Загрузить новый</button>
+
       </dialog>
 
       </body>
