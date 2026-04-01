@@ -84,7 +84,7 @@ function setPhoto() {
     }
     document.querySelector('[data-dismiss="modal"]').click()
     document.getElementById('my-dialog').closest('dialog').close()
-    // showDirtyBlock(currentId)
+    redFlameEditState(currentId)
     show()
 }
 
@@ -187,32 +187,37 @@ function doubleElement(id) {
     let node = {}
     let key = `${id.slice(0, -2)}_${guid}`
     node[key] = JSON.parse(JSON.stringify(body))
-    node[key].isEdited = true
+    redFlameEditState(key)
     goods.models.splice(index + 1, 0, node)
-    setTimeout(() => editFields(key))
     show()
+
+    let pensil = document.querySelector(`[onmousedown="editElement(\'${key}\',event); "]`)
+    makeActive(null, pensil.closest('.goods-boots-info').parentNode)
 }
 
-function makeActive(event) {
-    const target = event.target.closest('.goods-boots-info').parentNode;
+function makeActive(event, targetFrom) {
+    const target = targetFrom || event.target.closest('.goods-boots-info').parentNode;
+    let id = target.childNodes[0].getAttribute('data-id')
+
     if (target) {
         const others = document.querySelectorAll('.box');
         others.forEach(div => div.classList.add('blured')); // Блюрим остальны
         target.classList.remove('blured')
     }
     makeDirty()
+    redFlameEditState(id)
 }
 
 function editElement(id, event) {
-    showDirtyBlock(id)
+    redFlameEditState(id)
     makeActive(event);
 }
 
-function showDirtyBlock(id) {
-    goods.models = goods.models.map(el => {
-        if (Object.entries(el)[0][0] === id) el[id].isEdited = true
-        return el
-    })
+function redFlameEditState(id) {
+    // goods.models = goods.models.map(el => {
+    //     if (Object.entries(el)[0][0] === id) el[id].isEdited = true
+    //     return el
+    // })
     setTimeout(() => editFields(id))
 }
 
@@ -248,7 +253,7 @@ function goodsChanged(id, type, value) {
 
 function editModal(id, event) {
     currentId = id
-    showDirtyBlock(id)
+    // showDirtyBlock(id)
 
     let model_descr = document.querySelector('.model-descr')
     model_descr.style.textShadow = '0 0 7px red'
@@ -365,7 +370,7 @@ name="pic" value="${image}" ${image === currentPhoto ? 'checked' : ''}> ${image}
 
 getBanner()
 
-function makeDirty(){
+function makeDirty() {
     // console.log('document.querySelector(\'.fixed-div\') = ', document.querySelector('.fixed-div'))
     document.querySelector('.fixed-div').classList.add('dirty')
 }
