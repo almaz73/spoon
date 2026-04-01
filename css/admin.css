@@ -271,8 +271,15 @@ dialog .dialog-closer {
     display: block;
 }
 
+@keyframes blinkBackground {
+    0% { background-color: orange; }
+    50% { background-color: orangered; }
+    100% { background-color: orange; }
+}
+
 .fixed-div button{
     background: orange;
     padding: 12px 30px;
-
+    color: white;
+    animation: blinkBackground 4s infinite;
 }

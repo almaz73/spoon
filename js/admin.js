@@ -124,7 +124,13 @@ goods.showTovar = function (id) {
         if (img_i === 0) m.find('.gal-image img').prop('src', photo);
 
         m.find('.gal-slider').append(
-            '<span style="position: relative;"><span class="mod_photo" onclick="changePhoto(\'' + id + '\', event, \`'+photo+'\`, '+gal_img+')" title="Смена фото">✎</span>' +
+            '<span style="position: relative;">' +
+            '<span class="mod_photo" ' +
+            'onclick="changePhoto(\'' + id + '\', event, \`'+photo+'\`, '+gal_img+')" title="Смена фото">✎</span>' +
+            '<span class="mod_photo" style="margin-left: 20px" ' +
+            'onclick="deleteModalPhoto(\'' + id + '\', '+gal_img+')" title="Удаление фото">✖</span>' +
+            '<span class="mod_photo" style="margin-left: 40px"' +
+            'onclick="doubleModalPhoto(\'' + id + '\', event, \`'+photo+'\`, '+gal_img+')" title="Дублирование фото">➜</span>' +
             '<a href="' + photo + '" class="' + (img_i === 0 ? 'act' : '') + '">' +
             '<img src="' + photo + '" alt="" title=""></a></span>');
         img_i++

@@ -52,6 +52,23 @@ function changePhoto(id, event, photo, gal_img) {
     }
 }
 
+function doubleModalPhoto(id, event, photo, gal_img) {
+    if (confirm('Дублировать фото?')) {
+        let elem = goods.models.find(el => Object.entries(el)[0][0] === id)[id]
+        elem.photos.all.splice(1, 0, photo)
+        document.querySelector('[data-dismiss="modal"]').click()
+    }
+}
+
+
+function deleteModalPhoto(id, gal_img) {
+    if (confirm('Удалить фото?')) {
+        let elem = goods.models.find(el => Object.entries(el)[0][0] === id)[id]
+        elem.photos.all.splice(gal_img, 1)
+        document.querySelector('[data-dismiss="modal"]').click()
+    }
+}
+
 function showPhotoDialod(photo) {
     // Запрос к PHP скрипту, который возвращает массив с названиями фоток
     fetch('get_images.php')
