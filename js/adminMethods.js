@@ -1,6 +1,7 @@
 let currentId
 let currentPhoto // фото которое меняют
 let currentPath // место фото в узлах массива, если нет, корень узла, если есть модалочные фотки
+let currentGal_img // место фотки в модалке
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('body').style.background = '#3d3d3d'
     document.querySelector('body').style.opacity = 0
@@ -39,6 +40,7 @@ function showBig(obj) {
 }
 
 function changePhoto(id, event, photo, gal_img) {
+    currentGal_img = gal_img
     currentId = id
     if (event) { // фотки из модалки
         event.stopImmediatePropagation()
@@ -147,7 +149,11 @@ function uploadPhoto(type) {
                 if (data.success) {
                     if (currentId) {
                         let elem = goods.models.find(el => Object.entries(el)[0][0] === currentId)[currentId];
-                        if (elem) {
+                        if (currentGal_img !== undefined) {
+                            elem.photos.all.splice(1, 0, 'tovar/' + data.filename)
+                            document.querySelector('[data-dismiss="modal"]').click()
+                            document.getElementById('my-dialog').closest('dialog').close()
+                        } else if (elem) {
                             elem.img = 'tovar/' + data.filename;
                             document.getElementById('my-dialog').closest('dialog').close()
                             show();
@@ -344,7 +350,8 @@ function getBanner() {
                 html += `<label title="Сделать основным" style="cursor: pointer">
 <input type="radio" ${goods.banner && goods.banner.url === image ? 'checked' : ''} 
 name="pic" value="${image}" ${image === currentPhoto ? 'checked' : ''}> ${image} 
-<span style="color: white" title="Осторожно! Удаляется безвозратно." onclick="deleteBanner('${image}')">❌</span></label> 
+<!--<span style="color: white" title="Осторожно! Удаляется безвозратно." onclick="deleteBanner('${image}')">❌</span>-->
+</label> 
   <br>`
             })
             document.querySelector('.banner .check').innerHTML = html
