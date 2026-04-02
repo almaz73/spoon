@@ -27,9 +27,9 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
           <img id="banner-preview">
           <br><br>
           <div class="check"></div>
-          <div style="margin: 10px auto;width: 100%;text-align: center;" >
-            <button onclick="uploadPhoto('banner')" title="Размеры 1200 х 485 px">
-              Обновить баннер
+          <div style="margin: 10px auto;width: 100%;text-align: center;">
+            <button onclick="uploadPhoto('banner')" title="Размеры 1200 х 485 px. Имя и расширение как у заменяемого">
+              Обновить баннер (Заменить)
             </button>
           </div>
 
@@ -48,22 +48,29 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
 
         <br><br>
         <br><br>
-        <div style="display: flex; justify-content: center;; color: white; gap: 20px">
+        <div style="display: flex; justify-content: center;; color: white; gap: 20px; background: pink">
           <p> Выберите фото для удаления </p>
           <div style="color: black" id="dialog-content-main"></div>
           <a onclick="deletePhoto()" style="color: white; cursor:pointer;">Удалить. Фото больше не используется в
             системе</a>
         </div>
+        <div style="display: flex; justify-content: center; color: white; gap: 20px; background: pink">
+          <small>* В формах можно добавлять/менять фото, удалять ненужные фотки нужно здесь.</small>
+        </div>
 
+        <div style="position: relative; overflow: hidden">
+          <div id="dialog-photo-delete" style="text-align: center"></div>
+          <button style="position: absolute; right: 0; bottom:300px">Удалить. Фото больше не используется в
+            системе
+          </button>
+        </div>
 
-        <div style="color: white">
+        <div style="color: white; text-align: center">
           <h4>Внимание</h4>
-          <p><b>Осторожно!</b> Удаленные рисунки не восстановить </p>
-          <p> Баннеров можно менять, нельзя добавлять новых</p>
+          <p><b>Осторожно!</b> Удаленные фотки не восстановимы. </p>
+          <p> Баннеры можно менять, нельзя добавлять новые</p>
           <p> Загружаемые фотки должны иметь осмысленные имена</p>
-          <p> Загружаемые фотки должны быть правильных размеров</p>
-          <p> Новый баннер можно добавить в папку banners через хостинг </p>
-          <p> Четыре тестовых поля доступны для редактирования, серия, имя, цена, описание</p>
+          <p> Загружаемые фотки должны быть правильных размеров (1000*666 или 500*329 px)</p>
 
           <!--          <p> Вернуться к предыдущему варианту кроме восстановления фоток можно, если не успели сохранить сверху еще что-то, нужно вписать в консоле takePrevFile()</p>-->
         </div>
@@ -228,7 +235,7 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
         <div class="dialog-closer" onclick="this.closest('dialog').close()">✖</div>
         <p id="dialog-photo"></p>
         <p id="dialog-content"></p>
-        <button onclick="setPhoto()"> Прикрепить </button>
+        <button onclick="setPhoto()"> Прикрепить</button>
         <button onclick="uploadPhoto()" title="Основные 1000 х 666 px ,малые 500 х 329 px ">Загрузить новый</button>
 
       </dialog>

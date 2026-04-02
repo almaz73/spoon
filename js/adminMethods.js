@@ -89,6 +89,10 @@ function showPhoto(photo) {
     document.querySelector('#dialog-photo').innerHTML = `<img src="tovar/${photo}">`
 }
 
+function showPhoto(photo) {
+    document.querySelector('#dialog-photo-delete').innerHTML = `<img src="tovar/${photo}">`
+}
+
 function setPhoto() {
     let photo = document.querySelector("select#photo").value
     let elem = goods.models.find(el => Object.entries(el)[0][0] === currentId)[currentId]
@@ -352,7 +356,7 @@ function showAllPhoto() {
     fetch('get_images.php')
         .then(response => response.json()) // Парсим ответ как JSON [3]
         .then(images => {
-            let html = `<select id="del_photo" onchange="showPhoto(this.value)">
+            let html = `<select id="del_photo" onchange="showPhoto(this.value)"><option value="">Выберите фото</option>
 ${images.map(el => '<option value="' + el + '">' + el + '</option>')}</select>`
             document.querySelector('#dialog-content-main').innerHTML = html
         })
