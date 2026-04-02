@@ -335,12 +335,14 @@ ${images.map(el => '<option value="' + el + '">' + el + '</option>')}</select>`
 
 /* баннер */
 function getBanner() {
+    let guid = Math.random().toString(36).substring(2)
     fetch('get_banners.php')  // Changed from get_banners.php to get_images.php to use existing functionality
         .then(response => response.json())
         .then(images => {
             let html = ''
             images.forEach(image => {
-                html += `<label title="Сделать основным" style="cursor: pointer"><input type="radio" ${goods.banner && goods.banner.url === image ? 'checked' : ''} 
+                html += `<label title="Сделать основным" style="cursor: pointer">
+<input type="radio" ${goods.banner && goods.banner.url === image ? 'checked' : ''} 
 name="pic" value="${image}" ${image === currentPhoto ? 'checked' : ''}> ${image} 
 <span style="color: white" title="Осторожно! Удаляется безвозратно." onclick="deleteBanner('${image}')">❌</span></label> 
   <br>`
@@ -349,12 +351,14 @@ name="pic" value="${image}" ${image === currentPhoto ? 'checked' : ''}> ${image}
             // Add event listener for radio button changes
             document.querySelectorAll('.banner .check input[name="pic"]').forEach(radio => {
                 radio.addEventListener('change', function () {
-                    document.querySelector('#banner-preview').src = 'banners/' + this.value;
+                    document.querySelector('#banner-preview').src = 'banners/' + this.value + '?v=' + guid;
                     goods.banner = {url: this.value}
                     makeDirty()
                 });
             });
-            if (goods.banner) document.querySelector('#banner-preview').src = 'banners/' + goods.banner.url
+            if (goods.banner) {
+                document.querySelector('#banner-preview').src = 'banners/' + goods.banner.url + '?v=' + guid
+            }
         })
         .catch(error => console.error('Ошибка при загрузке изображений:', error));
 }
