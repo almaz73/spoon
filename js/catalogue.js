@@ -30,9 +30,10 @@ function show() {
             '<div class="buttons">' +
             '<a href="#tovar" data-toggle="modal" class="showtovar readmore"><p>' + item.cat_name + '</p>' + '<h4>' + item.name + '</h4></a>' +
             '<a href="#tovar" data-toggle="modal" class="showtovar readmore">' +
-            '<div class="photobuttons online"><a onclick="showBig(event)" title="На весь экран">☐</a></div>' +
             '<img style="aspect-ratio: 292/190" src="' + item.img + '" ' +
-            'width="100%" alt="' + item.name + '" title=""/></a>' + '<div class="tovar_info">' +
+            'width="100%" alt="' + item.name + '" title=""/></a>' + '' +
+            '<div class="photobuttons online"><a onclick="showBig(event)" title="На весь экран">☐</a></div>' +
+            '<div class="tovar_info">' +
             '<div title="Указанная цена действует на крупные оптовые заказы" class="price price-txt">от <span>' +
             item.price + '</span> руб.*</div>' +
             '<div class="readmore"><a href="#tovar" class="showtovar readmore" data-toggle="modal">Подробнее</a></div>' + '</div>' + '</div>');
@@ -194,3 +195,8 @@ $(window).scroll(function () {
         $('.bcart').addClass('hidden')
     }
 });
+
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === "Escape") document.querySelector('[data-dismiss="modal"]').click()
+})

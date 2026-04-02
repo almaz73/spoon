@@ -79,7 +79,7 @@ function showPhotoDialod(photo) {
 ${images.map(el => '<option value="' + el + '">' + el + '</option>')}</select>`
             document.querySelector('#dialog-content').innerHTML = html
             showPhoto(photo)
-            document.querySelector("select").value = photo
+            document.querySelector("select#photo").value = photo
         })
         .catch(error => console.error('Ошибка:', error));
 }
