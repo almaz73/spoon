@@ -19,14 +19,13 @@ function show() {
             '<div class=" goods-boots-info model-box ' + (item.isEdited ? 'is-edited' : '') + '" data-id="' + elem + '">' +
             '<div class="buttons">' +
             '<a onmousedown="editElement(\'' + elem + '\',event); "  title="Редактирование">✎</a> ' +
-        // onclick="editElement(\'' + elem + '\',event)"
-            '<a onclick="doubleElement(\'' + elem + '\')" title="Дублировать">➜</a> ' +
+            '<a onclick="doubleElement(\'' + elem + '\')" title="Дублировать">❒</a> ' +
             '<a onclick="deleteElement(\'' + elem + '\')" title="Удаление">✖</a></div>' +
 
             '<a ><p>' + item.cat_name + '</p>' +
             '<h4>' + item.name + '</h4></a>' +
             '<a href="#tovar" data-toggle="modal" class="showtovar readmore" style="position: relative">' +
-            '<img onclick="editModal(\'' + elem + '\', event)" style="aspect-ratio: 292/190"  src="' + item.img + '" width="100%" alt="' + item.name + '" title=""/>' +
+            '<img onclick="editModal(\'' + elem + '\', event)" style="aspect-ratio: 292/190;"  src="' + item.img + '" width="100%" alt="' + item.name + '" title=""/>' +
             '<div class="photobuttons">' +
             '<a onclick="showBig(event)" title="На весь экран">☐</a>' +
             '&nbsp;<a onclick="makeActive(event);changePhoto(\'' + elem + '\')" title="Смена фото">✎</a>' +
@@ -130,7 +129,7 @@ goods.showTovar = function (id) {
             '<span class="mod_photo" style="margin-left: 20px" ' +
             'onclick="deleteModalPhoto(\'' + id + '\', '+gal_img+')" title="Удаление фото">✖</span>' +
             '<span class="mod_photo" style="margin-left: 40px"' +
-            'onclick="doubleModalPhoto(\'' + id + '\', event, \`'+photo+'\`, '+gal_img+')" title="Дублирование фото">➜</span>' +
+            'onclick="doubleModalPhoto(\'' + id + '\', event, \`'+photo+'\`, '+gal_img+')" title="Дублирование фото">❒</span>' +
             '<a href="' + photo + '" class="' + (img_i === 0 ? 'act' : '') + '">' +
             '<img src="' + photo + '" alt="" title=""></a></span>');
         img_i++
@@ -158,49 +157,27 @@ function errShow() {
     $("#errors").modal('show')
 };
 
-function callBack() {
-    $("#call-back").modal('show')
-}
+// function callBack() {
+//     $("#call-back").modal('show')
+// }
 
-function hideBlock() {
-    var block = $('#hider');
-    if ($('body').scrollTop() >= 220) {
-        block.show()
-    } else {
-        block.hide()
-    }
-}
+// $('#cart').mouseover(function () {
+//     $('#cart').removeClass('animated zoomIn');
+//     $('#cart').addClass('animated pulse');
+//     $('.bcart').removeClass('hidden')
+// });
+// $('#cart').mouseout(function () {
+//     $('#cart').removeClass('animated pulse');
+//     $('.bcart').addClass('animated fadeInRight')
+// });
+// $('#lead').mouseover(function () {
+//     $('#lead').removeClass('animated zoomIn');
+//     $('#lead').addClass('animated pulse');
+//     $('.blead').removeClass('hidden')
+// });
+// $('#lead').mouseout(function () {
+//     $('#lead').removeClass('animated pulse');
+//     $('.blead').addClass('animated fadeInLeft')
+// });
 
-$(window).scroll(hideBlock);
-$('#cart').mouseover(function () {
-    $('#cart').removeClass('animated zoomIn');
-    $('#cart').addClass('animated pulse');
-    $('.bcart').removeClass('hidden')
-});
-$('#cart').mouseout(function () {
-    $('#cart').removeClass('animated pulse');
-    $('.bcart').addClass('animated fadeInRight')
-});
-$('#lead').mouseover(function () {
-    $('#lead').removeClass('animated zoomIn');
-    $('#lead').addClass('animated pulse');
-    $('.blead').removeClass('hidden')
-});
-$('#lead').mouseout(function () {
-    $('#lead').removeClass('animated pulse');
-    $('.blead').addClass('animated fadeInLeft')
-});
-$(window).scroll(function () {
-    var winScrollTop = $(this).scrollTop();
-    if (winScrollTop >= 1700) {
-        $('.blead').removeClass('hidden');
-        $('.bcart').removeClass('hidden')
-    } else if (winScrollTop <= 350) {
-        $('.blead').removeClass('hidden');
-        $('.bcart').removeClass('hidden')
-    } else {
-        $('.blead').addClass('hidden');
-        $('.bcart').addClass('hidden')
-    }
-});
 

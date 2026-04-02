@@ -220,6 +220,13 @@ a:hover{color:#994868;}
     top: 85px
 }
 
+.photobuttons.online{
+    opacity: 0;
+}
+.photobuttons.online:hover{
+    opacity: 1;
+}
+
 .photobuttons a{
     cursor: pointer;
     padding: 4px;

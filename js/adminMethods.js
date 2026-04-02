@@ -89,7 +89,8 @@ function showPhoto(photo) {
     document.querySelector('#dialog-photo').innerHTML = `<img src="tovar/${photo}">`
 }
 
-function showPhoto(photo) {
+function showPhotoDelete(photo) {
+    currentPhoto = photo
     document.querySelector('#dialog-photo-delete').innerHTML = `<img src="tovar/${photo}">`
 }
 
@@ -182,7 +183,7 @@ function deletePhoto() {
                 if (data.success) {
                     alert('Фото успешно удалено');
                     document.getElementById('my-dialog').closest('dialog').close()
-                    show();
+                    location.reload()
                 } else {
                     alert('Ошибка при удалении фото: ' + (data.error || 'Неизвестная ошибка'));
                 }
@@ -270,6 +271,7 @@ function editFields(id) {
 function goodsChanged(id, type, value) {
     let elem = goods.models.find(el => Object.entries(el)[0][0] === id)
     elem[id][type] = value
+    if (value.indexOf('\n')) elem[id][type] = value.replace(/\n/g, '<p>')
 }
 
 function editModal(id, event) {
@@ -280,8 +282,16 @@ function editModal(id, event) {
     model_descr.style.textShadow = '0 0 7px red'
     model_descr.contentEditable = true
     model_descr.addEventListener('keyup', () => {
+        console.log('111111 = ', 111111)
         goodsChanged(id, 'description', model_descr.innerText)
+
+
+
+
     })
+    // model_descr.addEventListener('', () => {
+    //
+    // })
 
     makeActive(event);
 }
@@ -323,6 +333,7 @@ function saveGoods() { // переписываем
     if (confirm("Прежняя версия товаров будет переписана, продолжать?")) {
         goods.models.map(el => Object.entries(el)[0][1].isEdited = false)
 
+
         if (!goods.banner) goods.banner.url = '01.jpg'
         let data = `var goods = {}; goods.banner = {url: "${goods.banner.url}"};goods.colors = {darkBlue: 'Синий'}; goods.models = ${JSON.stringify(goods.models)}`;
 
@@ -356,7 +367,7 @@ function showAllPhoto() {
     fetch('get_images.php')
         .then(response => response.json()) // Парсим ответ как JSON [3]
         .then(images => {
-            let html = `<select id="del_photo" onchange="showPhoto(this.value)"><option value="">Выберите фото</option>
+            let html = `<select id="del_photo" onchange="showPhotoDelete(this.value)"><option value="">Выберите фото для удаления</option>
 ${images.map(el => '<option value="' + el + '">' + el + '</option>')}</select>`
             document.querySelector('#dialog-content-main').innerHTML = html
         })
@@ -370,7 +381,7 @@ function getBanner() {
         .then(images => {
             let html = ''
             images.forEach(image => {
-                html += `<label title="Установить основным" style="cursor: pointer"><input type="radio" ${goods.banner && goods.banner.url === image ? 'checked' : ''} 
+                html += `<label title="Сделать основным" style="cursor: pointer"><input type="radio" ${goods.banner && goods.banner.url === image ? 'checked' : ''} 
 name="pic" value="${image}" ${image === currentPhoto ? 'checked' : ''}> ${image} 
 <span style="color: white" title="Осторожно! Удаляется безвозратно." onclick="deleteBanner('${image}')">❌</span></label> 
   <br>`

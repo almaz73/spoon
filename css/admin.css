@@ -7,7 +7,7 @@ body {
     justify-content: center;
     padding: 20px;
 }
-
+html {scroll-behavior: initial}
 /* Контейнер формы с эффектом стекла (glassmorphism) */
 .login-container {
     background: rgba(255, 255, 255, 0.95);
@@ -264,7 +264,7 @@ dialog .dialog-closer {
     position: fixed;
     top: 0;
     right: 0;
-    z-index: 10;
+    z-index: 10000;
     display: none;
 }
 .fixed-div.dirty{

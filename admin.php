@@ -28,7 +28,8 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
           <br><br>
           <div class="check"></div>
           <div style="margin: 10px auto;width: 100%;text-align: center;">
-            <button onclick="uploadPhoto('banner')" title="Размеры 1200 х 485 px. Имя и расширение как у заменяемого">
+            <button onclick="uploadPhoto('banner')"
+                    title="Рекомендуемые размеры 1200 х 485 px. Имя и расширение как у заменяемого">
               Обновить баннер (Заменить)
             </button>
           </div>
@@ -48,31 +49,29 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
 
         <br><br>
         <br><br>
-        <div style="display: flex; justify-content: center;; color: white; gap: 20px; background: pink">
-          <p> Выберите фото для удаления </p>
+        <div style="text-align: center; background: #ffc0cb57; padding: 12px; color: white">
           <div style="color: black" id="dialog-content-main"></div>
-          <a onclick="deletePhoto()" style="color: white; cursor:pointer;">Удалить. Фото больше не используется в
-            системе</a>
-        </div>
-        <div style="display: flex; justify-content: center; color: white; gap: 20px; background: pink">
           <small>* В формах можно добавлять/менять фото, удалять ненужные фотки нужно здесь.</small>
         </div>
 
         <div style="position: relative; overflow: hidden">
           <div id="dialog-photo-delete" style="text-align: center"></div>
-          <button style="position: absolute; right: 0; bottom:300px">Удалить. Фото больше не используется в
+          <button onclick="deletePhoto()" style="position: absolute; right: 30px; top:30px">Удалить. Фото больше не
+            используется в
             системе
           </button>
         </div>
 
         <div style="color: white; text-align: center">
           <h4>Внимание</h4>
-          <p><b>Осторожно!</b> Удаленные фотки не восстановимы. </p>
-          <p> Баннеры можно менять, нельзя добавлять новые</p>
-          <p> Загружаемые фотки должны иметь осмысленные имена</p>
-          <p> Загружаемые фотки должны быть правильных размеров (1000*666 или 500*329 px)</p>
-
-          <!--          <p> Вернуться к предыдущему варианту кроме восстановления фоток можно, если не успели сохранить сверху еще что-то, нужно вписать в консоле takePrevFile()</p>-->
+          <p><b>Осторожно!</b> Удаленные рисунки удаляются из хранилища. В случае, восстановления необходимо по новой
+            загрузить рисунок. </p>
+          <p>Редактируемые поля в карточке товара: фотографии, описание, условия скидочной системы, цена, серия,
+            название.</p>
+          <p>Баннеры можно менять, нельзя добавлять новые</p>
+          <p>Фотки должны иметь осмысленные имена</p>
+          <p>Фотки могут быть любых размеров, но в пропорции около 1350∶880</p>
+          <p>Баннеры тоже могут быть разных размеров, но в пропорции 1200:485 (ширина к высоте)</p>
         </div>
       </section>
 
