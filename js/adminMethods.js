@@ -282,52 +282,11 @@ function editModal(id, event) {
     model_descr.style.textShadow = '0 0 7px red'
     model_descr.contentEditable = true
     model_descr.addEventListener('keyup', () => {
-        console.log('111111 = ', 111111)
         goodsChanged(id, 'description', model_descr.innerText)
-
-
-
-
     })
-    // model_descr.addEventListener('', () => {
-    //
-    // })
-
     makeActive(event);
 }
 
-// function takePrevFile() {
-//     if (confirm("Восстановить предыдущую версию товаров?")) {
-//         // Fetch the content of the backup file
-//         fetch('datas/listTovar_copy.js')
-//             .then(response => {
-//                 if (!response.ok) {
-//                     throw new Error('Не удалось загрузить резервный файл');
-//                 }
-//                 return response.text();
-//             })
-//             .then(data => {
-//                 // Send the backup content to save.php to overwrite the current file
-//                 return fetch('save.php', {
-//                     method: 'POST',
-//                     headers: {
-//                         'Content-Type': 'application/x-www-form-urlencoded',
-//                     },
-//                     body: 'filename=' + encodeURIComponent('listTovar.js') + '&content=' + encodeURIComponent(data)
-//                 });
-//             })
-//             .then(response => response.text())
-//             .then(data => {
-//                 alert('Файл успешно восстановлен из резервной копии');
-//                 location.reload(); // Reload the page to refresh all data
-//             })
-//             .catch(error => {
-//                 console.error('Ошибка:', error);
-//                 alert('Произошла ошибка при восстановлении файла: ' + error.message);
-//             });
-//     }
-//
-// }
 
 function saveGoods() { // переписываем
     if (confirm("Прежняя версия товаров будет переписана, продолжать?")) {
