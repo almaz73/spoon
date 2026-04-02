@@ -37,7 +37,7 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
         </div>
         <div class="container">
           <div class="row">
-            <h3 style="background: pink; padding: 10px">(Админка) Столовые приборы с гравировкой
+            <h3 style="background: #ffc0cb57; padding: 10px">(Админка) Столовые приборы с гравировкой
             </h3>
           </div>
           <div class="goods-list row" id="c6"></div>
