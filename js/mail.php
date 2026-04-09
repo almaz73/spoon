@@ -23,8 +23,8 @@ $data['phone'] = str_replace('+7', '8', $data['phone']);
 
 header("Content-type:text/html;charset=utf-8");
 
-//$to  = 'lih1989@yandex.ru, lojkin.dom@mail.ru';
-$to = 'almaz73@yandex.ru, almaz73@gmail.com';
+$to  = 'lih1989@yandex.ru, lojkin.dom@mail.ru, almaz73@gmail.com';
+// $to = 'almaz73@yandex.ru, almaz73@gmail.com';
 
 $Subject = $data['title'] || 'Заявка с сайта';
 
@@ -57,21 +57,17 @@ mail($to, 'Заявка с сайта Ложкин-Дом', $email, $headers);
 
 // повторяем в телеграм
 
-$token = 'bot8235288635:AAF_soJaYR8OPHAQrpfcF4FDUr2JjRRDlVw';
-$chatID = '-5064627941';
+// $token = 'bot8235288635:AAF_soJaYR8OPHAQrpfcF4FDUr2JjRRDlVw73';
+// $chatID = '-506462794173';
 
 // ложки
-//$token = '352538299:AAGqOodOgBZmLjN4HUIJrnxr6avK50KE1N4';
-//$chatID = -166511690;
+$token = '352538299:AAGqOodOgBZmLjN4HUIJrnxr6avK50KE1N4';
+$chatID = -166511690;
 
 $messaggio = ':::::::  <b>Заявка с сайта</b>' . '%0A';
-//if ($data['model']) {
-//    $messaggio .= 'Заказ: <b>' . $data['model'] . '</b>' . '%0A';
-//}
 $messaggio .= 'Имя отправителя: <b>' . $data['name'] . '</b>' . '%0A';
 $messaggio .= 'Контактный телефон: <b>' . $data['phone'] . '</b>' . '%0A';
 $messaggio .= 'E-mail: <b>' . $data['email'] . '</b>' . '%0A';
-//$messaggio .= 'Город: <b>' . $data['city'] . '</b>' . '%0A';
 $messaggio .= 'Заказ: <b>' . $data['model'] . '</b>' . '%0A';
 
 
