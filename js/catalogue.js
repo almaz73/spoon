@@ -14,7 +14,7 @@ function showCaurusel() {
     let carusel = document.querySelector('.carousel-inner')
     let items = carusel.querySelectorAll('.item')
     items.forEach(item => item.classList.remove('active'))
-    let placeNumbr  = parseInt(goods.banner.url)
+    let placeNumbr  = goods && parseInt(goods.banner.url)
     items[placeNumbr-1].classList.add('active')
     let starter = document.querySelector('.glyphicon-chevron-right')
     goCaurusel(5, starter)
