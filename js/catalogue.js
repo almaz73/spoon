@@ -12,6 +12,7 @@ function goCaurusel(number, starter) {
 
 function showCaurusel() {
     let carusel = document.querySelector('.carousel-inner')
+    if (!carusel) return
     let items = carusel.querySelectorAll('.item')
     items.forEach(item => item.classList.remove('active'))
     let placeNumbr  = goods && parseInt(goods.banner.url)
@@ -20,7 +21,8 @@ function showCaurusel() {
     goCaurusel(5, starter)
 }
 function show() {
-    showCaurusel()
+    if (document.querySelector('.carousel-inner')) showCaurusel()
+    if (!document.getElementById('c6') && !document.getElementById('c1')) return
     for (var g of goods.models) {
         let elem = Object.entries(g)[0][0]
         let item = Object.entries(g)[0][1]

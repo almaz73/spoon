@@ -1,5 +1,60 @@
 <?php
 
+require 'vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+$data = array(
+    'name' => isset($_POST['name']) ? $_POST['name'] : '',
+    'phone' => isset($_POST['phone']) ? $_POST['phone'] : '',
+    'email' => isset($_POST['email']) ? $_POST['email'] : '',
+    'title' => isset($_POST['title']) ? $_POST['title'] : '',
+    'city' => isset($_POST['city']) ? $_POST['city'] : '',
+    'task' => isset($_POST['task']) ? $_POST['task'] : '',
+    'model' => isset($_POST['model']) ? $_POST['model'] : '',
+    'utm_source' => isset($_POST['utm_source']) ? $_POST['utm_source'] : '',
+    'utm_medium' => isset($_POST['utm_medium']) ? $_POST['utm_medium'] : '',
+    'utm_campaign' => isset($_POST['utm_campaign']) ? $_POST['utm_campaign'] : '',
+    'utm_term' => isset($_POST['utm_term']) ? $_POST['utm_term'] : '',
+    'utm_content' => isset($_POST['utm_content']) ? $_POST['utm_content'] : ''
+);
+
+// ... existing code ...
+
+// Create a new PHPMailer instance
+$mail = new PHPMailer(true);
+
+try {
+    // Server settings
+    $mail->isSMTP();
+    $mail->Host = 'smtp.example.com';  // Replace with your SMTP server
+    $mail->SMTPAuth = true;
+    $mail->Username = 'your_email@example.com';  // Replace with your SMTP username
+    $mail->Password = 'your_password';  // Replace with your SMTP password
+    $mail->SMTPSecure = 'tls';  // Enable TLS encryption
+    $mail->Port = 587;  // TCP port to connect to
+
+    // Recipients
+    $mail->setFrom($fromEmail, 'Сайт - Ложкин Дом');
+
+    // Add recipients from the $to string
+    $recipients = explode(',', $to);
+    foreach ($recipients as $recipient) {
+        $mail->addAddress(trim($recipient));
+    }
+
+    // Content
+    $mail->isHTML(true);
+    $mail->Subject = 'Заявка с сайта Ложкин-Дом';
+    $mail->Body = $email;
+
+    $mail->send();
+} catch (Exception $e) {
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+}
+
 $data = array(
     'name' => isset($_POST['name']) ? $_POST['name'] : '',
     'phone' => isset($_POST['phone']) ? $_POST['phone'] : '',

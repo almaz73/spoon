@@ -1,4 +1,10 @@
 html {scroll-behavior: smooth}
+
+@view-transition {
+    navigation: auto; /*плавные переключения страниц*/
+}
+
+
 .utp{padding:10px;border:2px solid #994868;margin:10px;}
 .call-text{font-size: 10px;text-transform: uppercase;margin: 0px;text-align: center;}
 @media screen and (max-width:760px){.mobile-hide{display:none;}
@@ -235,4 +241,31 @@ a:hover{color:#994868;}
 .photobuttons a:hover{
     background: #ffeeee22;
 }
+
+/* Отдельные страницы */
+.page-hero{background-color:#3d3d3d;padding:110px 0 45px;}
+.page-hero h1{color:#fff;margin:0 0 20px;padding:0 15px;}
+.page-lead{color:#e8e8e8;font-size:1.35em;line-height:1.5;text-align:center;max-width:900px;margin:0 auto;}
+.page-lead.dark{color:#555;}
+.page-section{padding:50px 0;}
+.page-section.light{background-color:#f8f8f8;}
+.page-section.dark{background-color:#3d3d3d;}
+.page-section.light h1,.page-section.light h2,.page-section.light h3{color:#3d3d3d;}
+.page-section.dark h3 a{color:#fff;}
+.page-heading{margin:0 0 30px;}
+.page-text{font-size:1.15em;line-height:1.6;color:#333;}
+.page-list{font-size:1.1em;line-height:1.7;color:#333;margin:0 0 25px 20px;}
+.page-img{width:100%;border:3px solid #61a706;margin-top:15px;}
+.home-actions{text-align:center;margin-top:25px;}
+.home-actions .mybtn{display:inline-block;margin:5px;min-width:auto;padding:10px 25px;}
+.home-links p{color:#ddd;text-align:center;}
+.footer-links{margin-top:15px;text-align:center;}
+.footer-links a{margin:0 10px;color:#3d3d3d;font-weight:600;}
+.topmenu li.active > a{background-color:#70be0b !important;}
+.navbar-brand{height:auto;max-height:45px;}
+@media screen and (max-width:760px){
+.page-hero{padding:90px 0 30px;}
+.page-lead{font-size:1.1em;}
+}
+
 

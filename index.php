@@ -1,55 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Оптово производственная компания "Ложкин Дом". Сувенирная продукция с гравировкой по закупочным ценам.
-        Именные ложки, фляжки с гравировкой и другие сувениры с гравировкой</title>
-    <meta charset="UTF-8">
-    <meta name="yandex-verification" content="a3e95026d5b1e42c"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-   <!-- Yandex.Metrika counter -->
-   <script type="text/javascript">
-       (function(m,e,t,r,i,k,a){
-           m[i]=m[i]function(){(m[i].a=m[i].a[]).push(arguments)};
-           m[i].l=1*new Date();
-           for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-           k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-       })(window, document,'script','https://mc.yandex.ru/metrika/tag.js', 'ym');
-
-       ym(98517823, 'init', {clickmap:true, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-   </script>
-   <noscript><div><img src="https://mc.yandex.ru/watch/98517823" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-   <!-- /Yandex.Metrika counter -->
-
-<nav class="navbar topmenu navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <!-- <a class="navbar-brand" href="#">Ложкин Дом</a> -->
-            <img class="navbar-brand" src="images/logo.png"/>
-        </div>
-
-        <div class="collapse navbar-collapse" id="navbar-collapse">
-            <ul class="nav mynav navbar-nav">
-                <li><a href="#promo">Почему мы?</a></li>
-                <li><a href="#catalog">Каталог товаров</a></li>
-                <li><a href="#otziv">Отзывы покупателей</a></li>
-                <li><a href="#setrificat">Сертификаты</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <!--<li><a rel="nofollow" href="cart.html">Корзина<span id="total-cart-count" class="badge"></span></a></li> -->
-                <li><a id="call-me" style="float:right" onclick="callBack()" href="#"><p class="call-text">Заказ
-                    звонка</p>+7(952)042-56-27</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<?php
+$pageTitle = 'Сувенирная продукция с гравировкой оптом — компания «Ложкин Дом»';
+$pageDescription = 'Оптово-производственная компания «Ложкин Дом»: именные ложки, столовые приборы, фляжки и брелоки с гравировкой по закупочным ценам. Доставка по России и СНГ.';
+include 'includes/header.php';
+?>
 
 <section id="1" style="margin-top: 51px;">
     <div class="non-padd container-fluid">
@@ -58,29 +11,29 @@
                 <div id="fgalery">
                     <div id="topCarousel" class="carousel slide">
                         <div class="carousel-inner">
-                          <div class="item">
-                            <img src="banners/01.jpg?v=<?php echo filemtime('banners/01.jpg'); ?>">
-                            <div class="carousel-caption">
-                              <h2>Ложки с гравировкой имени</h2>
-                            </div>
-                          </div>
                             <div class="item">
-                                <img src="banners/02.jpg?v=<?php echo filemtime('banners/02.jpg'); ?>">
+                                <img src="banners/01.jpg?v=<?php echo filemtime('banners/01.jpg'); ?>" alt="Ложки с гравировкой имени"/>
+                                <div class="carousel-caption">
+                                    <h2>Ложки с гравировкой имени</h2>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img src="banners/02.jpg?v=<?php echo filemtime('banners/02.jpg'); ?>" alt="Гравировка любых изображений и текста"/>
                                 <div class="carousel-caption">
                                     <h2>Гравировка любых изображений и текста</h2>
                                 </div>
                             </div>
                             <div class="item">
-                                <img src="banners/03.jpg?v=<?php echo filemtime('banners/03.jpg'); ?>">
+                                <img src="banners/03.jpg?v=<?php echo filemtime('banners/03.jpg'); ?>" alt="Ложки с гравировкой «Знаки зодиака»"/>
                                 <div class="carousel-caption">
                                     <h2>Ложки с гравировкой "Знаки зодиака"</h2>
                                 </div>
                             </div>
                             <div class="item active">
-                              <img src="banners/04.jpg?v=<?php echo filemtime('banners/04.jpg'); ?>">
-                              <div class="carousel-caption">
-                                <h2>Ложки с зеркальной гравировкой</h2>
-                              </div>
+                                <img src="banners/04.jpg?v=<?php echo filemtime('banners/04.jpg'); ?>" alt="Ложки с зеркальной гравировкой"/>
+                                <div class="carousel-caption">
+                                    <h2>Ложки с зеркальной гравировкой</h2>
+                                </div>
                             </div>
                         </div>
 
@@ -101,378 +54,85 @@
             <div style="font-weight: 600;font-size: 2em;color: red;">Актуальные цены</div>
             <a href="https://drive.google.com/drive/folders/1bwCFjZ5rmdsT7n4TDOWu7krMaYHLlRPY?usp=drive_link"
                style="font-weight: 400;font-size: 1.3em;padding: 20px"
-               target="_blank">Скачать прайс-лист</a>
+               target="_blank" rel="noopener">Скачать прайс-лист</a>
         </div>
     </div>
 </section>
 
-<section id="promo" style="padding-top: 120px">
+<section class="page-section light home-intro">
     <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <h1>Сувенирная продукция с гравировкой оптом</h1>
+                <p class="page-lead dark">«Ложкин Дом» — оптово-производственная компания, которая наносит гравировку
+                    на столовые приборы, фляжки, брелоки, зеркала и другие сувениры. Мы работаем с магазинами,
+                    корпоративными клиентами и частными заказчиками, предлагая закупочные цены и доставку по России и
+                    странам СНГ.</p>
+                <div class="home-actions">
+                    <a class="btn mybtn" href="catalog.php">Смотреть каталог товаров</a>
+                    <a class="btn mybtn" href="why.php">Почему мы</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="promo" class="page-section">
+    <div class="container">
+        <h2 class="page-heading">Наши преимущества</h2>
         <div class="row center otst">
             <div class="col-sm-3 col-md-3">
                 <p class="promo-txt"><span>Доставка</span> по России и странам СНГ</p>
-                <img class="" src="images/im/1.png"/>
+                <img class="" src="images/im/1.png" alt="Доставка по России и странам СНГ"/>
             </div>
             <div class="col-sm-3 col-md-3">
                 <p class="promo-txt"><span>Опытная</span> команда специалистов</p>
-                <img class="" src="images/im/2.png"/>
+                <img class="" src="images/im/2.png" alt="Опытная команда специалистов"/>
             </div>
             <div class="col-sm-3 col-md-3">
                 <p class="promo-txt">Мы ценим <span>каждого</span> заказчика</p>
-                <img class="" src="images/im/3.png"/>
+                <img class="" src="images/im/3.png" alt="Мы ценим каждого заказчика"/>
             </div>
             <div class="col-sm-3 col-md-3">
                 <p class="promo-txt"><span>Выполняем</span> заказы в поставленные сроки</p>
-                <img class="" src="images/im/4.png"/>
+                <img class="" src="images/im/4.png" alt="Выполняем заказы в срок"/>
             </div>
         </div>
+        <div class="center"><a class="btn mybtn" href="why.php">Подробнее о компании</a></div>
     </div>
 </section>
 
-<section id="catalog" style="padding: 120px 0">
+<section class="page-section dark home-links">
     <div class="container">
         <div class="row">
-            <h3>Столовые приборы с гравировкой</h3>
-        </div>
-        <div class="goods-list row" id="c6"></div>
-        <div class="row">
-            <h3>Другие сувениры</h3>
-        </div>
-        <div class="goods-list row" id="c1"></div>
-    </div>
-</section>
-
-<section id="event" class="container">
-    <div class="text-left" id="lead" title="Оставить заявку">
-        <img style="cursor: pointer;" src="images/lead.png" onclick="callBack()"/>
-        <div class="blead animated fadeInLeft" onclick="callBack()">Оставить заявку</div>
-    </div>
-<!--    <div class="text-right" id="cart" title="Сформировать заказ онлайн">-->
-<!--        <a href="/zakaz">-->
-<!--            <img style="cursor: pointer;" src="images/cart.png"/>-->
-<!--            <div class="bcart animated fadeInRight">Онлайн заказ</div>-->
-<!--        </a>-->
-<!--    </div>-->
-</section>
-
-<section id="otziv" style="padding: 120px 0">
-    <h2 class="text-center">Отзывы заказчиков</h2>
-    <div class="container" style="text-align: -webkit-center;">
-        <div class="row ot_row">
-            <div class="col-md-6 col-sm-6">
-                <div class="">
-                    <div class="row">
-                        <div class="col-md-3"><img class="img-responsive" src="images/otz/client_01.jpg"/></div>
-                        <div class="col-md-9">
-                            <div class="ot_name"><strong>Елена Никольская</strong></div>
-                            <div class="ot_text">
-                                Заказ сделала на прошлой неделе. Менеджер попался вежливый, понятливый. Очень быстро
-                                перезвонил и уже через час мы утрясли все детали заказа. Я из Челябинска, заказ
-                                доставили за 2 дня - пока всё отлично.
-                            </div>
-                            <div style="text-align:right;font-style: italic;margin-right: 5%;" class="ot_name"><strong>г.
-                                Челябинск</strong></div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-md-4">
+                <h3><a href="catalog.php">Каталог товаров</a></h3>
+                <p>Столовые приборы с гравировкой и другие сувениры с доставкой по России и СНГ.</p>
             </div>
-            <div class="col-md-6 col-sm-6">
-                <div class="">
-                    <div class="row">
-                        <div class="col-md-3"><img class="img-responsive" src="images/otz/client_02.jpg"/></div>
-                        <div class="col-md-9">
-                            <div class="ot_name"><strong>Оразгуль Ахметова</strong></div>
-                            <div class="ot_text">
-                                Ух ты! Ложечки классные!! Спасибо менеджеру Насте. Я сначала и не думала о ложечках, но
-                                она уговорила, быстро всё сделала и отправила, для меня положила небольшой подарок.
-                                Мелочь, а приятно. Буду заказывать ещё!!!
-                            </div>
-                            <div style="text-align:right;font-style: italic;margin-right: 5%;" class="ot_name"><strong>г.
-                                Астана</strong></div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-md-4">
+                <h3><a href="reviews.php">Отзывы покупателей</a></h3>
+                <p>Что заказчики говорят о качестве изделий, сроках доставки и работе менеджеров.</p>
             </div>
-        </div>
-        <div class="row ot_row">
-            <div class="col-md-6 col-sm-6">
-                <div class="">
-                    <div class="row">
-                        <div class="col-md-3"><img class="img-responsive" src="images/otz/client_03.jpg"/></div>
-                        <div class="col-md-9">
-                            <div class="ot_name"><strong>Сергей Кирилов</strong></div>
-                            <div class="ot_text">
-                                Компания молодая, но работают оперативно. Вчера сделал небольшой заказ, а сегодня уже
-                                отправили. Качество шикарное я доволен. Заказываю третий раз, надеюсь на дополнительную
-                                скидку.
-                            </div>
-                            <div style="text-align:right;font-style: italic;margin-right: 5%;" class="ot_name"><strong>г.
-                                Норильск</strong></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-6">
-                <div class="">
-                    <div class="row">
-                        <div class="col-md-3"><img class="img-responsive" src="images/otz/client_04.jpg"/></div>
-                        <div class="col-md-9">
-                            <div class="ot_name"><strong>Евгений Попов</strong></div>
-                            <div class="ot_text">
-                                До вас работал с другими компаниями, занимаюсь торговлей не первый год. Так вот у вас
-                                качество намного выше. Если бы вы ещё и монеты делали... Большое спасибо.
-                            </div>
-                            <div style="text-align:right;font-style: italic;margin-right: 5%;" class="ot_name"><strong>г.
-                                Краснодар</strong></div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-md-4">
+                <h3><a href="certificates.php">Сертификаты</a></h3>
+                <p>Сертификаты соответствия на столовые приборы из нержавеющей стали.</p>
             </div>
         </div>
     </div>
 </section>
 
-<section id="setrificat"  style="padding: 120px 0">
-    <h2 class="text-center">Наши ложки сертифицированы</h2>
-    <div class="container">
-        <div class="row text-center">
-            <div class="col-md-4 col-sm-4">
-                <a href="images/sertific/s0.jpeg" target="_blank">
-                    <img class="" src="images/sertific/t0.jpg" title="Открыть сертификат" alt="сертификат"/>
-                </a></div>
-            <div class="col-md-4 col-sm-4">
-                <a href="images/sertific/s1.jpeg" target="_blank">
-                    <img class="" src="images/sertific/t1.jpg" title="Открыть сертификат" alt="сертификат"/>
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-4">
-                <a href="images/sertific/s2.jpeg" target="_blank">
-                    <img class="" src="images/sertific/t2.jpg" title="Открыть сертификат" alt="сертификат"/>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
+<script>
+    // Поддержка старых ссылок с якорями после разделения сайта на страницы
+    (function () {
+        var anchors = {
+            '#promo': 'why.php',
+            '#catalog': 'catalog.php',
+            '#otziv': 'reviews.php',
+            '#setrificat': 'certificates.php'
+        };
+        var target = anchors[window.location.hash];
+        if (target) window.location.replace(target);
+    })();
+</script>
 
-<section id="footer">
-    <div class="container">
-        <div class="row center">
-            <div class="col-md-6 text-left"><strong>Email: lojkin.dom@mail.ru</strong></div>
-            <div class="col-md-6 text-right"><strong>Телефон/WhatsApp/Viber: +7(952)042-56-27</strong></div>
-        </div>
-    </div>
-</section>
-<!-- HTML-код модального окна ЗАКАЗА -->
-<div id="tovar" class="modal fade">
-    <div class="modal-dialog">
-
-        <div class="container-fluid modal-content" style="border: 3px solid #61a706;"><!-- Заголовок модального окна -->
-            <div class="row modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 id="modelF1" class="modal-title">Заголовок модального окна</h4>
-            </div>
-            <!-- Основное содержимое модального окна -->
-            <div class="row modal-body">
-                <div class="col-sm-12 col-md-6">
-                    <div class="gal-cont">
-                        <div class="arrows gal-left left-arrow"><span class="glyphicon glyphicon-chevron-left"
-                                                                      aria-hidden="true"></span></div>
-                        <div class="arrows gal-right right-arrow"><span
-                                class="glyphicon glyphicon glyphicon-chevron-right" aria-hidden="true"></span></div>
-                        <div class="gal-image">
-                            <img src="#" alt="" title="">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <div class="row gal-thumbs-cont">
-                        <div class="gal-thumbs">
-                            <div class="gal-slider">
-                                <a href="#">
-                                    <img src="#" alt="" title="">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <section class="b-selection-model">
-                        <p class="model-descr">
-                        </p>
-                        <!--<p class="model-price"><span class="price promo-txt"></span> <span class="ruble">&#8381;</span> </p>-->
-                    </section>
-                </div>
-            </div>
-            <div class="row" style="margin-bottom: 15px;">
-                <div class="col-md-6">
-                    <div class="skid-fields">
-                        <h4 class="label-bg">
-                            <strong>Скидочная система</strong>
-                            <br>
-                            при заказе
-                        </h4>
-                        <div class="skid">
-                            <p>Скидки от <strong>500</strong> изделий</p>
-                            <p>от <strong>1000</strong> изделий доставка бесплатно</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <section class="b-mod-form" id="mobile-hide">
-                        <div class="order-form mod">
-                            <fieldset>
-                                <label class="label-bg text-center">Получить полный прайс лист <br>и форму заявки для
-                                    заказа</label>
-                                <div class="form-group-sm">
-                                    <input type="text" class="form-control" id="NameF1" name="name"
-                                           placeholder="Как Вас зовут?">
-                                </div>
-                                <div class="form-group-sm">
-                                    <input type="tel" id="PhoneF1" name="phone" class="form-control"
-                                           placeholder="Ваш номер телефона?">
-                                </div>
-                                <div class="form-group-sm">
-                                    <input type="email" id="EmailF1" name="email" class="form-control"
-                                           placeholder="Ваш e-mail?">
-                                </div>
-<!--                                <input type="hidden" id="utm_source" value="--><?php //echo $_GET['utm_source'];?><!--">-->
-<!--                                <input type="hidden" id="utm_medium" value="--><?php //echo $_GET['utm_medium'];?><!--">-->
-<!--                                <input type="hidden" id="utm_campaign" value="--><?php //echo $_GET['utm_campaign'];?><!--">-->
-<!--                                <input type="hidden" id="utm_term" value="--><?php //echo $_GET['utm_term'];?><!--">-->
-<!--                                <input type="hidden" id="utm_content" value="--><?php //echo $_GET['utm_content'];?><!--">-->
-                                <button style="width: 100%" onclick="sendpriceF1()" type="submit"
-                                        class="btn btn-primary">Получить полный каталог продукции
-                                </button>
-                            </fieldset>
-                        </div>
-                    </section>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- HTML-код модального окна ОБРАТНЫЙ ЗВОНОК -->
-<div id="call-back" class="modal fade">
-    <div class="modal-dialog">
-        <div class="container-fluid modal-content" style="border: 3px solid #61a706;max-width: 450px;">
-            <!-- Заголовок модального окна -->
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 id="modelCB">Заказ консультации по телефону</h4>
-            </div>
-            <!-- Основное содержимое модального окна -->
-            <div class="modal-body">
-                <img style="width: 45%;margin: auto; margin-bottom: 15px; border: 3px solid #61a706"
-                     class="img-circle img-responsive" src="images/manager.jpg"/>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="NameCB" name="name" placeholder="Как Вас зовут?">
-                </div>
-                <div class="form-group">
-                    <input type="tel" id="PhoneCB" name="phone" class="form-control" placeholder="Ваш номер телефона?">
-                </div>
-                <div class="form-group">
-                    <input type="email" id="EmailCB" name="email" class="form-control" placeholder="Ваш e-mail?">
-                </div>
-                <input type="hidden" id="utm_source" value="<?php echo $_GET['utm_source'];?>">
-                <input type="hidden" id="utm_medium" value="<?php echo $_GET['utm_medium'];?>">
-                <input type="hidden" id="utm_campaign" value="<?php echo $_GET['utm_campaign'];?>">
-                <input type="hidden" id="utm_term" value="<?php echo $_GET['utm_term'];?>">
-                <input type="hidden" id="utm_content" value="<?php echo $_GET['utm_content'];?>">
-                <button style="display: block; width: 100%;" onclick="sendToEmail()" type="submit"
-                        class="btn btn-success">Перезвоните мне
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- HTML-код модального окна БЛАГОДАРНОСТЬ -->
-<div id="thanks" class="modal fade">
-    <div class="modal-dialog">
-        <div class="container-fluid modal-content" style="border: 3px solid #61a706;max-width: 450px;">
-            <!-- Заголовок модального окна -->
-            <div class="modal-header">
-                <h4 id="thanksheader">Спасибо за обращение</h4>
-            </div>
-            <!-- Основное содержимое модального окна -->
-            <div class="modal-body">
-                <img style="width: 45%;margin: auto; margin-bottom: 15px; border: 3px solid #61a706"
-                     class="img-circle img-responsive" src="images/manager.jpg"/>
-                <input type="hidden" id="model" name="model" class="model" value="Заказ обратного звонка">
-                <h4 style="color:#61a706">Ваше запрос принят и будет обработан в ближайшее время!</h4>
-                <button style="display: block; width: 100%;" type="button" onclick="window.location.href = '/'"
-                        class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Закрыть
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- HTML-код модального окна БЛАГОДАРНОСТЬ -->
-<div id="errors" class="modal fade">
-    <div class="modal-dialog">
-        <div class="container-fluid modal-content" style="border: 3px solid #61a706;max-width: 450px;">
-            <!-- Заголовок модального окна -->
-            <div class="modal-header">
-                <h4 id="errorsheader">Ошибка! Заполните все поля!</h4>
-            </div>
-            <!-- Основное содержимое модального окна -->
-            <div class="modal-body">
-                <img style="width: 45%;margin: auto; margin-bottom: 15px; border: 3px solid #61a706"
-                     class="img-circle img-responsive" src="images/manager.jpg"/>
-                <input type="hidden" id="model" name="model" class="model" value="Заказ обратного звонка">
-                <h4 style="color:red">Для отправки отзыва требуется заполнить все поля<br>и прекркпить фото в формате
-                    jpeg/png</h4>
-                <button style="display: block; width: 100%;" type="button" onclick="window.location.href = '/'"
-                        class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Закрыть
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script type="text/javascript">(window.Image ? (new Image()) : document.createElement('img')).src = 'https://vk.com/rtrg?p=VK-RTRG-120587-ffm06';</script>
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript"> (function (d, w, c) {
-    (w[c] = w[c] || []).push(function () {
-        try {
-            w.yaCounter44781169 = new Ya.Metrika({
-                id: 44781169,
-                clickmap: true,
-                trackLinks: true,
-                accurateTrackBounce: true,
-                webvisor: true
-            });
-        } catch (e) {
-        }
-    });
-    var n = d.getElementsByTagName('script')[0], s = d.createElement('script'), f = function () {
-        n.parentNode.insertBefore(s, n);
-    };
-    s.type = 'text/javascript';
-    s.async = true;
-    s.src = 'https://mc.yandex.ru/metrika/watch.js';
-    if (w.opera == '[object Opera]') {
-        d.addEventListener('DOMContentLoaded', f, false);
-    } else {
-        f();
-    }
-})(document, window, 'yandex_metrika_callbacks'); </script>
-<noscript>
-    <div><img src="https://mc.yandex.ru/watch/44781169" style="position:absolute; left:-9999px;" alt=""/></div>
-</noscript> <!-- /Yandex.Metrika counter -->
-
-<link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
-<link href="css/style.css" rel="stylesheet" type="text/css"/>
-<link href="css/carousel.css" rel="stylesheet" type="text/css"/>
-<link href="css/lightbox.css" rel="stylesheet" type="text/css"/>
-<link href="css/animate.min.css" rel="stylesheet" type="text/css"/>
-
-<script src="js/jquery-latest.min.js" type="text/javascript"></script>
-<script src="js/bootstrap.js" type="text/javascript"></script>
-<script src="datas/listTovar.js?v=<?php echo filemtime('datas/listTovar.js'); ?>" type="text/javascript"></script>
-<script src="js/lightbox.js" type="text/javascript"></script>
-
-<!--<script src="js/script.js" type="text/javascript"></script>-->
-<script src="js/mail.js" type="text/javascript"></script>
-<script src="js/catalogue.js" type="text/javascript"></script>
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>
