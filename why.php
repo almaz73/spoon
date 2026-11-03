@@ -19,19 +19,19 @@ include 'includes/header.php';
         <div class="row center otst">
             <div class="col-sm-3 col-md-3">
                 <p class="promo-txt"><span>Доставка</span> по России и странам СНГ</p>
-                <img class="" src="images/im/1.png" alt="Доставка по России и странам СНГ"/>
+                <img class="" src="images/im/1.png" width="90" height="90" alt="Доставка по России и странам СНГ"/>
             </div>
             <div class="col-sm-3 col-md-3">
                 <p class="promo-txt"><span>Опытная</span> команда специалистов</p>
-                <img class="" src="images/im/2.png" alt="Опытная команда специалистов"/>
+                <img class="" src="images/im/2.png" width="90" height="90" alt="Опытная команда специалистов"/>
             </div>
             <div class="col-sm-3 col-md-3">
                 <p class="promo-txt">Мы ценим <span>каждого</span> заказчика</p>
-                <img class="" src="images/im/3.png" alt="Мы ценим каждого заказчика"/>
+                <img class="" src="images/im/3.png" width="90" height="90" alt="Мы ценим каждого заказчика"/>
             </div>
             <div class="col-sm-3 col-md-3">
                 <p class="promo-txt"><span>Выполняем</span> заказы в поставленные сроки</p>
-                <img class="" src="images/im/4.png" alt="Выполняем заказы в срок"/>
+                <img class="" src="images/im/4.png" width="90" height="90" alt="Выполняем заказы в срок"/>
             </div>
         </div>
     </div>
@@ -50,7 +50,7 @@ include 'includes/header.php';
                 <p><a class="btn mybtn" href="certificates.php">Посмотреть сертификаты</a></p>
             </div>
             <div class="col-md-6">
-                <img class="page-img" src="tovar/troika.jpg" alt="Столовые приборы с гравировкой"/>
+                <img class="page-img" src="tovar/troika.jpg" width="1350" height="881" alt="Столовые приборы с гравировкой"/>
             </div>
         </div>
     </div>

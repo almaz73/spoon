@@ -23,6 +23,8 @@ function showCaurusel() {
 function show() {
     if (document.querySelector('.carousel-inner')) showCaurusel()
     if (!document.getElementById('c6') && !document.getElementById('c1')) return
+    // Карточки рендерятся на сервере; JS-рендер остаётся запасным вариантом
+    if (document.querySelector('#c6 .model-box, #c1 .model-box')) return
     for (var g of goods.models) {
         let elem = Object.entries(g)[0][0]
         let item = Object.entries(g)[0][1]

@@ -1,4 +1,6 @@
 <?php
+require __DIR__ . '/datas/goods-data.php';
+
 $pageTitle = 'Каталог товаров — столовые приборы и сувениры с гравировкой';
 $pageDescription = 'Каталог продукции «Ложкин Дом»: столовые приборы серий «Тройка», «Славянка», «Торжество», а также фляжки, брелоки, зеркала и Power Bank с гравировкой. Цены от производителя.';
 include 'includes/header.php';
@@ -28,11 +30,11 @@ include 'includes/header.php';
         <div class="row">
             <h2 class="page-heading">Столовые приборы с гравировкой</h2>
         </div>
-        <div class="goods-list row" id="c6"></div>
+        <div class="goods-list row" id="c6"><?php spoon_render_goods('c6'); ?></div>
         <div class="row">
             <h2 class="page-heading">Другие сувениры</h2>
         </div>
-        <div class="goods-list row" id="c1"></div>
+        <div class="goods-list row" id="c1"><?php spoon_render_goods('c1'); ?></div>
     </div>
 </section>
 

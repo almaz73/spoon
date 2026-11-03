@@ -19,7 +19,7 @@ include 'includes/header.php';
             <div class="col-md-6 col-sm-6">
                 <div class="">
                     <div class="row">
-                        <div class="col-md-3"><img class="img-responsive" src="images/otz/client_01.jpg" alt="Елена Никольская"/></div>
+                        <div class="col-md-3"><img class="img-responsive" src="images/otz/client_01.jpg" width="100" height="100" alt="Елена Никольская"/></div>
                         <div class="col-md-9">
                             <div class="ot_name"><strong>Елена Никольская</strong></div>
                             <div class="ot_text">
@@ -36,7 +36,7 @@ include 'includes/header.php';
             <div class="col-md-6 col-sm-6">
                 <div class="">
                     <div class="row">
-                        <div class="col-md-3"><img class="img-responsive" src="images/otz/client_02.jpg" alt="Оразгуль Ахметова"/></div>
+                        <div class="col-md-3"><img class="img-responsive" src="images/otz/client_02.jpg" width="100" height="100" alt="Оразгуль Ахметова"/></div>
                         <div class="col-md-9">
                             <div class="ot_name"><strong>Оразгуль Ахметова</strong></div>
                             <div class="ot_text">
@@ -55,7 +55,7 @@ include 'includes/header.php';
             <div class="col-md-6 col-sm-6">
                 <div class="">
                     <div class="row">
-                        <div class="col-md-3"><img class="img-responsive" src="images/otz/client_03.jpg" alt="Сергей Кирилов"/></div>
+                        <div class="col-md-3"><img class="img-responsive" src="images/otz/client_03.jpg" width="100" height="100" alt="Сергей Кирилов"/></div>
                         <div class="col-md-9">
                             <div class="ot_name"><strong>Сергей Кирилов</strong></div>
                             <div class="ot_text">
@@ -72,7 +72,7 @@ include 'includes/header.php';
             <div class="col-md-6 col-sm-6">
                 <div class="">
                     <div class="row">
-                        <div class="col-md-3"><img class="img-responsive" src="images/otz/client_04.jpg" alt="Евгений Попов"/></div>
+                        <div class="col-md-3"><img class="img-responsive" src="images/otz/client_04.jpg" width="100" height="100" alt="Евгений Попов"/></div>
                         <div class="col-md-9">
                             <div class="ot_name"><strong>Евгений Попов</strong></div>
                             <div class="ot_text">

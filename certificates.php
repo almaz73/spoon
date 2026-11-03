@@ -18,16 +18,16 @@ include 'includes/header.php';
         <div class="row text-center">
             <div class="col-md-4 col-sm-4">
                 <a href="images/sertific/s0.jpeg" target="_blank" rel="noopener">
-                    <img class="" src="images/sertific/t0.jpg" title="Открыть сертификат" alt="Сертификат соответствия 1"/>
+                    <img class="" src="images/sertific/t0.jpg" width="200" height="348" title="Открыть сертификат" alt="Сертификат соответствия 1"/>
                 </a></div>
             <div class="col-md-4 col-sm-4">
                 <a href="images/sertific/s1.jpeg" target="_blank" rel="noopener">
-                    <img class="" src="images/sertific/t1.jpg" title="Открыть сертификат" alt="Сертификат соответствия 2"/>
+                    <img class="" src="images/sertific/t1.jpg" width="200" height="348" title="Открыть сертификат" alt="Сертификат соответствия 2"/>
                 </a>
             </div>
             <div class="col-md-4 col-sm-4">
                 <a href="images/sertific/s2.jpeg" target="_blank" rel="noopener">
-                    <img class="" src="images/sertific/t2.jpg" title="Открыть сертификат" alt="Сертификат соответствия 3"/>
+                    <img class="" src="images/sertific/t2.jpg" width="200" height="348" title="Открыть сертификат" alt="Сертификат соответствия 3"/>
                 </a>
             </div>
         </div>
