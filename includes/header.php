@@ -67,7 +67,8 @@ $navItems = [
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="index.php"><img class="navbar-brand" src="images/logo.png" alt="Ложкин Дом — сувениры с гравировкой"/></a>
+            <a href="index.php"><img class="navbar-brand" src="images/logo.png" width="300" height="72"
+                                     alt="Ложкин Дом — сувениры с гравировкой"/></a>
         </div>
 
         <div class="collapse navbar-collapse" id="navbar-collapse">

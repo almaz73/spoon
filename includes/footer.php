@@ -5,7 +5,7 @@ $utm = static function (string $key): string {
 ?>
 <section id="event" class="container">
     <div class="text-left" id="lead" title="Оставить заявку">
-        <img style="cursor: pointer;" src="images/lead.png" onclick="callBack()" alt="Оставить заявку"/>
+        <img style="cursor: pointer;" src="images/lead.png" width="63" height="63" onclick="callBack()" alt="Оставить заявку"/>
         <div class="blead animated fadeInLeft" onclick="callBack()">Оставить заявку</div>
     </div>
 </section>

@@ -11,26 +11,30 @@ include 'includes/header.php';
                 <div id="fgalery">
                     <div id="topCarousel" class="carousel slide">
                         <div class="carousel-inner">
-                            <div class="item">
-                                <img src="banners/01.jpg?v=<?php echo filemtime('banners/01.jpg'); ?>" alt="Ложки с гравировкой имени"/>
+                            <div class="item active">
+                                <img src="banners/01.jpg?v=<?php echo filemtime('banners/01.jpg'); ?>" width="1200"
+                                     height="485" alt="Ложки с гравировкой имени"/>
                                 <div class="carousel-caption">
                                     <h2>Ложки с гравировкой имени</h2>
                                 </div>
                             </div>
                             <div class="item">
-                                <img src="banners/02.jpg?v=<?php echo filemtime('banners/02.jpg'); ?>" alt="Гравировка любых изображений и текста"/>
+                                <img src="banners/02.jpg?v=<?php echo filemtime('banners/02.jpg'); ?>" width="1200"
+                                     height="485" alt="Гравировка любых изображений и текста"/>
                                 <div class="carousel-caption">
                                     <h2>Гравировка любых изображений и текста</h2>
                                 </div>
                             </div>
                             <div class="item">
-                                <img src="banners/03.jpg?v=<?php echo filemtime('banners/03.jpg'); ?>" alt="Ложки с гравировкой «Знаки зодиака»"/>
+                                <img src="banners/03.jpg?v=<?php echo filemtime('banners/03.jpg'); ?>" width="1200"
+                                     height="485" alt="Ложки с гравировкой «Знаки зодиака»"/>
                                 <div class="carousel-caption">
                                     <h2>Ложки с гравировкой "Знаки зодиака"</h2>
                                 </div>
                             </div>
-                            <div class="item active">
-                                <img src="banners/04.jpg?v=<?php echo filemtime('banners/04.jpg'); ?>" alt="Ложки с зеркальной гравировкой"/>
+                            <div class="item">
+                                <img src="banners/04.jpg?v=<?php echo filemtime('banners/04.jpg'); ?>" width="1200"
+                                     height="485" alt="Ложки с зеркальной гравировкой"/>
                                 <div class="carousel-caption">
                                     <h2>Ложки с зеркальной гравировкой</h2>
                                 </div>
@@ -83,19 +87,19 @@ include 'includes/header.php';
         <div class="row center otst">
             <div class="col-sm-3 col-md-3">
                 <p class="promo-txt"><span>Доставка</span> по России и странам СНГ</p>
-                <img class="" src="images/im/1.png" alt="Доставка по России и странам СНГ"/>
+                <img class="" src="images/im/1.png" width="90" height="90" alt="Доставка по России и странам СНГ"/>
             </div>
             <div class="col-sm-3 col-md-3">
                 <p class="promo-txt"><span>Опытная</span> команда специалистов</p>
-                <img class="" src="images/im/2.png" alt="Опытная команда специалистов"/>
+                <img class="" src="images/im/2.png" width="90" height="90" alt="Опытная команда специалистов"/>
             </div>
             <div class="col-sm-3 col-md-3">
                 <p class="promo-txt">Мы ценим <span>каждого</span> заказчика</p>
-                <img class="" src="images/im/3.png" alt="Мы ценим каждого заказчика"/>
+                <img class="" src="images/im/3.png" width="90" height="90" alt="Мы ценим каждого заказчика"/>
             </div>
             <div class="col-sm-3 col-md-3">
                 <p class="promo-txt"><span>Выполняем</span> заказы в поставленные сроки</p>
-                <img class="" src="images/im/4.png" alt="Выполняем заказы в срок"/>
+                <img class="" src="images/im/4.png" width="90" height="90" alt="Выполняем заказы в срок"/>
             </div>
         </div>
         <div class="center"><a class="btn mybtn" href="why.php">Подробнее о компании</a></div>

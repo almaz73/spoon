@@ -21,7 +21,7 @@ html {scroll-behavior: smooth}
 }
 @media screen and (max-width:800px){.topmenu a{font-stretch:condensed;}
 }
-.carousel-inner > .item > img{width:100%;}
+.carousel-inner > .item > img{width:100%;height:auto;}
 .confedLabel{font-stretch:ultra-condensed;font-weight:300;margin-top:10px;}
 .zamanLabel{margin:10px 0;}
 #call-me{float:right;}
@@ -262,7 +262,7 @@ a:hover{color:#994868;}
 .footer-links{margin-top:15px;text-align:center;}
 .footer-links a{margin:0 10px;color:#3d3d3d;font-weight:600;}
 .topmenu li.active > a{background-color:#70be0b !important;}
-.navbar-brand{height:auto;max-height:45px;}
+.navbar-brand{height:45px;width:auto;max-width:100%;}
 @media screen and (max-width:760px){
 .page-hero{padding:90px 0 30px;}
 .page-lead{font-size:1.1em;}
