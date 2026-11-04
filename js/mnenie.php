@@ -1,144 +1,139 @@
 <?php
-if(empty($_POST['mail_msg'])) {
-	header( 'Location: /#badsend', true, 307 );
-	exit();
-}	
+error_reporting(E_ALL);
+ini_set('display_errors', '0');
 
-if($_POST['antibot'] != "40") {
-	header( 'Location: /#badsend', true, 307 );
-	exit();
-}	
+require_once dirname(__DIR__) . '/includes/image-upload.php';
 
-// Если поле выбора вложения не пустое - закачиваем его на сервер 
-	if (!empty($_FILES['mail_file']['tmp_name'])) { 
-		// Проверка, имеет ли файл правильный MIME-тип 
-		if ($_FILES ['mail_file']['type'] == 'image/png' || $_FILES ['mail_file']['type'] == 'image/jpeg') 
-		{ 
-			// Закачиваем файл  
-			$path = basename($_FILES['mail_file']['name']); 
-			if (copy($_FILES['mail_file']['tmp_name'], $path)) $picture = $path; 
-		} else {
-			header( 'Location: /#badsend', true, 307 );
-			exit();
-		}
-	} 
+function mnenie_redirect(string $anchor): void
+{
+    header('Location: /#' . $anchor, true, 303);
+    exit;
+}
 
-	$thm = 'Новый отзыв на сайте';
-	$name = $_POST['mail_name'];
-	$phone = $_POST['mail_phone'];
-	$city = $_POST['mail_city'];
-	$mnenie = $_POST['mail_msg'];
+function mnenie_field(string $key, int $maxLength): string
+{
+    $value = $_POST[$key] ?? '';
+    if (!is_string($value)) {
+        return '';
+    }
+    $value = trim($value);
+    if (function_exists('mb_substr')) {
+        return mb_substr($value, 0, $maxLength, 'UTF-8');
+    }
+    return substr($value, 0, $maxLength);
+}
 
-	//tegegramm($name, $phone, $city, $mnenie);
-	
-	$msg = 'Name: <b>'.$name.'</b> <br>';
-	$msg .= 'Phone: <b>'.$phone.'</b> <br>';
-	$msg .= 'City: <b>'.$city.'</b> <br>';
-	$msg .= 'Mnenie: <b>'.$mnenie.'</b> <br>';
+if (($_POST['antibot'] ?? '') !== '40') {
+    mnenie_redirect('badsend');
+}
 
-	$mail_to = 'lojkin.dom@mail.ru, lih1989@yandex.ru, almaz73@gmail.com';
-// 	$mail_to = 'almaz73@yandex.ru, almaz73@gmail.com';
+if (empty($_POST['mail_msg']) || !is_string($_POST['mail_msg'])) {
+    mnenie_redirect('badsend');
+}
 
-	// Отправляем почтовое сообщение   
-	if(empty($picture)){
-		$headers = "From: Сайт Ложкин Дом <mail@xn----htbeijemffg.xn--p1ai>\n";
-		$headers .= "Content-Type: text/html; charset=utf8\n";
-		if(!mail($mail_to, $thm, $msg, $headers)){
-			header( 'Location: /#badsend', true, 307 );
-		} else {
-			header( 'Location: /#goodsend', true, 307 );
-		}
-	} else {
-		send_mail($mail_to, $thm, $msg, $picture); 
-		// при успехе удаляем
-		unlink($picture);
-		unset($_FILES);
-		unset($_POST);
-	} 
- 
-	// Вспомогательная функция для отправки почтового сообщения с вложением 
-function send_mail($to, $thm, $html, $path){ 
-	$fp = fopen($path,"r");
-	if (!$fp)
-	{ 
-	  print "Файл не может быть прочитан"; 
-	  header( 'Location: /#badsend', true, 307 );
-	  exit(); 
-	} 
+$name = mnenie_field('mail_name', 100);
+$phone = mnenie_field('mail_phone', 50);
+$city = mnenie_field('mail_city', 100);
+$mnenie = mnenie_field('mail_msg', 5000);
 
-	$file = fread($fp, filesize($path)); 
-	fclose($fp); 
+$attachmentPath = null;
+$fileError = $_FILES['mail_file']['error'] ?? UPLOAD_ERR_NO_FILE;
+if ($fileError !== UPLOAD_ERR_NO_FILE) {
+    $upload = spoon_process_image_upload(
+        $_FILES['mail_file'],
+        dirname(__DIR__) . '/uploads/mnenie',
+        ['jpg', 'png', 'gif', 'webp'],
+        null,
+        true
+    );
+    if (!$upload['ok']) {
+        mnenie_redirect('badsend');
+    }
 
+    $attachmentPath = realpath(dirname(__DIR__) . '/uploads/mnenie/' . $upload['filename']);
+    if ($attachmentPath === false) {
+        mnenie_redirect('badsend');
+    }
 
+    register_shutdown_function(static function () use ($attachmentPath): void {
+        if (is_file($attachmentPath)) {
+            @unlink($attachmentPath);
+        }
+    });
+}
 
-	$boundary = "--".md5(uniqid(time())); // генерируем разделитель 
-	$headers = "From: Сайт Ложкин Дом <mail@xn----htbeijemffg.xn--p1ai>\n";
-	$headers .= "MIME-Version: 1.0\n"; 
+$thm = 'Новый отзыв на сайте';
 
-	$headers .="Content-Type: multipart/mixed; boundary=".$boundary."\n"; 
+$msg = 'Name: <b>' . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . '</b> <br>';
+$msg .= 'Phone: <b>' . htmlspecialchars($phone, ENT_QUOTES, 'UTF-8') . '</b> <br>';
+$msg .= 'City: <b>' . htmlspecialchars($city, ENT_QUOTES, 'UTF-8') . '</b> <br>';
+$msg .= 'Mnenie: <b>' . htmlspecialchars($mnenie, ENT_QUOTES, 'UTF-8') . '</b> <br>';
 
-	$multipart .= "--".$boundary."\n"; 
+$mail_to = 'lojkin.dom@mail.ru, lih1989@yandex.ru, almaz73@gmail.com';
 
-	$kod = 'utf-8'; // или $kod = 'koi8-r'; 
+$headers = "From: Сайт Ложкин Дом <mail@xn----htbeijemffg.xn--p1ai>\n";
+$headers .= "Content-Type: text/html; charset=utf-8\n";
 
-	$multipart .= "Content-Type: text/html; charset=".$kod."\n"; 
+$sent = $attachmentPath === null
+    ? mail($mail_to, $thm, $msg, $headers)
+    : send_mail($mail_to, $thm, $msg, $attachmentPath);
 
-	$multipart .= "Content-Transfer-Encoding: Quot-Printed\n\n"; 
+mnenie_redirect($sent ? 'goodsend' : 'badsend');
 
-	$multipart .= $html."\n\n"; 
+function send_mail(string $to, string $subject, string $html, string $path): bool
+{
+    $file = @file_get_contents($path);
+    if ($file === false) {
+        return false;
+    }
 
+    $boundary = '--' . md5(uniqid('', true));
+    $filename = basename($path);
 
+    $headers = "From: Сайт Ложкин Дом <mail@xn----htbeijemffg.xn--p1ai>\n";
+    $headers .= "MIME-Version: 1.0\n";
+    $headers .= "Content-Type: multipart/mixed; boundary={$boundary}\n";
 
-	$message_part = "--".$boundary."\n"; 
+    $multipart = "--{$boundary}\n";
+    $multipart .= "Content-Type: text/html; charset=utf-8\n";
+    $multipart .= "Content-Transfer-Encoding: 8bit\n\n";
+    $multipart .= $html . "\n\n";
 
-	$message_part .= "Content-Type: application/octet-stream\n"; 
+    $multipart .= "--{$boundary}\n";
+    $multipart .= "Content-Type: application/octet-stream; name=\"{$filename}\"\n";
+    $multipart .= "Content-Transfer-Encoding: base64\n";
+    $multipart .= "Content-Disposition: attachment; filename=\"{$filename}\"\n\n";
+    $multipart .= chunk_split(base64_encode($file)) . "\n";
+    $multipart .= "--{$boundary}--\n";
 
-	$message_part .= "Content-Transfer-Encoding: base64\n"; 
-
-	$message_part .= "Content-Disposition: attachment; filename = \"".$path."\"\n\n"; 
-
-	$message_part .= chunk_split(base64_encode($file))."\n"; 
-
-	$multipart .= $message_part."--".$boundary."--\n"; 
-
-
-
-	if(!mail($to, $thm, $multipart, $headers)) 
-	{ 
-	  echo "К сожалению, письмо не отправлено"; 
-	  header( 'Location: /#badsend', true, 307 );
-	  exit(); 
-	} else {
-	  echo "Успешно отправлено"; 
-	  header( 'Location: /#goodsend', true, 307 );
-	}
-	}    
+    return mail($to, $subject, $multipart, $headers);
+}
 
 // Отправка в телеграмм
-function tegegramm($name, $phone, $city, $mnenie){
+function tegegramm($name, $phone, $city, $mnenie)
+{
 //     $token ='bot8235288635:AAF_soJaYR8OPHAQrpfcF4FDUr2JjRRDlVw';
 //     $chatID = '-5064627941';
 
     //ложки
-	$token = '352538299:AAGqOodOgBZmLjN4HUIJrnxr6avK50KE1N4';
-	$chatID = -166511690;
+    $token = '352538299:AAGqOodOgBZmLjN4HUIJrnxr6avK50KE1N4';
+    $chatID = -166511690;
 
-	$messaggio  = '<b>Отзыв с сайта!</b>'. '%0A';
-	$messaggio .= 'Имя отправителя: <b>'.$name.'</b>'. '%0A';
-	$messaggio .= 'Контактный телефон: <b>'.$phone.'</b>'. '%0A';
-	$messaggio .= 'Город: <b>'.$city.'</b>'. '%0A';
-	$messaggio .= 'Отзыв: <b>'.$mnenie.'</b>'. '%0A';
-	$messaggio .= '%0A'.'**********************************';
+    $messaggio = '<b>Отзыв с сайта!</b>' . '%0A';
+    $messaggio .= 'Имя отправителя: <b>' . $name . '</b>' . '%0A';
+    $messaggio .= 'Контактный телефон: <b>' . $phone . '</b>' . '%0A';
+    $messaggio .= 'Город: <b>' . $city . '</b>' . '%0A';
+    $messaggio .= 'Отзыв: <b>' . $mnenie . '</b>' . '%0A';
+    $messaggio .= '%0A' . '**********************************';
 
-		$url = "https://api.telegram.org/bot" . $token . "/sendMessage?chat_id=" . $chatID . "&parse_mode=HTML&text=";
-		$url = $url . $messaggio;
-		$ch = curl_init();
-		$optArray = array(
-				CURLOPT_URL => $url,
-				CURLOPT_RETURNTRANSFER => true
-		);
-		curl_setopt_array($ch, $optArray);
-		$result = curl_exec($ch);
-		curl_close($ch);
+    $url = "https://api.telegram.org/bot" . $token . "/sendMessage?chat_id=" . $chatID . "&parse_mode=HTML&text=";
+    $url = $url . $messaggio;
+    $ch = curl_init();
+    $optArray = array(
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true
+    );
+    curl_setopt_array($ch, $optArray);
+    $result = curl_exec($ch);
+    curl_close($ch);
 }
-?>
