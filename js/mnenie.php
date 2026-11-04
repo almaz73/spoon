@@ -108,32 +108,3 @@ function send_mail(string $to, string $subject, string $html, string $path): boo
 
     return mail($to, $subject, $multipart, $headers);
 }
-
-// Отправка в телеграмм
-function tegegramm($name, $phone, $city, $mnenie)
-{
-//     $token ='bot8235288635:AAF_soJaYR8OPHAQrpfcF4FDUr2JjRRDlVw';
-//     $chatID = '-5064627941';
-
-    //ложки
-    $token = '352538299:AAGqOodOgBZmLjN4HUIJrnxr6avK50KE1N4';
-    $chatID = -166511690;
-
-    $messaggio = '<b>Отзыв с сайта!</b>' . '%0A';
-    $messaggio .= 'Имя отправителя: <b>' . $name . '</b>' . '%0A';
-    $messaggio .= 'Контактный телефон: <b>' . $phone . '</b>' . '%0A';
-    $messaggio .= 'Город: <b>' . $city . '</b>' . '%0A';
-    $messaggio .= 'Отзыв: <b>' . $mnenie . '</b>' . '%0A';
-    $messaggio .= '%0A' . '**********************************';
-
-    $url = "https://api.telegram.org/bot" . $token . "/sendMessage?chat_id=" . $chatID . "&parse_mode=HTML&text=";
-    $url = $url . $messaggio;
-    $ch = curl_init();
-    $optArray = array(
-        CURLOPT_URL => $url,
-        CURLOPT_RETURNTRANSFER => true
-    );
-    curl_setopt_array($ch, $optArray);
-    $result = curl_exec($ch);
-    curl_close($ch);
-}

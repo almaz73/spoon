@@ -126,33 +126,3 @@ function sendToEmail() {
     }
 }
 
-// function sendToEmail() {
-//     let name = document.getElementById('NameCB').value
-//     let tel = document.getElementById('PhoneCB').value;
-//     let email = document.getElementById('EmailCB').value;
-//
-//
-//     sendTelegram('::: Заказ консультации по телефону. \n Имя ' + name + '\n' + ' Телефон ' + tel + '\n' + ' Email ' + email + '\n')
-// }
-
-// function sendTelegram(message) {
-//     let botId = 'bot8235288635:AAF_soJaYR8OPHAQrpfcF4FDUr2JjRRDlVw';
-//     let chatId = '-5064627941';
-//
-//     // ложки
-//     // let botId =  '352538299:AAGqOodOgBZmLjN4HUIJrnxr6avK50KE1N4';
-//     // let chatId = -166511690;
-//
-//     let linkTelega = `https://api.telegram.org/${botId}/sendMessage?chat_id=${chatId}&parse_mode=HTML&text=${message}`;
-//
-//     try {
-//         fetch(linkTelega)
-//             .then(response => response.json())
-//             .then(() => {
-//                 console.log('сообщение доставлено в телеграм группу ')
-//             });
-//     } catch (e) {
-//         console.log('Ошибка. ТЕЛЕГРАММ НЕ ОТПРАВИЛСЯ')
-//     }
-// }
-
