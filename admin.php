@@ -4,6 +4,12 @@ require_once __DIR__ . '/includes/admin-auth.php';
 
 $action = $_GET['p'] ?? '';
 
+function spoon_admin_query(string $key): string
+{
+    $value = $_GET[$key] ?? '';
+    return is_string($value) ? spoon_h($value) : '';
+}
+
 if ($action === 'logout' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     spoon_admin_logout();
     header('Location: admin.php');
@@ -231,11 +237,11 @@ if (spoon_admin_is_authenticated()) {
               <div class="form-group">
                 <input type="email" id="EmailCB" name="email" class="form-control" placeholder="Ваш e-mail?">
               </div>
-              <input type="hidden" id="utm_source" value="<?php echo $_GET['utm_source']; ?>">
-              <input type="hidden" id="utm_medium" value="<?php echo $_GET['utm_medium']; ?>">
-              <input type="hidden" id="utm_campaign" value="<?php echo $_GET['utm_campaign']; ?>">
-              <input type="hidden" id="utm_term" value="<?php echo $_GET['utm_term']; ?>">
-              <input type="hidden" id="utm_content" value="<?php echo $_GET['utm_content']; ?>">
+              <input type="hidden" id="utm_source" value="<?php echo spoon_admin_query('utm_source'); ?>">
+              <input type="hidden" id="utm_medium" value="<?php echo spoon_admin_query('utm_medium'); ?>">
+              <input type="hidden" id="utm_campaign" value="<?php echo spoon_admin_query('utm_campaign'); ?>">
+              <input type="hidden" id="utm_term" value="<?php echo spoon_admin_query('utm_term'); ?>">
+              <input type="hidden" id="utm_content" value="<?php echo spoon_admin_query('utm_content'); ?>">
               <button style="display: block; width: 100%;" onclick="sendToEmail()" type="submit"
                       class="btn btn-success">Перезвоните мне
               </button>
