@@ -180,6 +180,7 @@ function deletePhoto() {
     if (confirm("Фото " + currentPhoto + " удалится безвозвратно, продолжать?")) {
         fetch('deletePhoto.php', {
             method: 'POST',
+            credentials: 'same-origin',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
@@ -396,6 +397,7 @@ function deleteBanner(currentPhoto) {
     if (confirm("Фото " + currentPhoto + " удалится безвозвратно, продолжать?")) {
         fetch('deleteBanner.php', {
             method: 'POST',
+            credentials: 'same-origin',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },

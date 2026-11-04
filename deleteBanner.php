@@ -1,28 +1,26 @@
 <?php
-// Enable error reporting for debugging
 error_reporting(E_ALL);
-ini_set('display_errors', 1);
+ini_set('display_errors', '0');
 
-// Check if filename was provided
-if (!isset($_POST['filename'])) {
-    echo json_encode(['success' => false, 'error' => 'Не указано имя файла']);
-    exit;
+require_once __DIR__ . '/includes/admin-auth.php';
+require_once __DIR__ . '/includes/image-upload.php';
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    spoon_upload_response(['success' => false, 'error' => 'Метод не поддерживается'], 405);
 }
 
-// Sanitize filename to prevent path traversal attacks
-$filename = basename($_POST['filename']);
-$filepath = 'banners/' . $filename;
-
-// Check if file exists
-if (!file_exists($filepath)) {
-    echo json_encode(['success' => false, 'error' => 'Файл не существует']);
-    exit;
+if (!spoon_admin_is_authenticated()) {
+    spoon_upload_response(['success' => false, 'error' => 'Требуется авторизация'], 403);
 }
 
-// Attempt to delete the file
-if (unlink($filepath)) {
-    echo json_encode(['success' => true, 'message' => 'Файл успешно удален']);
-} else {
-    echo json_encode(['success' => false, 'error' => 'Не удалось удалить файл']);
+$filename = $_POST['filename'] ?? '';
+if (!is_string($filename) || $filename === '') {
+    spoon_upload_response(['success' => false, 'error' => 'Не указано имя файла'], 400);
 }
-?>
+
+$delete = spoon_delete_image(__DIR__ . '/banners', $filename, ['jpg']);
+if (!$delete['ok']) {
+    spoon_upload_response(['success' => false, 'error' => $delete['error']], $delete['status']);
+}
+
+spoon_upload_response(['success' => true, 'message' => 'Файл успешно удален']);
