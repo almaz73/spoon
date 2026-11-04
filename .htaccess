@@ -1,5 +1,15 @@
 Options -Indexes
 
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=()"
+    Header always set Strict-Transport-Security "max-age=31536000" env=HTTPS
+    Header unset X-Powered-By
+    Header always unset X-Powered-By
+</IfModule>
+
 RewriteEngine On
 
 # Служебные каталоги и файлы: .git, .idea, .env и т.п. (.well-known оставляем)

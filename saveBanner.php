@@ -13,6 +13,10 @@ if (!spoon_admin_is_authenticated()) {
     spoon_upload_response(['success' => false, 'error' => 'Требуется авторизация'], 403);
 }
 
+if (!spoon_admin_require_csrf()) {
+    spoon_upload_response(['success' => false, 'error' => 'Неверный CSRF-токен'], 403);
+}
+
 $upload = spoon_process_image_upload($_FILES['photo'] ?? [], __DIR__ . '/banners', ['jpg'], ['01', '02', '03', '04']);
 if (!$upload['ok']) {
     spoon_upload_response(['success' => false, 'error' => $upload['error']], $upload['status']);

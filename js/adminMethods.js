@@ -2,6 +2,15 @@ let currentId
 let currentPhoto // фото которое меняют
 let currentPath // место фото в узлах массива, если нет, корень узла, если есть модалочные фотки
 let currentGal_img // место фотки в модалке
+
+function csrfToken() {
+    const meta = document.querySelector('meta[name="csrf-token"]')
+    return meta ? meta.content : ''
+}
+
+function csrfHeaders(extra) {
+    return Object.assign({'X-CSRF-Token': csrfToken()}, extra || {})
+}
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('body').style.background = '#3d3d3d'
     document.querySelector('body').style.opacity = 0
@@ -73,8 +82,11 @@ function deleteModalPhoto(id, gal_img) {
 
 function showPhotoDialod(photo) {
     // Запрос к PHP скрипту, который возвращает массив с названиями фоток
-    fetch('get_images.php')
-        .then(response => response.json()) // Парсим ответ как JSON [3]
+    fetch('get_images.php', {credentials: 'same-origin'})
+        .then(response => {
+            if (!response.ok) throw new Error('HTTP ' + response.status)
+            return response.json()
+        })
         .then(images => {
             document.getElementById('my-dialog').showModal() // открываем диалоговое окно
             let html = `<select id="photo" onchange="showPhoto(this.value)">
@@ -138,6 +150,7 @@ function uploadPhoto(type) {
         fetch(path, {// Changed from save.php to savePhoto.php
             method: 'POST',
             credentials: 'same-origin',
+            headers: csrfHeaders(),
             body: formData
         })
             .then(response => {
@@ -181,9 +194,9 @@ function deletePhoto() {
         fetch('deletePhoto.php', {
             method: 'POST',
             credentials: 'same-origin',
-            headers: {
+            headers: csrfHeaders({
                 'Content-Type': 'application/x-www-form-urlencoded',
-            },
+            }),
             body: 'filename=' + encodeURIComponent(currentPhoto)
         })
             .then(response => response.json())
@@ -315,9 +328,9 @@ function saveGoods() { // переписываем
         fetch('save.php', {
             method: 'POST',
             credentials: 'same-origin',
-            headers: {
+            headers: csrfHeaders({
                 'Content-Type': 'application/x-www-form-urlencoded',
-            },
+            }),
             body: 'filename=' + encodeURIComponent('listTovar.js') + '&content=' + encodeURIComponent(data)
         })
             .then(async response => {
@@ -344,8 +357,11 @@ showAllPhoto()
 
 function showAllPhoto() {
     // Запрос к PHP скрипту, который возвращает массив с названиями фоток
-    fetch('get_images.php')
-        .then(response => response.json()) // Парсим ответ как JSON [3]
+    fetch('get_images.php', {credentials: 'same-origin'})
+        .then(response => {
+            if (!response.ok) throw new Error('HTTP ' + response.status)
+            return response.json()
+        })
         .then(images => {
             let html = `<select id="del_photo" onchange="showPhotoDelete(this.value)"><option value="">Выберите фото для удаления</option>
 ${images.map(el => '<option value="' + el + '">' + el + '</option>')}</select>`
@@ -357,8 +373,11 @@ ${images.map(el => '<option value="' + el + '">' + el + '</option>')}</select>`
 /* баннер */
 function getBanner() {
     let guid = Math.random().toString(36).substring(2)
-    fetch('get_banners.php')  // Changed from get_banners.php to get_images.php to use existing functionality
-        .then(response => response.json())
+    fetch('get_banners.php', {credentials: 'same-origin'})  // Changed from get_banners.php to get_images.php to use existing functionality
+        .then(response => {
+            if (!response.ok) throw new Error('HTTP ' + response.status)
+            return response.json()
+        })
         .then(images => {
             let html = ''
             images.forEach(image => {
@@ -398,9 +417,9 @@ function deleteBanner(currentPhoto) {
         fetch('deleteBanner.php', {
             method: 'POST',
             credentials: 'same-origin',
-            headers: {
+            headers: csrfHeaders({
                 'Content-Type': 'application/x-www-form-urlencoded',
-            },
+            }),
             body: 'filename=' + encodeURIComponent(currentPhoto)
         })
             .then(response => response.text())

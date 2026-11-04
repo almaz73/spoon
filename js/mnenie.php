@@ -3,6 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', '0');
 
 require_once dirname(__DIR__) . '/includes/image-upload.php';
+require_once dirname(__DIR__) . '/includes/request-guard.php';
 
 function mnenie_redirect(string $anchor): void
 {
@@ -23,11 +24,19 @@ function mnenie_field(string $key, int $maxLength): string
     return substr($value, 0, $maxLength);
 }
 
+if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
+    mnenie_redirect('badsend');
+}
+
 if (($_POST['antibot'] ?? '') !== '40') {
     mnenie_redirect('badsend');
 }
 
 if (empty($_POST['mail_msg']) || !is_string($_POST['mail_msg'])) {
+    mnenie_redirect('badsend');
+}
+
+if (!spoon_request_is_same_origin() || !spoon_rate_limit_allow('mnenie:' . spoon_request_ip(), 5, 1800)) {
     mnenie_redirect('badsend');
 }
 

@@ -113,6 +113,36 @@ function spoon_admin_logout(): void
     session_destroy();
 }
 
+function spoon_admin_csrf_token(): string
+{
+    spoon_admin_start_session();
+
+    if (!isset($_SESSION['spoon_admin_csrf']) || !is_string($_SESSION['spoon_admin_csrf'])) {
+        $_SESSION['spoon_admin_csrf'] = bin2hex(random_bytes(32));
+    }
+
+    return $_SESSION['spoon_admin_csrf'];
+}
+
+function spoon_admin_valid_csrf(string $token): bool
+{
+    if ($token === '') {
+        return false;
+    }
+
+    spoon_admin_start_session();
+    $expected = $_SESSION['spoon_admin_csrf'] ?? '';
+
+    return is_string($expected) && $expected !== '' && hash_equals($expected, $token);
+}
+
+function spoon_admin_require_csrf(): bool
+{
+    $token = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? ($_POST['csrf'] ?? '');
+
+    return is_string($token) && spoon_admin_valid_csrf($token);
+}
+
 function spoon_admin_client_ip(): string
 {
     return (string)($_SERVER['REMOTE_ADDR'] ?? 'unknown');

@@ -21,6 +21,10 @@ if (!spoon_admin_is_authenticated()) {
     spoon_save_response(['success' => false, 'error' => 'Требуется авторизация'], 403);
 }
 
+if (!spoon_admin_require_csrf()) {
+    spoon_save_response(['success' => false, 'error' => 'Неверный CSRF-токен'], 403);
+}
+
 $filename = (string)($_POST['filename'] ?? '');
 $content = (string)($_POST['content'] ?? '');
 

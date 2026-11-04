@@ -11,6 +11,11 @@ function spoon_admin_query(string $key): string
 }
 
 if ($action === 'logout' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!spoon_admin_is_authenticated() || !spoon_admin_require_csrf()) {
+        http_response_code(403);
+        exit('Неверный CSRF-токен');
+    }
+
     spoon_admin_logout();
     header('Location: admin.php');
     exit;
@@ -49,6 +54,7 @@ if (spoon_admin_is_authenticated()) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
         <meta name='robots' content='noindex'>
+        <meta name="csrf-token" content="<?php echo spoon_h(spoon_admin_csrf_token()); ?>">
       </head>
       <body>
 
@@ -56,6 +62,7 @@ if (spoon_admin_is_authenticated()) {
         <button onclick="saveGoods()">Сохранить</button>
         <button onclick="location.reload()">Отменить</button>
         <form method="post" action="admin.php?p=logout" style="display: inline">
+          <input type="hidden" name="csrf" value="<?php echo spoon_h(spoon_admin_csrf_token()); ?>">
           <button type="submit">Выйти</button>
         </form>
       </div>

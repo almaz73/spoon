@@ -13,6 +13,10 @@ if (!spoon_admin_is_authenticated()) {
     spoon_upload_response(['success' => false, 'error' => 'Требуется авторизация'], 403);
 }
 
+if (!spoon_admin_require_csrf()) {
+    spoon_upload_response(['success' => false, 'error' => 'Неверный CSRF-токен'], 403);
+}
+
 $filename = $_POST['filename'] ?? '';
 if (!is_string($filename) || $filename === '') {
     spoon_upload_response(['success' => false, 'error' => 'Не указано имя файла'], 400);
