@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/site.php';
+
 if (!isset($pageTitle)) {
     $pageTitle = 'Сувенирная продукция с гравировкой оптом — компания «Ложкин Дом»';
 }
@@ -6,11 +8,10 @@ if (!isset($pageDescription)) {
     $pageDescription = 'Оптово-производственная компания «Ложкин Дом»: именные ложки, столовые приборы, фляжки и брелоки с гравировкой по закупочным ценам. Доставка по России и СНГ.';
 }
 
-$scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-$host = $_SERVER['HTTP_HOST'] ?? 'xn----htbeijemffg.xn--p1ai';
-$canonicalPath = strtok($_SERVER['REQUEST_URI'] ?? '/', '?');
-$canonical = $scheme . '://' . $host . $canonicalPath;
-$currentPage = basename($_SERVER['PHP_SELF']);
+$canonical = spoon_current_url();
+$currentPage = $currentPage ?? basename($_SERVER['PHP_SELF']);
+$ogType = $ogType ?? 'website';
+$ogImage = $pageImage ?? (spoon_site_url() . 'images/logo.png');
 
 $navItems = [
     'index.php' => 'Главная',
@@ -18,6 +19,15 @@ $navItems = [
     'catalog.php' => 'Каталог товаров',
     'reviews.php' => 'Отзывы покупателей',
     'certificates.php' => 'Сертификаты',
+];
+
+$websiteSchema = [
+    '@type' => 'WebSite',
+    '@id' => spoon_site_url() . '#website',
+    'name' => 'Ложкин Дом',
+    'url' => spoon_site_url(),
+    'inLanguage' => 'ru-RU',
+    'publisher' => ['@id' => spoon_site_url() . '#organization'],
 ];
 ?>
 <!DOCTYPE html>
@@ -28,13 +38,20 @@ $navItems = [
     <title><?= htmlspecialchars($pageTitle) ?></title>
     <meta name="description" content="<?= htmlspecialchars($pageDescription) ?>">
     <link rel="canonical" href="<?= htmlspecialchars($canonical) ?>">
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="<?= htmlspecialchars($ogType) ?>">
     <meta property="og:site_name" content="Ложкин Дом">
     <meta property="og:title" content="<?= htmlspecialchars($pageTitle) ?>">
     <meta property="og:description" content="<?= htmlspecialchars($pageDescription) ?>">
     <meta property="og:url" content="<?= htmlspecialchars($canonical) ?>">
-    <meta property="og:image" content="<?= htmlspecialchars($scheme . '://' . $host . '/images/logo.png') ?>">
+    <meta property="og:image" content="<?= htmlspecialchars($ogImage) ?>">
+    <?php if (!empty($pageRobots)): ?>
+        <meta name="robots" content="<?= htmlspecialchars($pageRobots) ?>">
+    <?php endif; ?>
     <meta name="yandex-verification" content="a3e95026d5b1e42c"/>
+    <script type="application/ld+json"><?= spoon_json_ld([
+        '@context' => 'https://schema.org',
+        '@graph' => [spoon_organization_schema(), $websiteSchema],
+    ]) ?></script>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>

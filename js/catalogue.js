@@ -28,19 +28,20 @@ function show() {
     for (var g of goods.models) {
         let elem = Object.entries(g)[0][0]
         let item = Object.entries(g)[0][1]
+        let url = item.slug ? item.slug : 'product.php?slug=' + encodeURIComponent(elem)
 
         var i = $('<div class="col-lg-4 col-md-4 col-xs-6">' +
             '<div class="goods-boots-info model-box" data-id="' + elem + '">' +
             '<div class="buttons">' +
-            '<a href="#tovar" data-toggle="modal" class="showtovar readmore"><p>' + item.cat_name + '</p>' + '<h4>' + item.name + '</h4></a>' +
-            '<a href="#tovar" data-toggle="modal" class="showtovar readmore">' +
+            '<a href="' + url + '" class="readmore"><p>' + item.cat_name + '</p>' + '<h4>' + item.name + '</h4></a>' +
+            '<a href="' + url + '" class="readmore">' +
             '<img style="aspect-ratio: 292/190" src="' + item.img + '" ' +
             'width="100%" alt="' + item.name + '" title=""/></a>' + '' +
             '<div class="photobuttons online"><a onclick="showBig(event)" title="На весь экран">☐</a></div>' +
             '<div class="tovar_info">' +
             '<div title="Указанная цена действует на крупные оптовые заказы" class="price price-txt">от <span>' +
             item.price + '</span> руб.*</div>' +
-            '<div class="readmore"><a href="#tovar" class="showtovar readmore" data-toggle="modal">Подробнее</a></div>' + '</div>' + '</div>');
+            '<div class="readmore"><a href="' + url + '">Подробнее</a></div>' + '</div>' + '</div>');
         var cat = Object.keys(g)[0].split('_');
         $("#" + cat[0]).append(i)
     }

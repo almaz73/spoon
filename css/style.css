@@ -263,9 +263,44 @@ a:hover{color:#994868;}
 .footer-links a{margin:0 10px;color:#3d3d3d;font-weight:600;}
 .topmenu li.active > a{background-color:#70be0b !important;}
 .navbar-brand{height:45px;width:auto;max-width:100%;}
+@media screen and (min-width:761px) and (max-width:1100px){
+.page-hero{padding-top:160px;}
+}
 @media screen and (max-width:760px){
 .page-hero{padding:90px 0 30px;}
 .page-lead{font-size:1.1em;}
+}
+
+/* Страница товара */
+.breadcrumbs{text-align:center;margin:0 0 15px;font-size:0.95em;color:#bbb;}
+.breadcrumbs a{color:#d6e9b8;text-decoration:none;}
+.breadcrumbs a:hover{color:#fff;text-decoration:underline;}
+.breadcrumbs span{margin:0 6px;}
+.product-gallery{margin:0 0 20px;}
+.product-main{display:block;text-align:center;background:#fff;border:1px solid #e2e2e2;padding:10px;}
+.product-main img{max-width:100%;height:auto;}
+.product-thumbs{margin-top:12px;text-align:center;}
+.product-thumbs a{display:inline-block;width:78px;height:78px;margin:0 8px 8px 0;padding:2px;border:1px solid #dadada;background:#fff;vertical-align:top;}
+.product-thumbs a img{display:block;width:100%;height:100%;object-fit:cover;}
+.product-thumbs a.act{border-color:#61a706;box-shadow:0 0 0 2px #61a706;}
+.product-summary{background:#fff;border:1px solid #e2e2e2;padding:20px 25px 25px;margin-bottom:20px;}
+.product-price{font-weight:900;font-stretch:condensed;font-size:1.8em;color:#3d3d3d;text-align:center;margin-bottom:5px;}
+.product-price span{font-size:1.15em;color:#d77e00;}
+.product-note{text-align:center;color:#777;font-size:0.9em;margin:0 0 15px;}
+.product-benefits{background:#f1f8e9;border-left:4px solid #61a706;padding:10px 15px;margin:0 0 20px;}
+.product-benefits p{margin:4px 0;color:#3d3d3d;}
+.product-actions{text-align:center;}
+.product-actions .mybtn{display:inline-block;margin:5px;min-width:200px;padding:10px 20px;border:1px solid #61a706;}
+.product-actions .mybtn:hover{color:#fff;background-color:#70be0b;}
+.product-description{font-size:1.15em;line-height:1.6;color:#333;}
+.product-description p{margin:0 0 15px;}
+.product-description img{max-width:100%;height:auto;}
+.product-related .goods-list{margin:0 -15px;}
+@media screen and (max-width:760px){
+.product-price{font-size:1.5em;}
+.product-summary{padding:15px;}
+.product-thumbs a{width:64px;height:64px;margin-right:6px;}
+.product-actions .mybtn{display:block;width:100%;min-width:0;margin:8px 0;}
 }
 
 

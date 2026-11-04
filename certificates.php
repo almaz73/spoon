@@ -6,6 +6,10 @@ include 'includes/header.php';
 
 <section class="page-hero">
     <div class="container">
+        <?php spoon_breadcrumbs([
+            ['name' => 'Главная', 'href' => 'index.php'],
+            ['name' => 'Сертификаты'],
+        ]); ?>
         <h1>Сертификаты</h1>
         <p class="page-lead">Наша продукция соответствует требованиям качества. Нажмите на изображение, чтобы открыть
             сертификат в полном размере.</p>
