@@ -2,6 +2,37 @@
 require_once __DIR__ . '/includes/site.php';
 require_once __DIR__ . '/includes/admin-auth.php';
 
+$action = $_GET['p'] ?? '';
+
+if ($action === 'logout' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    spoon_admin_logout();
+    header('Location: admin.php');
+    exit;
+}
+
+$loginError = '';
+
+if ($action === 'login' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $clientIp = spoon_admin_client_ip();
+
+    if (spoon_admin_is_rate_limited($clientIp)) {
+        http_response_code(429);
+        $loginError = 'Слишком много неудачных попыток входа. Повторите через 15 минут.';
+    } else {
+        $login = is_string($_POST['user'] ?? null) ? $_POST['user'] : '';
+        $passwordInput = is_string($_POST['keypass'] ?? null) ? $_POST['keypass'] : '';
+
+        if (spoon_admin_login($login, $passwordInput)) {
+            spoon_admin_clear_failures($clientIp);
+            header('Location: admin.php');
+            exit;
+        }
+
+        spoon_admin_record_failure($clientIp);
+        $loginError = 'Неверный логин или пароль.';
+    }
+}
+
 if (spoon_admin_is_authenticated()) {
     ?>
 
@@ -18,6 +49,9 @@ if (spoon_admin_is_authenticated()) {
       <div class="fixed-div">
         <button onclick="saveGoods()">Сохранить</button>
         <button onclick="location.reload()">Отменить</button>
+        <form method="post" action="admin.php?p=logout" style="display: inline">
+          <button type="submit">Выйти</button>
+        </form>
       </div>
 
       <section id="catalog">
@@ -243,30 +277,6 @@ if (spoon_admin_is_authenticated()) {
         <?php
         exit;
 }
-
-if (isset($_GET['p']) && $_GET['p'] === 'login' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    $login = (string)($_POST['user'] ?? '');
-    $passwordInput = (string)($_POST['keypass'] ?? '');
-
-    if ($login !== SPOON_ADMIN_USER) {
-        echo "Sorry, that username does not match.";
-        exit;
-    }
-    if (!hash_equals(SPOON_ADMIN_PASSWORD, $passwordInput)) {
-        echo "Sorry, that password does not match.";
-        exit;
-    }
-
-    setcookie('PrivatePageLogin', spoon_admin_cookie_value(), [
-        'expires' => 0,
-        'path' => spoon_base_path(),
-        'secure' => !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off',
-        'httponly' => true,
-        'samesite' => 'Lax',
-    ]);
-    header('Location: admin.php');
-    exit;
-}
 ?>
 
 <!DOCTYPE html>
@@ -284,7 +294,11 @@ if (isset($_GET['p']) && $_GET['p'] === 'login' && $_SERVER['REQUEST_METHOD'] ==
     <p>Войдите, используя свои данные</p>
   </div>
 
-  <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?p=login'); ?>" method="post">
+  <?php if ($loginError !== ''): ?>
+    <div class="login-error"><?php echo htmlspecialchars($loginError, ENT_QUOTES, 'UTF-8'); ?></div>
+  <?php endif; ?>
+
+  <form action="admin.php?p=login" method="post">
     <div class="input-group">
       <label for="user">Логин</label>
       <input type="text" name="user" id="user" placeholder="Введите ваш логин" autocomplete="username" required>
@@ -300,7 +314,7 @@ if (isset($_GET['p']) && $_GET['p'] === 'login' && $_SERVER['REQUEST_METHOD'] ==
 
   </form>
   <div class="form-header">
-    <p>Чтобы "забыть" авторизацию на этом устройстве нужно закрыть браузер</p>
+    <p>Сессия завершается автоматически после 30 минут бездействия</p>
   </div>
 </div>
 
