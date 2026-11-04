@@ -137,6 +137,7 @@ function uploadPhoto(type) {
         // Send the file to the server
         fetch(path, {// Changed from save.php to savePhoto.php
             method: 'POST',
+            credentials: 'same-origin',
             body: formData
         })
             .then(response => {

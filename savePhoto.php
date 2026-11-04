@@ -1,35 +1,21 @@
 <?php
-// Enable error reporting for debugging
 error_reporting(E_ALL);
-ini_set('display_errors', 1);
+ini_set('display_errors', '0');
 
-// Check if a file was uploaded
-if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
-    // Get the original file name and create a safe path
-    $originalName = basename($_FILES['photo']['name']);
-    $filename = 'tovar/' . preg_replace('/[^a-zA-Z0-9._-]/', '', $originalName); // Sanitize filename
-    
-    // Check if the file is an image
-    $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-    if (!in_array($_FILES['photo']['type'], $allowedTypes)) {
-        echo json_encode(['success' => false, 'error' => 'Недопустимый тип файла']);
-        exit;
-    }
-    
-    // Move the uploaded file to the target directory
-    if (move_uploaded_file($_FILES['photo']['tmp_name'], $filename)) {
-        // Return success response with filename
-        echo json_encode([
-            'success' => true,
-            'filename' => basename($filename)
-        ]);
-    } else {
-        // Return error response
-        echo json_encode(['success' => false, 'error' => 'Ошибка при сохранении файла']);
-    }
-} else {
-    // Return error response for no file or upload error
-    $error = $_FILES['photo']['error'] ?? 'Нет данных для сохранения';
-    echo json_encode(['success' => false, 'error' => 'Нет загруженного файла или ошибка загрузки: ' . $error]);
+require_once __DIR__ . '/includes/admin-auth.php';
+require_once __DIR__ . '/includes/image-upload.php';
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    spoon_upload_response(['success' => false, 'error' => 'Метод не поддерживается'], 405);
 }
-?>
+
+if (!spoon_admin_is_authenticated()) {
+    spoon_upload_response(['success' => false, 'error' => 'Требуется авторизация'], 403);
+}
+
+$upload = spoon_process_image_upload($_FILES['photo'] ?? [], __DIR__ . '/tovar', ['jpg', 'png', 'gif', 'webp']);
+if (!$upload['ok']) {
+    spoon_upload_response(['success' => false, 'error' => $upload['error']], $upload['status']);
+}
+
+spoon_upload_response(['success' => true, 'filename' => $upload['filename']]);
