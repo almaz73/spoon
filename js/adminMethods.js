@@ -299,7 +299,7 @@ function saveGoods() { // переписываем
         goods.models.map(el => Object.entries(el)[0][1].isEdited = false)
 
 
-        if (!goods.banner) goods.banner.url = '01.jpg'
+        if (!goods.banner) goods.banner = {url: '01.jpg'}
         let data = `var goods = {}; goods.banner = {url: "${goods.banner.url}"};goods.colors = {darkBlue: 'Синий'}; goods.models = ${JSON.stringify(goods.models)}`;
 
         // 1 вариант. Скачиваем на комп пользователя
@@ -312,14 +312,27 @@ function saveGoods() { // переписываем
         // 2 вариант. Отправляем на сервер
         fetch('save.php', {
             method: 'POST',
+            credentials: 'same-origin',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: 'filename=' + encodeURIComponent('listTovar.js') + '&content=' + encodeURIComponent(data)
         })
-            .then(response => response.text())
-            .then(data => location.reload())
-            .catch(error => console.error('Ошибка:', error));
+            .then(async response => {
+                let result = null;
+                try {
+                    result = await response.json();
+                } catch (e) {
+                }
+                if (!response.ok || !result || !result.success) {
+                    throw new Error((result && result.error) || ('HTTP ' + response.status));
+                }
+                location.reload();
+            })
+            .catch(error => {
+                console.error('Ошибка сохранения:', error);
+                alert('Не удалось сохранить изменения: ' + error.message);
+            });
     }
 
     showAllPhoto()

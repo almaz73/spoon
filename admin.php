@@ -1,10 +1,9 @@
 <?php
-$username = "носов";
-$password = "носов";
-$nonsense = "f07854328kazan27032026fag584ghf63h264yh245h5y";
-if (isset($_COOKIE['PrivatePageLogin'])) {
-    if ($_COOKIE['PrivatePageLogin'] == md5($password . $nonsense)) {
-        ?>
+require_once __DIR__ . '/includes/site.php';
+require_once __DIR__ . '/includes/admin-auth.php';
+
+if (spoon_admin_is_authenticated()) {
+    ?>
 
       <!DOCTYPE html>
       <html>
@@ -243,26 +242,30 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
 
         <?php
         exit;
-    } else {
-        echo "Bad Cookie.";
-        exit;
-    }
 }
-if (isset($_GET['p']) && $_GET['p'] == "login") {
-    if ($_POST['user'] != $username) {
+
+if (isset($_GET['p']) && $_GET['p'] === 'login' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $login = (string)($_POST['user'] ?? '');
+    $passwordInput = (string)($_POST['keypass'] ?? '');
+
+    if ($login !== SPOON_ADMIN_USER) {
         echo "Sorry, that username does not match.";
         exit;
-    } else if ($_POST['keypass'] != $password) {
+    }
+    if (!hash_equals(SPOON_ADMIN_PASSWORD, $passwordInput)) {
         echo "Sorry, that password does not match.";
         exit;
-    } else if ($_POST['user'] == $username && $_POST['keypass'] == $password) {
-        // Устанавливаем cookie на 10 минут (600 секунд)
-//        $expire_time = time() + 60; // 1 минут
-        setcookie('PrivatePageLogin', md5($_POST['keypass'] . $nonsense), 0);
-        header("Location: $_SERVER[PHP_SELF]");
-    } else {
-        echo "Sorry, you could not be logged in at this time.";
     }
+
+    setcookie('PrivatePageLogin', spoon_admin_cookie_value(), [
+        'expires' => 0,
+        'path' => spoon_base_path(),
+        'secure' => !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off',
+        'httponly' => true,
+        'samesite' => 'Lax',
+    ]);
+    header('Location: admin.php');
+    exit;
 }
 ?>
 
