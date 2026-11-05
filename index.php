@@ -1,4 +1,6 @@
 <?php
+require __DIR__ . '/datas/goods-data.php';
+
 $pageTitle = 'Сувенирная продукция с гравировкой оптом — компания «Ложкин Дом»';
 $pageDescription = 'Оптово-производственная компания «Ложкин Дом»: именные ложки, столовые приборы, фляжки и брелоки с гравировкой по закупочным ценам. Доставка по России и СНГ.';
 include 'includes/header.php';
@@ -72,12 +74,26 @@ include 'includes/header.php';
                     на столовые приборы, фляжки, брелоки, зеркала и другие сувениры. Мы работаем с магазинами,
                     корпоративными клиентами и частными заказчиками, предлагая закупочные цены и доставку по России и
                     странам СНГ.</p>
-                <div class="home-actions">
-                    <a class="btn mybtn" href="catalog.php">Смотреть каталог товаров</a>
-                    <a class="btn mybtn" href="why.php">Почему мы</a>
-                </div>
+
             </div>
         </div>
+    </div>
+</section>
+
+<section id="catalog" class="page-section dark">
+    <div class="container">
+        <div class="row">
+            <h2 class="page-heading">Каталог товаров</h2>
+        </div>
+        <div class="row">
+            <h3 class="page-heading">Столовые приборы с гравировкой</h3>
+        </div>
+        <div class="goods-list row" id="c6"><?php spoon_render_goods('c6'); ?></div>
+        <div class="row">
+            <h3 class="page-heading">Другие сувениры</h3>
+        </div>
+        <div class="goods-list row" id="c1"><?php spoon_render_goods('c1'); ?></div>
+
     </div>
 </section>
 
@@ -130,7 +146,6 @@ include 'includes/header.php';
     (function () {
         var anchors = {
             '#promo': 'why.php',
-            '#catalog': 'catalog.php',
             '#otziv': 'reviews.php',
             '#setrificat': 'certificates.php'
         };
