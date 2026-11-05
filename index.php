@@ -81,25 +81,6 @@ include 'includes/header.php';
     </div>
 </section>
 
-<section id="catalog" class="page-section dark">
-    <div class="container">
-        <div class="row">
-            <h2 class="page-heading">Каталог товаров</h2>
-        </div>
-        <div class="row">
-            <h3 class="page-heading">Столовые приборы с гравировкой</h3>
-        </div>
-        <div class="goods-list row" id="c6"><?php spoon_render_goods('c6'); ?></div>
-        <div class="row">
-            <h3 class="page-heading">Другие сувениры</h3>
-        </div>
-        <div class="goods-list row" id="c1"><?php spoon_render_goods('c1'); ?></div>
-
-    </div>
-</section>
-
-<?php spoon_render_reviews(); ?>
-
 <section id="promo" class="page-section">
     <div class="container">
         <h2 class="page-heading">Наши преимущества</h2>
@@ -124,6 +105,25 @@ include 'includes/header.php';
         <div class="center"><a class="btn mybtn" href="why.php">Подробнее о компании</a></div>
     </div>
 </section>
+
+<section id="catalog" class="page-section dark">
+    <div class="container">
+        <div class="row">
+            <h2 class="page-heading">Каталог товаров</h2>
+        </div>
+        <div class="row">
+            <h3 class="page-heading">Столовые приборы с гравировкой</h3>
+        </div>
+        <div class="goods-list row" id="c6"><?php spoon_render_goods('c6'); ?></div>
+        <div class="row">
+            <h3 class="page-heading">Другие сувениры</h3>
+        </div>
+        <div class="goods-list row" id="c1"><?php spoon_render_goods('c1'); ?></div>
+
+    </div>
+</section>
+
+<?php spoon_render_reviews(); ?>
 
 <section class="page-section dark home-links">
     <div class="container">
