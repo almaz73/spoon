@@ -1,0 +1,28 @@
+User-agent: *
+Allow: /
+
+# Админка и служебные обработчики
+Disallow: /admin.php
+Disallow: /save.php
+Disallow: /savePhoto.php
+Disallow: /saveBanner.php
+Disallow: /deletePhoto.php
+Disallow: /deleteBanner.php
+Disallow: /get_images.php
+Disallow: /get_banners.php
+Disallow: /js/mail.php
+Disallow: /js/mnenie.php
+Disallow: /test_mail.php
+
+# Служебные каталоги
+Disallow: /includes/
+Disallow: /PHPMailer/
+Disallow: /uploads/
+
+# Редирект на ЧПУ товара не индексируем
+Disallow: /product.php
+
+# UTM-метки не создают дубли страниц (Яндекс)
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content
+
+Sitemap: https://xn----htbeijemffg.xn--p1ai/sitemap.xml

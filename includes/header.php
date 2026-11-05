@@ -8,8 +8,8 @@ if (!isset($pageDescription)) {
     $pageDescription = 'Оптово-производственная компания «Ложкин Дом»: именные ложки, столовые приборы, фляжки и брелоки с гравировкой по закупочным ценам. Доставка по России и СНГ.';
 }
 
-$canonical = spoon_current_url();
 $currentPage = $currentPage ?? basename($_SERVER['PHP_SELF']);
+$canonical = $currentPage === 'index.php' ? spoon_site_url() : spoon_current_url();
 $ogType = $ogType ?? 'website';
 $ogImage = $pageImage ?? (spoon_site_url() . 'images/logo.png');
 

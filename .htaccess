@@ -15,6 +15,9 @@ RewriteEngine On
 # Служебные каталоги и файлы: .git, .idea, .env и т.п. (.well-known оставляем)
 RewriteRule (^|/)\.(?!well-known(?:/|$)) - [R=404,L]
 
+# Карта сайта собирается из datas/listTovar.js
+RewriteRule ^sitemap\.xml$ sitemap.php [L]
+
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.html\ HTTP/
 RewriteRule ^index\.html$ /index.php [R=301,L]
 
