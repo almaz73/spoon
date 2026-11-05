@@ -98,7 +98,7 @@ include 'includes/header.php';
     </div>
 </section>
 
-<?php spoon_render_reviews(['href' => 'reviews.php', 'label' => 'Все отзывы покупателей']); ?>
+<?php spoon_render_reviews(); ?>
 
 <section id="promo" class="page-section">
     <div class="container">
