@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . '/datas/goods-data.php';
+require __DIR__ . '/datas/reviews-data.php';
 
 $pageTitle = 'Сувенирная продукция с гравировкой оптом — компания «Ложкин Дом»';
 $pageDescription = 'Оптово-производственная компания «Ложкин Дом»: именные ложки, столовые приборы, фляжки и брелоки с гравировкой по закупочным ценам. Доставка по России и СНГ.';
@@ -97,6 +98,8 @@ include 'includes/header.php';
     </div>
 </section>
 
+<?php spoon_render_reviews(['href' => 'reviews.php', 'label' => 'Все отзывы покупателей']); ?>
+
 <section id="promo" class="page-section">
     <div class="container">
         <h2 class="page-heading">Наши преимущества</h2>
@@ -146,7 +149,6 @@ include 'includes/header.php';
     (function () {
         var anchors = {
             '#promo': 'why.php',
-            '#otziv': 'reviews.php',
             '#setrificat': 'certificates.php'
         };
         var target = anchors[window.location.hash];
